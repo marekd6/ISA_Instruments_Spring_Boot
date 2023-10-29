@@ -23,7 +23,7 @@ import java.util.UUID;
 public class Instrument implements Comparable<Instrument>, Serializable {
 
     @Id
-    @GeneratedValue(generator = "UUID") // TODO non-JPA generated UUID
+    @GeneratedValue
     @Column(name = "id", updatable = false, nullable = false, unique = true)
     private UUID id;
 
@@ -41,6 +41,17 @@ public class Instrument implements Comparable<Instrument>, Serializable {
         this.name = name;
         this.section = section;
         this.production_year = production_year;
+    }
+
+    /*
+    UUID generator
+     */
+    @PrePersist
+    void generateUUID(){
+        //this.id = UUID.fromString(String.valueOf(hashCode()));
+        if (id == null) {
+            id = UUID.nameUUIDFromBytes(String.valueOf(hashCode()).getBytes());
+        }
     }
 
     @Override
