@@ -38,15 +38,9 @@ public class Section implements Comparable<Section>, Serializable {
     @OneToMany(mappedBy = "section", cascade = CascadeType.ALL)
     private final List<Instrument> instrumentList;
 
-    /*
-    UUID generator
-     */
     @PrePersist
     void generateUUID() {
-        //this.id = UUID.fromString(String.valueOf(hashCode()));
-        //if (id == null) {
-            id = UUID.nameUUIDFromBytes(String.valueOf(hashCode()).getBytes());
-        //}
+        id = UUID.nameUUIDFromBytes(String.valueOf(hashCode()).getBytes());
     }
 
     @Override

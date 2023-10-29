@@ -69,7 +69,5 @@ public class DataInitializer {
         instrumentService.saveInstrument(flute);
         instrumentService.saveInstrument(gong);
 
-        System.out.println("Success");
-
     }
 }

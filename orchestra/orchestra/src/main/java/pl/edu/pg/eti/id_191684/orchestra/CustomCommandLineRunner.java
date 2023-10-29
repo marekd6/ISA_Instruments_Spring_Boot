@@ -63,8 +63,6 @@ public class CustomCommandLineRunner implements CommandLineRunner {
         }
 
         scanner.close();
-        //SpringApplication.exit(null);
-        //System.exit(SpringApplication.exit(ctx, () -> 0));
     }
 
     private void listSections() {

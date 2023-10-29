@@ -23,7 +23,7 @@ public class InstrumentService {
     }
 
     public Instrument getInstrumentById(UUID id) {
-        return instrumentRepository.findById(id).orElse(null); // TODO check it
+        return instrumentRepository.findById(id).orElse(null);
     }
 
     public List<Instrument> getInstrumentsBySectionId(UUID sectionId) {
