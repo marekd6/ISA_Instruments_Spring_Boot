@@ -2,6 +2,7 @@ package pl.edu.pg.eti.id_191684.orchestra;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
 import org.springframework.stereotype.Component;
 import pl.edu.pg.eti.id_191684.orchestra.entity.*;
 import pl.edu.pg.eti.id_191684.orchestra.service.*;
@@ -62,6 +63,8 @@ public class CustomCommandLineRunner implements CommandLineRunner {
         }
 
         scanner.close();
+        //SpringApplication.exit(null);
+        //System.exit(SpringApplication.exit(ctx, () -> 0));
     }
 
     private void listSections() {
