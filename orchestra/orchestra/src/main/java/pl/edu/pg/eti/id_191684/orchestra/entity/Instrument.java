@@ -1,11 +1,9 @@
 package pl.edu.pg.eti.id_191684.orchestra.entity;
 
 import jakarta.persistence.*;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-//import org.springframework.data.annotation.Id;
 
 import java.io.Serializable;
 import java.util.Objects;

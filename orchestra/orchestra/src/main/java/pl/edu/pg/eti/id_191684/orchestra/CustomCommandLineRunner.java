@@ -2,7 +2,6 @@ package pl.edu.pg.eti.id_191684.orchestra;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.SpringApplication;
 import org.springframework.stereotype.Component;
 import pl.edu.pg.eti.id_191684.orchestra.entity.*;
 import pl.edu.pg.eti.id_191684.orchestra.service.*;
@@ -29,10 +28,10 @@ public class CustomCommandLineRunner implements CommandLineRunner {
 
         while (isRunning) {
             System.out.println("\nMenu:");
-            System.out.println("1. List Categories");
-            System.out.println("2. List Instruments");
-            System.out.println("3. Add Instrument");
-            System.out.println("4. Delete Instrument");
+            System.out.println("1. List sections");
+            System.out.println("2. List instruments");
+            System.out.println("3. Add instrument");
+            System.out.println("4. Delete instrument");
             System.out.println("5. Exit");
             System.out.print("Enter option number: ");
 
@@ -76,15 +75,15 @@ public class CustomCommandLineRunner implements CommandLineRunner {
     }
 
     private void addInstrument(Scanner scanner) {
-        System.out.print("Enter Instrument Name: ");
+        System.out.print("Enter instrument name: ");
         String instrumentName = scanner.nextLine();
 
-        System.out.print("Enter Instrument Production Year: ");
+        System.out.print("Enter instrument production year: ");
         int instrumentProductionYear = Integer.parseInt(scanner.nextLine());
 
-        System.out.println("Available Sections:");
+        System.out.println("Available sections:");
         sectionService.getAllSections().forEach(section -> System.out.println(section));
-        System.out.print("Enter Section ID: ");
+        System.out.print("Enter section ID: ");
         UUID categoryId = UUID.fromString(scanner.nextLine());
 
         Section section = sectionService.getSectionById(categoryId);
@@ -93,7 +92,7 @@ public class CustomCommandLineRunner implements CommandLineRunner {
             instrumentService.saveInstrument(instrument);
             System.out.println("Instrument added successfully!");
         } else {
-            System.out.println("Invalid Section. Instrument not added.");
+            System.out.println("Invalid section. Instrument not added.");
         }
     }
 

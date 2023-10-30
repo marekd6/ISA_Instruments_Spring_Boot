@@ -22,6 +22,7 @@ public class DataInitializer {
 
     @PostConstruct
     public void initData() {
+
         // sections:
         Section stringed = Section.builder()
                 .name("String")
