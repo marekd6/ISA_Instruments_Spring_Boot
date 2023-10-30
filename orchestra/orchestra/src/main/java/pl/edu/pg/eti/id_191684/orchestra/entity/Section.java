@@ -22,7 +22,6 @@ import java.util.UUID;
 public class Section implements Comparable<Section>, Serializable {
 
     @Id
-    @GeneratedValue
     @Column(name = "id", updatable = false, nullable = false, unique = true)
     private UUID id;
 
@@ -40,7 +39,7 @@ public class Section implements Comparable<Section>, Serializable {
 
     @PrePersist
     void generateUUID() {
-        id = UUID.nameUUIDFromBytes(String.valueOf(hashCode()).getBytes());
+        id = UUID.randomUUID();
     }
 
     @Override

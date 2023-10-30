@@ -22,7 +22,7 @@ public class CustomCommandLineRunner implements CommandLineRunner {
     }
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
         Scanner scanner = new Scanner(System.in);
         boolean isRunning = true;
 
