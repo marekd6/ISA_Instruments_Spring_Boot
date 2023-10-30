@@ -34,7 +34,7 @@ public class Instrument implements Comparable<Instrument>, Serializable {
     @JoinColumn(name = "section")
     private final Section section;
 
-    public Instrument(String name, int production_year, Section section){
+    public Instrument(String name, int production_year, Section section) {
         this.name = name;
         this.section = section;
         this.production_year = production_year;
