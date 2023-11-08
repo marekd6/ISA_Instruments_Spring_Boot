@@ -2,6 +2,7 @@ package pl.edu.pg.eti.id_191684.orchestra.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pl.edu.pg.eti.id_191684.orchestra.DTOS.InstrumentCreateDTO;
 import pl.edu.pg.eti.id_191684.orchestra.entity.Instrument;
 import pl.edu.pg.eti.id_191684.orchestra.repository.InstrumentRepository;
 
@@ -36,5 +37,9 @@ public class InstrumentService {
 
     public void deleteInstrument(UUID id) {
         instrumentRepository.deleteById(id);
+    }
+
+    public Instrument createInstrument(InstrumentCreateDTO instrumentCreateDTO) {
+        return instrumentCreateDTO
     }
 }
