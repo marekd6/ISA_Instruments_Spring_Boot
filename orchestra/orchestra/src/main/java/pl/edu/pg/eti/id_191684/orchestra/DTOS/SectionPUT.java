@@ -1,9 +1,6 @@
 package pl.edu.pg.eti.id_191684.orchestra.DTOS;
 
-
 import lombok.*;
-
-import java.util.UUID;
 
 
 @Getter
@@ -13,14 +10,12 @@ import java.util.UUID;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @ToString
 @EqualsAndHashCode
-public class InstrumentCreateDTO {
-
-    private UUID id;
+public class SectionPUT {
 
     private String name;
 
-    private int production_year;
+    private int volume;
 
-    private UUID section;
+    private int location;
 
 }

@@ -2,7 +2,9 @@ package pl.edu.pg.eti.id_191684.orchestra.DTOS;
 
 import lombok.*;
 
-
+/*
+A DTO for Instrument to handle PUT requests
+ */
 @Getter
 @Setter
 @Builder
@@ -10,12 +12,10 @@ import lombok.*;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @ToString
 @EqualsAndHashCode
-public class SectionCreateDTO {
+public class InstrumentPUT {
 
     private String name;
 
-    private int volume;
-
-    private int location;
+    private int production_year;
 
 }

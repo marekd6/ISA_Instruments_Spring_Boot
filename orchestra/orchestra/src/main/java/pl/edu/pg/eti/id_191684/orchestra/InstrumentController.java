@@ -22,6 +22,8 @@ public class InstrumentController {
         this.instrumentService = instrumentService;
     }
 
+
+
 /*    @PostMapping
     public ResponseEntity<InstrumentDTO> createInstrument(@RequestBody InstrumentCreateDTO instrumentCreateDTO) {
         Instrument instrument = instrumentService.createInstrument(instrumentCreateDTO);
@@ -30,17 +32,25 @@ public class InstrumentController {
     }*/
     @PutMapping("/api/instruments/{id}")
     @ResponseStatus(HttpStatus.CREATED)
-    void putCharacter(@PathVariable("id") UUID id, @RequestBody InstrumentCreateDTO instrumentCreateDTO){
-        instrumentService.createInstrument(id, instrumentCreateDTO);
+    void putCharacter(@PathVariable("id") UUID id, @RequestBody InstrumentPUT instrumentPUT){
+        //instrumentService.createInstrument(id, instrumentCreateDTO);
+        instrumentService.saveInstrument(createInstrument(instrumentPUT));
+    }
+
+    private Instrument createInstrument(InstrumentPUT instrumentPUT) {
+        return Instrument.builder()
+                .name(instrumentPUT.getName())
+                .production_year(instrumentPUT.getProduction_year())
+                .section(instrumentPUT.)
     }
 
 
-    @PutMapping("/{id}")
+/*    @PutMapping("/{id}")
     public ResponseEntity<InstrumentDTO> updateInstrument(@PathVariable UUID id, @RequestBody InstrumentCreateDTO instrumentCreateDTO) {
         Instrument instrument = instrumentService.updateInstrument(id, instrumentCreateDTO);
         InstrumentDTO instrumentDTO = convertToDTO(instrument);
         return new ResponseEntity<>(instrumentDTO, HttpStatus.OK);
-    }
+    }*/
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteInstrument(@PathVariable UUID id) {
@@ -48,7 +58,7 @@ public class InstrumentController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping("/{id}")
+/*    @GetMapping("/{id}")
     public ResponseEntity<InstrumentDTO> getInstrumentById(@PathVariable UUID id) {
         Instrument instrument = instrumentService.getInstrumentById(id);
         if (instrument != null) {
@@ -57,22 +67,44 @@ public class InstrumentController {
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+    }*/
+
+    /**
+     * @param id instrument's id
+     * @return single instrument
+     */
+    @GetMapping("/api/instruments/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    InstrumentGET getInstrument(@PathVariable("id") UUID id) {
+        Instrument instrument = instrumentService.getInstrumentById(id);
+        return instrumentService.createInstrumentGET(instrument);
+        /*return instrumentService.getInstrumentById(id)
+                .map(InstrumentDTO)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));*/
     }
 
-    @GetMapping
-    public ResponseEntity<InstrumentCollectionDTO> getAllInstruments() {
+
+
+/*    @GetMapping
+    public ResponseEntity<InstrumentCollectionGET> getAllInstruments() {
         List<Instrument> instruments = instrumentService.getAllInstruments();
-        InstrumentCollectionDTO collectionDTO = convertToInstrumentCollectionDTO(instruments);
+        InstrumentCollectionGET collectionDTO = convertToInstrumentCollectionDTO(instruments);
         return new ResponseEntity<>(collectionDTO, HttpStatus.OK);
+    }*/
+
+
+    /**
+     * @return list of instruments
+     */
+    @GetMapping("api/instruments")
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public InstrumentCollectionGET getAllInstruments() {
+        //return charactersToResponse.apply(service.findAll());
+        //InstrumentCollectionGET instrumentCollectionGET = convertToInstrumentCollectionDTO(instruments);
+        List<Instrument> instruments = instrumentService.getAllInstruments();
+        return instrumentService.createInstrumentCollectionGET(instruments);
     }
 
-    private InstrumentDTO convertToDTO(Instrument instrument) {
-        // Convert Instrument entity to InstrumentDTO
-        return null;
-    }
-
-    private InstrumentCollectionDTO convertToInstrumentCollectionDTO(List<Instrument> instruments) {
-        // Convert List<Instrument> to InstrumentCollectionDTO
-        return null;
-    }
 }

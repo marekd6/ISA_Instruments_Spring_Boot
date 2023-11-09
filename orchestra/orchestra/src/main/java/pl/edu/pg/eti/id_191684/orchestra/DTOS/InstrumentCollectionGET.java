@@ -1,11 +1,12 @@
 package pl.edu.pg.eti.id_191684.orchestra.DTOS;
 
-
 import lombok.*;
 
-import java.util.UUID;
+import java.util.List;
 
-
+/*
+DTO for GETting collection of Instruments
+ */
 @Getter
 @Setter
 @Builder
@@ -13,14 +14,8 @@ import java.util.UUID;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @ToString
 @EqualsAndHashCode
-public class InstrumentCreateDTO {
+public class InstrumentCollectionGET {
 
-    private UUID id;
-
-    private String name;
-
-    private int production_year;
-
-    private UUID section;
+    private List<InstrumentGET> instruments;
 
 }

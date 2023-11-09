@@ -23,17 +23,17 @@ public class SectionController {
     }
 
     @PostMapping
-    public ResponseEntity<SectionDTO> createSection(@RequestBody SectionCreateDTO sectionCreateDTO) {
-        Section section = sectionService.createSection(sectionCreateDTO);
-        SectionDTO sectionDTO = convertToDTO(section);
-        return new ResponseEntity<>(sectionDTO, HttpStatus.CREATED);
+    public ResponseEntity<SectionGET> createSection(@RequestBody SectionPUT sectionPUT) {
+        Section section = sectionService.createSection(sectionPUT);
+        SectionGET sectionGET = convertToDTO(section);
+        return new ResponseEntity<>(sectionGET, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<SectionDTO> updateSection(@PathVariable UUID id, @RequestBody SectionCreateDTO sectionCreateDTO) {
-        Section section = sectionService.updateSection(id, sectionCreateDTO);
-        SectionDTO sectionDTO = convertToDTO(section);
-        return new ResponseEntity<>(sectionDTO, HttpStatus.OK);
+    public ResponseEntity<SectionGET> updateSection(@PathVariable UUID id, @RequestBody SectionPUT sectionPUT) {
+        Section section = sectionService.updateSection(id, sectionPUT);
+        SectionGET sectionGET = convertToDTO(section);
+        return new ResponseEntity<>(sectionGET, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
@@ -43,30 +43,30 @@ public class SectionController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<SectionDTO> getSectionById(@PathVariable UUID id) {
+    public ResponseEntity<SectionGET> getSectionById(@PathVariable UUID id) {
         Section section = sectionService.getSectionById(id);
         if (section != null) {
-            SectionDTO sectionDTO = convertToDTO(section);
-            return new ResponseEntity<>(sectionDTO, HttpStatus.OK);
+            SectionGET sectionGET = convertToDTO(section);
+            return new ResponseEntity<>(sectionGET, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
     @GetMapping
-    public ResponseEntity<SectionCollectionDTO> getAllSections() {
+    public ResponseEntity<SectionCollectionGET> getAllSections() {
         List<Section> sections = sectionService.getAllSections();
-        SectionCollectionDTO collectionDTO = convertToSectionCollectionDTO(sections);
+        SectionCollectionGET collectionDTO = convertToSectionCollectionDTO(sections);
         return new ResponseEntity<>(collectionDTO, HttpStatus.OK);
     }
 
-    private SectionDTO convertToDTO(Section section) {
-        // Convert Section entity to SectionDTO
+    private SectionGET convertToDTO(Section section) {
+        // Convert Section entity to SectionGET
         return null;
     }
 
-    private SectionCollectionDTO convertToSectionCollectionDTO(List<Section> sections) {
-        // Convert List<Section> to SectionCollectionDTO
+    private SectionCollectionGET convertToSectionCollectionDTO(List<Section> sections) {
+        // Convert List<Section> to SectionCollectionGET
         return null;
     }
 }
