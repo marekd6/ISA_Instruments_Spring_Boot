@@ -1,9 +1,7 @@
 package pl.edu.pg.eti.id_191684.orchestra.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -16,6 +14,8 @@ import java.util.UUID;
 @Getter
 @Setter
 @NoArgsConstructor(force = true)
+@AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "instruments")
 public class Instrument implements Comparable<Instrument>, Serializable {

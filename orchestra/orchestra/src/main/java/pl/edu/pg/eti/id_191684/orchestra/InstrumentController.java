@@ -22,12 +22,18 @@ public class InstrumentController {
         this.instrumentService = instrumentService;
     }
 
-    @PostMapping
+/*    @PostMapping
     public ResponseEntity<InstrumentDTO> createInstrument(@RequestBody InstrumentCreateDTO instrumentCreateDTO) {
         Instrument instrument = instrumentService.createInstrument(instrumentCreateDTO);
         InstrumentDTO instrumentDTO = convertToDTO(instrument);
         return new ResponseEntity<>(instrumentDTO, HttpStatus.CREATED);
+    }*/
+    @PutMapping("/api/instruments/{id}")
+    @ResponseStatus(HttpStatus.CREATED)
+    void putCharacter(@PathVariable("id") UUID id, @RequestBody InstrumentCreateDTO instrumentCreateDTO){
+        instrumentService.createInstrument(id, instrumentCreateDTO);
     }
+
 
     @PutMapping("/{id}")
     public ResponseEntity<InstrumentDTO> updateInstrument(@PathVariable UUID id, @RequestBody InstrumentCreateDTO instrumentCreateDTO) {

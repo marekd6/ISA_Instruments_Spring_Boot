@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.edu.pg.eti.id_191684.orchestra.DTOS.InstrumentCreateDTO;
 import pl.edu.pg.eti.id_191684.orchestra.entity.Instrument;
+import pl.edu.pg.eti.id_191684.orchestra.entity.Section;
 import pl.edu.pg.eti.id_191684.orchestra.repository.InstrumentRepository;
 
 import java.util.List;
@@ -39,7 +40,14 @@ public class InstrumentService {
         instrumentRepository.deleteById(id);
     }
 
-    public Instrument createInstrument(InstrumentCreateDTO instrumentCreateDTO) {
-        return instrumentCreateDTO
+    public Instrument createInstrument(UUID id, InstrumentCreateDTO instrumentCreateDTO) {
+        Instrument.builder()
+                .id(id)
+                .name(instrumentCreateDTO.getName())
+                .production_year(instrumentCreateDTO.getProduction_year())
+                .section(Section.builder()
+                        .id(instrumentCreateDTO.getSection())
+                        .build())
+                .build();
     }
 }

@@ -1,20 +1,24 @@
 package pl.edu.pg.eti.id_191684.orchestra.DTOS;
 
-import java.util.UUID;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
+import java.util.UUID;
 
 
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
-@AllArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@ToString
+@EqualsAndHashCode
 public class InstrumentCreateDTO {
-    private String name;
-    private UUID sectionId;
 
-    // Constructors, getters, and setters
+    private String name;
+
+    private int production_year;
+
+    private UUID section;
+
 }
