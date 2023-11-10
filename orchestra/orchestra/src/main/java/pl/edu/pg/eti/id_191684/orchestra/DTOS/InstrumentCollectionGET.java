@@ -14,7 +14,7 @@ DTO for reading collection of Instruments
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @EqualsAndHashCode
-public class InstrumentCollectionDTO {
+public class InstrumentCollectionGET {
 
     /*
     list of ids

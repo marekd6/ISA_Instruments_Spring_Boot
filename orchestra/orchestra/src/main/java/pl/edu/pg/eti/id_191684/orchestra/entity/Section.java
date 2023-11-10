@@ -5,7 +5,6 @@ import lombok.*;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Objects;
 import java.util.UUID;
 
 import static java.util.Objects.hash;
@@ -41,7 +40,6 @@ public class Section implements Comparable<Section>, Serializable {
 
     @PrePersist
     void generateUUID() {
-        //id = UUID.randomUUID();
         int hashCode = hash(name, volume, location);
         long mostSigBits = (long) hashCode << 32;
         long leastSigBits = hashCode & 0xFFFFFFFFL;

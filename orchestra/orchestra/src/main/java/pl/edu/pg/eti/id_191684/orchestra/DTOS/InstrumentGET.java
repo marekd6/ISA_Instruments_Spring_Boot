@@ -15,7 +15,7 @@ A DTO for Instrument to handle GET requests
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @ToString
 @EqualsAndHashCode
-public class InstrumentDTO {
+public class InstrumentGET {
 
     /*
     Section for Instrument DTO GET

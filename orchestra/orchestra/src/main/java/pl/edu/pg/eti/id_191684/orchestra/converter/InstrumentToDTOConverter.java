@@ -1,25 +1,21 @@
 package pl.edu.pg.eti.id_191684.orchestra.converter;
 
-import pl.edu.pg.eti.id_191684.orchestra.DTOS.InstrumentDTO;
+import org.springframework.stereotype.Component;
+import pl.edu.pg.eti.id_191684.orchestra.DTOS.InstrumentGET;
 import pl.edu.pg.eti.id_191684.orchestra.entity.Instrument;
 
-import java.util.List;
-import java.util.function.Function;
-import org.springframework.stereotype.Component;
-
-import java.util.List;
 import java.util.function.Function;
 
 @Component
-public class InstrumentToDTOconv implements Function<Instrument, InstrumentDTO> {
+public class InstrumentToDTOConverter implements Function<Instrument, InstrumentGET> {
 
     @Override
-    public InstrumentDTO apply(Instrument instrument) {
-        return InstrumentDTO.builder()
+    public InstrumentGET apply(Instrument instrument) {
+        return InstrumentGET.builder()
                 .id(instrument.getId())
                 .name(instrument.getName())
                 .production_year(instrument.getProduction_year())
-                .section(InstrumentDTO.Section.builder()
+                .section(InstrumentGET.Section.builder()
                         .id(instrument.getSection().getId())
                         .name(instrument.getSection().getName())
                         .build())

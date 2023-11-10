@@ -1,17 +1,11 @@
-### print all instruments
+### print all instruments - collection
 GET http://localhost:8080/api/instruments
-
-<> 2023-11-10T122311.200.json
-<> 2023-11-10T122056.200.json
-<> 2023-11-10T121526.200.json
 
 ### print an instrument
 GET http://localhost:8080/api/instruments/c3fe24ae-0000-0000-0000-0000c3fe24ae
 
-<> 2023-11-10T121945.200.json
-<> 2023-11-10T121710.200.json
-<> 2023-11-10T121702.404.json
-<> 2023-11-10T121645.200.json
+### delete an instrument
+DELETE http://localhost:8080/api/instruments/c3fe24ae-0000-0000-0000-0000c3fe24ae
 
 ### create an instrument
 PUT http://localhost:8080/api/instruments/c3fe24ae-0000-0000-0000-0000c3fe24ae
@@ -23,9 +17,26 @@ Content-Type: application/json
 "sectionId": "6ed878ec-0000-0000-0000-00006ed878ec"
 }
 
-<> 2023-11-10T122253.405.json
-<> 2023-11-10T122239.405.json
-<> 2023-11-10T122108.400.html
 
-### delete an instrument
-DELETE http://localhost:8080/api/instruments/c3fe24ae-0000-0000-0000-0000c3fe24ae
+### print all instruments from a section - collection ..... not OK
+GET http://localhost:8080/api/sections/6ed878ec-0000-0000-0000-00006ed878ec/instruments
+
+
+### print all sections - collection
+GET http://localhost:8080/api/sections
+
+### print a section
+GET http://localhost:8080/api/sections/6ed878ec-0000-0000-0000-00006ed878ec
+
+### delete a section
+DELETE http://localhost:8080/api/sections/6ed878ec-0000-0000-0000-00006ed878ec
+
+### create a section
+PUT http://localhost:8080/api/sections/6ed878ec-0000-0000-0000-00006ed878ec
+Content-Type: application/json
+
+{
+"name": "String",
+"volume": 5,
+  "location": 1
+}

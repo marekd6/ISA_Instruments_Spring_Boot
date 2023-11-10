@@ -2,11 +2,11 @@ package pl.edu.pg.eti.id_191684.orchestra;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
-import org.springframework.web.server.ResponseStatusException;
-import pl.edu.pg.eti.id_191684.orchestra.entity.*;
-import pl.edu.pg.eti.id_191684.orchestra.service.*;
+import pl.edu.pg.eti.id_191684.orchestra.entity.Instrument;
+import pl.edu.pg.eti.id_191684.orchestra.entity.Section;
+import pl.edu.pg.eti.id_191684.orchestra.service.InstrumentService;
+import pl.edu.pg.eti.id_191684.orchestra.service.SectionService;
 
 import java.util.Scanner;
 import java.util.UUID;
@@ -86,16 +86,23 @@ public class CustomCommandLineRunner implements CommandLineRunner {
         System.out.println("Available sections:");
         sectionService.getAllSections().forEach(section -> System.out.println(section));
         System.out.print("Enter section ID: ");
-        UUID categoryId = UUID.fromString(scanner.nextLine());
+        UUID sectionId = UUID.fromString(scanner.nextLine());
 
-        Section section = sectionService.getSectionById(categoryId);
+        /*Section section = sectionService.getSectionById(sectionId);
         if (section != null) {
             Instrument instrument = new Instrument(instrumentName, instrumentProductionYear, section);
             instrumentService.saveInstrument(instrument);
             System.out.println("Instrument added successfully!");
         } else {
             System.out.println("Invalid section. Instrument not added.");
-        }
+        }*/
+        sectionService.getSectionById(sectionId)
+                .ifPresentOrElse(
+                        section -> instrumentService.saveInstrument(new Instrument(instrumentName, instrumentProductionYear, section)),
+                        () ->{
+                            System.out.println("Invalid section. Instrument not added.");
+                        }
+                );
     }
 
     private void deleteInstrument(Scanner scanner) {

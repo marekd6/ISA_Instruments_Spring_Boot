@@ -3,14 +3,16 @@ package pl.edu.pg.eti.id_191684.orchestra.service;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.edu.pg.eti.id_191684.orchestra.DTOS.*;
-import pl.edu.pg.eti.id_191684.orchestra.entity.*;
+import pl.edu.pg.eti.id_191684.orchestra.DTOS.InstrumentCollectionGET;
+import pl.edu.pg.eti.id_191684.orchestra.DTOS.InstrumentGET;
+import pl.edu.pg.eti.id_191684.orchestra.DTOS.InstrumentPUT;
+import pl.edu.pg.eti.id_191684.orchestra.entity.Instrument;
+import pl.edu.pg.eti.id_191684.orchestra.entity.Section;
 import pl.edu.pg.eti.id_191684.orchestra.repository.InstrumentRepository;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Service
 public class InstrumentService {
@@ -33,6 +35,16 @@ public class InstrumentService {
         return instrumentRepository.findById(id);
     }
 
+    // TODO an instrument from a section
+    public Optional<Instrument> getInstrumentById(Section section, UUID id) {
+        return instrumentRepository.findByIdAndSection(id, section);
+    }
+
+    /*public Optional<List<Instrument>> getInstrumentsBySectionId(UUID sectionId) {
+        return instrumentRepository.findById(sectionId)
+                .map(section -> instrumentRepository.findBySectionId(sectionId));
+    }*/
+    // TODO no for Optional in here
     public List<Instrument> getInstrumentsBySectionId(UUID sectionId) {
         return instrumentRepository.findBySectionId(sectionId);
     }
@@ -46,6 +58,7 @@ public class InstrumentService {
     }
 
     /**
+     * substituted by converter
      * used in PUT
      * converts a DTO into an Instrument
      * @param dto request for Instrument
@@ -68,12 +81,12 @@ public class InstrumentService {
      * @param instrument
      * @return DTO
      */
-    public InstrumentDTO toDTOconvert(@NotNull Instrument instrument) {
-        return InstrumentDTO.builder()
+    public InstrumentGET toDTOconvert(@NotNull Instrument instrument) {
+        return InstrumentGET.builder()
                 .id(instrument.getId())
                 .name(instrument.getName())
                 .production_year(instrument.getProduction_year())
-                .section(InstrumentDTO.Section.builder()
+                .section(InstrumentGET.Section.builder()
                         .id(instrument.getSection().getId())
                         .name(instrument.getSection().getName())
                         .build())
@@ -85,11 +98,11 @@ public class InstrumentService {
      * @param instruments
      * @return DTO collection of Instruments
      */
-    public InstrumentCollectionDTO toDTOconvert(@NotNull List<Instrument> instruments){
+    public InstrumentCollectionGET toDTOconvert(@NotNull List<Instrument> instruments){
         List<UUID> uuids = instruments.stream()
                 .map(instrument -> instrument.getId())
                 .toList();
-        return InstrumentCollectionDTO.builder()
+        return InstrumentCollectionGET.builder()
                 .instruments(uuids)
                 .build();
     }

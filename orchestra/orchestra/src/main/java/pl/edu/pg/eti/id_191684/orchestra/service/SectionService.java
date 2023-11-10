@@ -1,11 +1,16 @@
 package pl.edu.pg.eti.id_191684.orchestra.service;
 
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pl.edu.pg.eti.id_191684.orchestra.DTOS.InstrumentCollectionGET;
+import pl.edu.pg.eti.id_191684.orchestra.DTOS.SectionCollectionGET;
+import pl.edu.pg.eti.id_191684.orchestra.entity.Instrument;
 import pl.edu.pg.eti.id_191684.orchestra.entity.Section;
 import pl.edu.pg.eti.id_191684.orchestra.repository.SectionRepository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -22,9 +27,12 @@ public class SectionService {
         return sectionRepository.findAll();
     }
 
-    public Section getSectionById(UUID id) {
-        return sectionRepository.findById(id).orElse(null);
+    public Optional< Section> getSectionById(UUID id) {
+        return sectionRepository.findById(id);
     }
+    /*public Section getSectionById(UUID id) {
+        return sectionRepository.findById(id).orElse(null);
+    }*/
 
     public Section saveSection(Section section) {
         return sectionRepository.save(section);
@@ -32,5 +40,19 @@ public class SectionService {
 
     public void deleteSection(UUID id) {
         sectionRepository.deleteById(id);
+    }
+
+    /**
+     * used in GET
+     * @param sections
+     * @return DTO collection of Instruments
+     */
+    public SectionCollectionGET toDTOconvert(@NotNull List<Section> sections){
+        List<UUID> uuids = sections.stream()
+                .map(section -> section.getId())
+                .toList();
+        return SectionCollectionGET.builder()
+                .sections(uuids)
+                .build();
     }
 }
