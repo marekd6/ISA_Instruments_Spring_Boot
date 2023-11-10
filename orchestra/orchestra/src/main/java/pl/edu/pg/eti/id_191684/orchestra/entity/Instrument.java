@@ -7,6 +7,8 @@ import java.io.Serializable;
 import java.util.Objects;
 import java.util.UUID;
 
+import static java.util.Objects.hash;
+
 /**
  * An instrument belonging to a section
  */
@@ -42,7 +44,12 @@ public class Instrument implements Comparable<Instrument>, Serializable {
 
     @PrePersist
     void generateUUID(){
-        id = UUID.randomUUID();
+        //id = UUID.randomUUID();
+        //id = UUID.fromString("Instrument: " + name + ", from year " + production_year);//toString()
+        int hashCode = hash(name, production_year, section);
+        long mostSigBits = (long) hashCode << 32;
+        long leastSigBits = hashCode & 0xFFFFFFFFL;
+        id = new UUID(mostSigBits, leastSigBits);
     }
 
     @Override

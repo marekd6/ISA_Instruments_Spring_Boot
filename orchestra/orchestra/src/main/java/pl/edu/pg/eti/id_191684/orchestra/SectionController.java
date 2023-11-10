@@ -1,3 +1,4 @@
+/*
 package pl.edu.pg.eti.id_191684.orchestra;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,3 +71,4 @@ public class SectionController {
         return null;
     }
 }
+*/

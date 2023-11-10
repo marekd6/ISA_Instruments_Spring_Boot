@@ -1,0 +1,31 @@
+### print all instruments
+GET http://localhost:8080/api/instruments
+
+<> 2023-11-10T122311.200.json
+<> 2023-11-10T122056.200.json
+<> 2023-11-10T121526.200.json
+
+### print an instrument
+GET http://localhost:8080/api/instruments/c3fe24ae-0000-0000-0000-0000c3fe24ae
+
+<> 2023-11-10T121945.200.json
+<> 2023-11-10T121710.200.json
+<> 2023-11-10T121702.404.json
+<> 2023-11-10T121645.200.json
+
+### create an instrument
+PUT http://localhost:8080/api/instruments/c3fe24ae-0000-0000-0000-0000c3fe24ae
+Content-Type: application/json
+
+{
+"name": "violin",
+"production_year": 1850,
+"sectionId": "6ed878ec-0000-0000-0000-00006ed878ec"
+}
+
+<> 2023-11-10T122253.405.json
+<> 2023-11-10T122239.405.json
+<> 2023-11-10T122108.400.html
+
+### delete an instrument
+DELETE http://localhost:8080/api/instruments/c3fe24ae-0000-0000-0000-0000c3fe24ae

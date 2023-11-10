@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
+import static java.util.Objects.hash;
+
 /**
  * A category. Instruments belong to a section
  */
@@ -39,12 +41,16 @@ public class Section implements Comparable<Section>, Serializable {
 
     @PrePersist
     void generateUUID() {
-        id = UUID.randomUUID();
+        //id = UUID.randomUUID();
+        int hashCode = hash(name, volume, location);
+        long mostSigBits = (long) hashCode << 32;
+        long leastSigBits = hashCode & 0xFFFFFFFFL;
+        id = new UUID(mostSigBits, leastSigBits);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, volume, location, id);
+        return hash(name, volume, location, id);
     }
 
     @Override

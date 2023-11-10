@@ -2,7 +2,9 @@ package pl.edu.pg.eti.id_191684.orchestra;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
+import org.springframework.web.server.ResponseStatusException;
 import pl.edu.pg.eti.id_191684.orchestra.entity.*;
 import pl.edu.pg.eti.id_191684.orchestra.service.*;
 
@@ -100,12 +102,19 @@ public class CustomCommandLineRunner implements CommandLineRunner {
         System.out.print("Enter Instrument ID to Delete: ");
         UUID instrumentId = UUID.fromString(scanner.nextLine());
 
-        Instrument instrument = instrumentService.getInstrumentById(instrumentId);
+        /*Instrument instrument = instrumentService.getInstrumentById(instrumentId);
         if (instrument != null) {
             instrumentService.deleteInstrument(instrumentId);
             System.out.println("Instrument deleted successfully!");
         } else {
             System.out.println("Instrument not found with ID: " + instrumentId);
-        }
+        }*/
+        instrumentService.getInstrumentById(instrumentId)
+                .ifPresentOrElse(
+                        instrument -> instrumentService.deleteInstrument(instrumentId),
+                        () ->{
+                            System.out.println("Instrument not found with ID: " + instrumentId);
+                        }
+                );
     }
 }

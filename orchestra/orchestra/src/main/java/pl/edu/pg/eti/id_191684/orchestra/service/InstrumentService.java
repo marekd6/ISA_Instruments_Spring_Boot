@@ -1,14 +1,16 @@
 package pl.edu.pg.eti.id_191684.orchestra.service;
 
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.edu.pg.eti.id_191684.orchestra.DTOS.*;
 import pl.edu.pg.eti.id_191684.orchestra.entity.*;
 import pl.edu.pg.eti.id_191684.orchestra.repository.InstrumentRepository;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class InstrumentService {
@@ -24,8 +26,11 @@ public class InstrumentService {
         return instrumentRepository.findAll();
     }
 
-    public Instrument getInstrumentById(UUID id) {
+    /*public Instrument getInstrumentById(UUID id) {
         return instrumentRepository.findById(id).orElse(null);
+    }*/
+    public Optional<Instrument> getInstrumentById(UUID id) {
+        return instrumentRepository.findById(id);
     }
 
     public List<Instrument> getInstrumentsBySectionId(UUID sectionId) {
@@ -40,60 +45,53 @@ public class InstrumentService {
         instrumentRepository.deleteById(id);
     }
 
-    /*
-    service takes a DTO and returns an Instrument
-    used for PUT
+    /**
+     * used in PUT
+     * converts a DTO into an Instrument
+     * @param dto request for Instrument
+     * @return Instrument
      */
-    public Instrument createInstrument(UUID id, InstrumentCreateDTO instrumentCreateDTO) {
+    public Instrument fromDTOconvert(UUID id, InstrumentPUT dto) {
         return Instrument.builder()
                 .id(id)
-                .name(instrumentCreateDTO.getName())
-                .production_year(instrumentCreateDTO.getProduction_year())
+                .name(dto.getName())
+                .production_year(dto.getProduction_year())
                 .section(Section.builder()
-                        .id(instrumentCreateDTO.getSection())
+                        .id(dto.getSectionId())
                         .build())
                 .build();
     }
 
-    /*
-    service takes an Instrument and returns a DTO
-    used for GET
+    /**
+     * substituted by converter
+     * used in GET
+     * @param instrument
+     * @return DTO
      */
-    public InstrumentGET createInstrumentGET(Instrument instrument) {
-        return InstrumentGET.builder()
+    public InstrumentDTO toDTOconvert(@NotNull Instrument instrument) {
+        return InstrumentDTO.builder()
                 .id(instrument.getId())
                 .name(instrument.getName())
                 .production_year(instrument.getProduction_year())
-                .section(InstrumentGET.Section.builder()
+                .section(InstrumentDTO.Section.builder()
                         .id(instrument.getSection().getId())
                         .name(instrument.getSection().getName())
                         .build())
                 .build();
     }
 
-    /*
-    service takes a list of Instruments and returns a list of DTOs
-    used for GET
+    /**
+     * used in GET
+     * @param instruments
+     * @return DTO collection of Instruments
      */
-    public InstrumentCollectionGET createInstrumentCollectionGET(List<Instrument> instruments){
-
-        return InstrumentCollectionGET.builder()
-                .instruments(instruments.stream()
-                        .map(instrument -> InstrumentGET.builder()
-                                .id(instrument.getId())
-                                .name(instrument.getName())
-                                .production_year(instrument.getProduction_year())
-                                .section(InstrumentGET.Section.builder()
-                                        .id(instrument.getSection().getId())
-                                        .name(instrument.getSection().getName())
-                                        .build())
-                                .build())
-                        .toList())
+    public InstrumentCollectionDTO toDTOconvert(@NotNull List<Instrument> instruments){
+        List<UUID> uuids = instruments.stream()
+                .map(instrument -> instrument.getId())
+                .toList();
+        return InstrumentCollectionDTO.builder()
+                .instruments(uuids)
                 .build();
-/*        List<InstrumentCollectionGET> instrumentDTOS = instruments.stream()
-                .map(instrument -> new InstrumentDTO(instrument))
-                .sorted()
-                .collect(Collectors.toList());*/
-
     }
+
 }
