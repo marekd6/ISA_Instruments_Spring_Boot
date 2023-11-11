@@ -82,7 +82,7 @@ public class InstrumentController {
     // TODO MAJOR CHANGES
     /**
      * CREATE/UPDATE a given Instrument
-     * missing error throwing
+     * missing error throwing no section
      * AND NEWSET CHANGE WITH UUID pairs
      * @param instrumentId instrument's id
      * @param dto request dto for instrument
