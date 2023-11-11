@@ -15,7 +15,7 @@ public interface InstrumentRepository extends JpaRepository<Instrument, UUID> {
     List<Instrument> findAllBySection(Section section);
 
     // TODO an instrument from a section
-    Optional<Instrument> findByIdAndSection(UUID id, UUID section);
+    Optional<Instrument> findByIdAndSection(UUID id, Section section);
     //Optional<List<Instrument>> findBySectionId(UUID sectionId);
 }
 

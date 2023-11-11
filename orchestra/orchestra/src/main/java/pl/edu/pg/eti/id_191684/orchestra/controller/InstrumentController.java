@@ -1,5 +1,6 @@
 package pl.edu.pg.eti.id_191684.orchestra.controller;
 
+import org.antlr.v4.runtime.misc.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -10,9 +11,11 @@ import pl.edu.pg.eti.id_191684.orchestra.DTOS.InstrumentPUT;
 import pl.edu.pg.eti.id_191684.orchestra.converter.InstrumentCollectionToDTOConverter;
 import pl.edu.pg.eti.id_191684.orchestra.converter.InstrumentFromDTOConverter;
 import pl.edu.pg.eti.id_191684.orchestra.converter.InstrumentToDTOConverter;
+import pl.edu.pg.eti.id_191684.orchestra.entity.Section;
 import pl.edu.pg.eti.id_191684.orchestra.service.InstrumentService;
 
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @RestController
 public class InstrumentController {
@@ -60,22 +63,34 @@ public class InstrumentController {
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     InstrumentGET readInstrument(@PathVariable("sectionId") UUID sectionId, @PathVariable("instrumentId") UUID instrumentId) {
-        return service.getInstrumentById(sectionId, instrumentId)
+        //Section section = serviceSec.getsection(secid)
+ /*       return service.getInstrumentById(sectionId, instrumentId)
+                .map(toDTOConverter)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));*/
+        return service.getInstrumentsBySectionId(sectionId)
+                .get()
+                .stream()
+                .filter(instrument -> instrument.getId() == instrumentId)
+                //.forEach(instrument -> instrument);
+                //.map(instrument -> instrument);
+                .findFirst()
                 .map(toDTOConverter)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+
     }
 
-
+    // TODO MAJOR CHANGES
     /**
      * CREATE/UPDATE a given Instrument
-     * method can be void or return dto from newly created Instrument
+     * missing error throwing
+     * AND NEWSET CHANGE WITH UUID pairs
      * @param instrumentId instrument's id
      * @param dto request dto for instrument
      */
     @PutMapping("/api/sections/{sectionId}/{instrumentId}")
     @ResponseStatus(HttpStatus.CREATED)
     public void createInstrument(@PathVariable("instrumentId") UUID instrumentId, @PathVariable("sectionId") UUID sectionId, @RequestBody InstrumentPUT dto){
-        service.saveInstrument(fromDTOConverter.apply(instrumentId, dto));
+        service.saveInstrument(fromDTOConverter.apply(new Pair<>(instrumentId, sectionId), dto));
     }
 
 

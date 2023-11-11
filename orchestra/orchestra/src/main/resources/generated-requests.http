@@ -46,13 +46,13 @@ GET http://localhost:8080/api/sections/7705ec9a-0000-0000-0000-0000ff05ec99/inst
 ### print all sections - collection
 GET http://localhost:8080/api/sections
 
-### print a section v1
+### print a section v1 String
 GET http://localhost:8080/api/sections/6ed878ec-0000-0000-0000-00006ed878ec
 
-### print a section v2
+### print a section v2 Electronic
 GET http://localhost:8080/api/sections/ff05ec9a-0000-0000-0000-0000ff05ec9a
 
-### delete a section
+### delete a section String
 DELETE http://localhost:8080/api/sections/6ed878ec-0000-0000-0000-00006ed878ec
 
 ### create a section
@@ -64,3 +64,69 @@ Content-Type: application/json
 "volume": 5,
   "location": 1
 }
+
+
+
+#### new scenario
+
+### print all sections - collection
+GET http://localhost:8080/api/sections
+
+### print a section v1 String
+GET http://localhost:8080/api/sections/6ed878ec-0000-0000-0000-00006ed878ec
+
+### print all instruments from a section - collection v1
+GET http://localhost:8080/api/sections/6ed878ec-0000-0000-0000-00006ed878ec/instruments
+
+### delete a section String
+DELETE http://localhost:8080/api/sections/6ed878ec-0000-0000-0000-00006ed878ec
+
+### print all sections - collection
+GET http://localhost:8080/api/sections
+
+### print a section v1 String
+GET http://localhost:8080/api/sections/6ed878ec-0000-0000-0000-00006ed878ec
+
+### print all instruments from a section - collection v1
+GET http://localhost:8080/api/sections/6ed878ec-0000-0000-0000-00006ed878ec/instruments
+
+### create an instrument in a non-existing section .............................kod 201, ale jednak instrumentu nie ma; teraz 500
+PUT http://localhost:8080/api/sections/6ed878ec-0000-0000-0000-00006ed878ec/c3fe24ae-0000-0000-0000-0000c3fe24ae
+Content-Type: application/json
+
+{
+  "name": "violin",
+  "production_year": 1850
+}
+
+### create a section
+PUT http://localhost:8080/api/sections/6ed878ec-0000-0000-0000-00006ed878ec
+Content-Type: application/json
+
+{
+  "name": "String",
+  "volume": 5,
+  "location": 1
+}
+
+### print all sections - collection
+GET http://localhost:8080/api/sections
+
+### print a section v1 String
+GET http://localhost:8080/api/sections/6ed878ec-0000-0000-0000-00006ed878ec
+
+### print all instruments from a section - collection v1
+GET http://localhost:8080/api/sections/6ed878ec-0000-0000-0000-00006ed878ec/instruments
+
+### create an instrument in an empty section .............kod 500 bo wcale nie trafia do sekcji; teraz 201!!!!
+PUT http://localhost:8080/api/sections/6ed878ec-0000-0000-0000-00006ed878ec/c3fe24ae-0000-0000-0000-0000c3fe24ae
+Content-Type: application/json
+
+{
+  "name": "violin",
+  "production_year": 1850
+}
+
+### print all instruments from a section - collection v1
+GET http://localhost:8080/api/sections/6ed878ec-0000-0000-0000-00006ed878ec/instruments
+
