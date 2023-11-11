@@ -11,16 +11,17 @@ import pl.edu.pg.eti.id_191684.orchestra.DTOS.InstrumentPUT;
 import pl.edu.pg.eti.id_191684.orchestra.converter.InstrumentCollectionToDTOConverter;
 import pl.edu.pg.eti.id_191684.orchestra.converter.InstrumentFromDTOConverter;
 import pl.edu.pg.eti.id_191684.orchestra.converter.InstrumentToDTOConverter;
-import pl.edu.pg.eti.id_191684.orchestra.entity.Section;
 import pl.edu.pg.eti.id_191684.orchestra.service.InstrumentService;
+import pl.edu.pg.eti.id_191684.orchestra.service.SectionService;
 
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @RestController
 public class InstrumentController {
 
     private final InstrumentService service;
+
+    private final SectionService sectionService;
 
     private final InstrumentToDTOConverter toDTOConverter;
 
@@ -30,8 +31,9 @@ public class InstrumentController {
 
 
     @Autowired
-    public InstrumentController(InstrumentService service, InstrumentToDTOConverter toDTOConverter, InstrumentFromDTOConverter fromDTOConverter, InstrumentCollectionToDTOConverter collectionToDTOConverter) {
+    public InstrumentController(InstrumentService service, SectionService sectionService, InstrumentToDTOConverter toDTOConverter, InstrumentFromDTOConverter fromDTOConverter, InstrumentCollectionToDTOConverter collectionToDTOConverter) {
         this.service = service;
+        this.sectionService = sectionService;
         this.toDTOConverter = toDTOConverter;
         this.fromDTOConverter = fromDTOConverter;
         this.collectionToDTOConverter = collectionToDTOConverter;
@@ -79,18 +81,23 @@ public class InstrumentController {
 
     }
 
-    // TODO MAJOR CHANGES
+
     /**
      * CREATE/UPDATE a given Instrument
-     * missing error throwing no section
-     * AND NEWSET CHANGE WITH UUID pairs
      * @param instrumentId instrument's id
      * @param dto request dto for instrument
      */
     @PutMapping("/api/sections/{sectionId}/{instrumentId}")
     @ResponseStatus(HttpStatus.CREATED)
     public void createInstrument(@PathVariable("instrumentId") UUID instrumentId, @PathVariable("sectionId") UUID sectionId, @RequestBody InstrumentPUT dto){
-        service.saveInstrument(fromDTOConverter.apply(new Pair<>(instrumentId, sectionId), dto));
+        sectionService.getSectionById(sectionId)
+                .ifPresentOrElse(section -> {
+                            service.saveInstrument(fromDTOConverter.apply(new Pair<>(instrumentId, sectionId), dto));
+                        }
+                        , () -> {
+                            throw new ResponseStatusException(HttpStatus.GONE);
+                        }
+                );
     }
 
 

@@ -87,10 +87,10 @@ GET http://localhost:8080/api/sections
 ### print a section v1 String
 GET http://localhost:8080/api/sections/6ed878ec-0000-0000-0000-00006ed878ec
 
-### print all instruments from a section - collection v1
+### print all instruments from a section - collection v1 404 brak sekcji
 GET http://localhost:8080/api/sections/6ed878ec-0000-0000-0000-00006ed878ec/instruments
 
-### create an instrument in a non-existing section .............................kod 201, ale jednak instrumentu nie ma; teraz 500
+### create an instrument in a non-existing section ten co trzeba, gdy nie ma sekcji
 PUT http://localhost:8080/api/sections/6ed878ec-0000-0000-0000-00006ed878ec/c3fe24ae-0000-0000-0000-0000c3fe24ae
 Content-Type: application/json
 
@@ -99,7 +99,7 @@ Content-Type: application/json
   "production_year": 1850
 }
 
-### create a section
+### create a section 201
 PUT http://localhost:8080/api/sections/6ed878ec-0000-0000-0000-00006ed878ec
 Content-Type: application/json
 
@@ -109,16 +109,16 @@ Content-Type: application/json
   "location": 1
 }
 
-### print all sections - collection
+### print all sections - collection 200
 GET http://localhost:8080/api/sections
 
-### print a section v1 String
+### print a section v1 String 200
 GET http://localhost:8080/api/sections/6ed878ec-0000-0000-0000-00006ed878ec
 
-### print all instruments from a section - collection v1
+### print all instruments from a section - collection v1 200, empty
 GET http://localhost:8080/api/sections/6ed878ec-0000-0000-0000-00006ed878ec/instruments
 
-### create an instrument in an empty section .............kod 500 bo wcale nie trafia do sekcji; teraz 201!!!!
+### create an instrument in an empty section 201
 PUT http://localhost:8080/api/sections/6ed878ec-0000-0000-0000-00006ed878ec/c3fe24ae-0000-0000-0000-0000c3fe24ae
 Content-Type: application/json
 
@@ -127,6 +127,8 @@ Content-Type: application/json
   "production_year": 1850
 }
 
-### print all instruments from a section - collection v1
+### print all instruments from a section - collection v1 200 jest
 GET http://localhost:8080/api/sections/6ed878ec-0000-0000-0000-00006ed878ec/instruments
 
+### print an instrument from a section ..............................................404 niby dlaczego???
+GET http://localhost:8080/api/sections/6ed878ec-0000-0000-0000-00006ed878ec/instruments/c3fe24ae-0000-0000-0000-0000c3fe24ae
