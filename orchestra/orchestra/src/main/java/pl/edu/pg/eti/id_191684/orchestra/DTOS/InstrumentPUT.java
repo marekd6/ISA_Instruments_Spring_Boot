@@ -2,8 +2,6 @@ package pl.edu.pg.eti.id_191684.orchestra.DTOS;
 
 import lombok.*;
 
-import java.util.UUID;
-
 /*
 A DTO for Instrument to handle PUT requests
  */

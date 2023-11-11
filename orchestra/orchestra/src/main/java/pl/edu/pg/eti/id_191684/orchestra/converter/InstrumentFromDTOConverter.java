@@ -3,7 +3,6 @@ package pl.edu.pg.eti.id_191684.orchestra.converter;
 import org.springframework.stereotype.Component;
 import pl.edu.pg.eti.id_191684.orchestra.DTOS.InstrumentPUT;
 import pl.edu.pg.eti.id_191684.orchestra.entity.Instrument;
-import pl.edu.pg.eti.id_191684.orchestra.entity.Section;
 
 import java.util.UUID;
 import java.util.function.BiFunction;

@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import pl.edu.pg.eti.id_191684.orchestra.entity.Instrument;
-import pl.edu.pg.eti.id_191684.orchestra.entity.Section;
 import pl.edu.pg.eti.id_191684.orchestra.service.InstrumentService;
 import pl.edu.pg.eti.id_191684.orchestra.service.SectionService;
 

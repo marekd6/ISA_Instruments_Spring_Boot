@@ -50,22 +50,20 @@ public class InstrumentController {
     }
 
 
-    // TODO an instrument from a section: to w końcu uuid czy Section?
-    // TODO nie jestem pewien czy to potrzebne: niestety chyba tak
-/*    @GetMapping("api/sections/{sectionId}/instruments/{instrumentId}")
+    /**
+     * GET an Instrument from a Section
+     * @param sectionId section's id
+     * @param instrumentId instrument's id
+     * @return single instrument
+     */
+    @GetMapping("api/sections/{sectionId}/instruments/{instrumentId}")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     InstrumentGET readInstrument(@PathVariable("sectionId") UUID sectionId, @PathVariable("instrumentId") UUID instrumentId) {
-        return service.getInstrumentsBySectionId(sectionId)
-                .stream()
-                .filter(instrument -> instrument.get)
-                //.getInstrumentById(sectionId, instrumentId)
+        return service.getInstrumentById(sectionId, instrumentId)
                 .map(toDTOConverter)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        *//*return service.getInstrumentById(id)
-                .map(toDTOConverter)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));*//*
-    }*/
+    }
 
 
     /**
@@ -106,13 +104,6 @@ public class InstrumentController {
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     public InstrumentCollectionGET readInstrumentCollection() {
-        /*List<Instrument> instruments = service.getAllInstruments();
-        // no Instruments
-        if (instruments.isEmpty()){
-            throw new ResponseStatusException(HttpStatus.NO_CONTENT);
-        }
-        return service.toDTOconvert(instruments);*/
-        //v2 with converter
         return service.getAllInstruments()
                 .map(collectionToDTOConverter)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
@@ -121,7 +112,6 @@ public class InstrumentController {
 
 
     // TODO differentiate between no section and empty section
-    // TODO no for Optional in here
     /**
      * GET all Instruments from a given Section - Collection
      * @param sectionId Section to read Instruments from
@@ -131,21 +121,7 @@ public class InstrumentController {
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     public InstrumentCollectionGET readSectionInstruments(@PathVariable("sectionId") UUID sectionId){
-        /*List<Instrument> instruments = service.getInstrumentsBySectionId(sectionId);
-        // no such a Section
-        if (instruments == null){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        }
-        // no Instruments
-        else if (instruments.isEmpty()){
-            throw new ResponseStatusException(HttpStatus.NO_CONTENT);
-        }
-                //.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        return service.toDTOconvert(instruments);*/
-        /*return service.getInstrumentsBySectionIdv2(sectionId)
-                .map(toDTOConverter)
-        .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));*/
-        return service.getInstrumentsBySectionIdv2(sectionId)
+        return service.getInstrumentsBySectionId(sectionId)
                 .map(collectionToDTOConverter)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
