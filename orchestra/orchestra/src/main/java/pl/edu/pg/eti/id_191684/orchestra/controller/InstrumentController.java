@@ -72,7 +72,8 @@ public class InstrumentController {
         return service.getInstrumentsBySectionId(sectionId)
                 .get()
                 .stream()
-                .filter(instrument -> instrument.getId() == instrumentId)
+                .filter(instrument -> instrument.getId().equals(instrumentId))
+                //.filter(instrument -> instrument.getId() == instrumentId) inna metoda porównania
                 //.forEach(instrument -> instrument);
                 //.map(instrument -> instrument);
                 .findFirst()
