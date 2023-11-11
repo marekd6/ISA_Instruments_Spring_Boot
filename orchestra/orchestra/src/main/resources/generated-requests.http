@@ -4,6 +4,9 @@ GET http://localhost:8080/api/instruments
 ### print an instrument
 GET http://localhost:8080/api/instruments/c3fe24ae-0000-0000-0000-0000c3fe24ae
 
+### print non-existing instrument
+GET http://localhost:8080/api/instruments/444e24ae-0000-0000-0000-0000c3fe4444
+
 ### delete an instrument
 DELETE http://localhost:8080/api/instruments/c3fe24ae-0000-0000-0000-0000c3fe24ae
 
@@ -15,6 +18,16 @@ Content-Type: application/json
 "name": "violin",
 "production_year": 1850,
 "sectionId": "6ed878ec-0000-0000-0000-00006ed878ec"
+}
+
+### create an instrument in a non-existing section
+PUT http://localhost:8080/api/instruments/c3fe24ae-0000-0000-0000-0000c3fe24ae
+Content-Type: application/json
+
+{
+"name": "violin",
+"production_year": 1850,
+"sectionId": "88d878ec-0000-0000-0000-00006ed87888"
 }
 
 

@@ -47,6 +47,7 @@ public class InstrumentController {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
+
     // TODO an instrument from a section: to w końcu uuid czy Section?
     // TODO nie jestem pewien czy to potrzebne
 /*    @GetMapping("api/sections/{sectionId}/instruments/{instrumentId}")
@@ -97,7 +98,7 @@ public class InstrumentController {
 
 
     /**
-     * GET all Instruments
+     * GET all Instruments - Collection
      * @return list of Instruments
      */
     @GetMapping("api/instruments")
@@ -105,13 +106,18 @@ public class InstrumentController {
     @ResponseBody
     public InstrumentCollectionGET readInstrumentCollection() {
         List<Instrument> instruments = service.getAllInstruments();
+        // no Instruments
+        if (instruments.isEmpty()){
+            throw new ResponseStatusException(HttpStatus.NO_CONTENT);
+        }
         return service.toDTOconvert(instruments);
     }
+
 
     // TODO differentiate between no section and empty section
     // TODO no for Optional in here
     /**
-     * GET all Instruments from a given Section
+     * GET all Instruments from a given Section - Collection
      * @param sectionId Section to read Instruments from
      * @return list of Instruments
      */
@@ -120,11 +126,17 @@ public class InstrumentController {
     @ResponseBody
     public InstrumentCollectionGET readSectionInstruments(@PathVariable("sectionId") UUID sectionId){
         List<Instrument> instruments = service.getInstrumentsBySectionId(sectionId);
-        if (instruments.isEmpty()){
+        // no such a Section
+        if (instruments == null){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+        // no Instruments
+        else if (instruments.isEmpty()){
+            throw new ResponseStatusException(HttpStatus.NO_CONTENT);
         }
                 //.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         return service.toDTOconvert(instruments);
     }
+
 
 }

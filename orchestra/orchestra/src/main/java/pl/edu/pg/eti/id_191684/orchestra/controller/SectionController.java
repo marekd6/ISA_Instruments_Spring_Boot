@@ -79,7 +79,7 @@ public class SectionController {
 
 
     /**
-     * GET all Sections
+     * GET all Sections - Collection
      * @return list of Sections
      */
     @GetMapping("api/sections")
@@ -87,6 +87,10 @@ public class SectionController {
     @ResponseBody
     public SectionCollectionGET readSectionCollection() {
         List<Section> sections = service.getAllSections();
+        // no Sections
+        if (sections.isEmpty()){
+            throw new ResponseStatusException(HttpStatus.NO_CONTENT);
+        }
         return service.toDTOconvert(sections);
     }
 

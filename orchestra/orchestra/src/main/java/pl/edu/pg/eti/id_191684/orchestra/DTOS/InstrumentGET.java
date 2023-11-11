@@ -29,9 +29,7 @@ public class InstrumentGET {
     @EqualsAndHashCode
     public static class Section{
         private UUID id;
-
         private String name;
-
     }
 
     private UUID id;
