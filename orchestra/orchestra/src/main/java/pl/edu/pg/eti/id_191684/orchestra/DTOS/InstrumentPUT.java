@@ -20,6 +20,4 @@ public class InstrumentPUT {
 
     private int production_year;
 
-    private UUID sectionId;
-
 }

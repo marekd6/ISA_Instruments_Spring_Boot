@@ -73,7 +73,8 @@ public class CustomCommandLineRunner implements CommandLineRunner {
 
     private void listInstruments() {
         System.out.println("Instruments:");
-        instrumentService.getAllInstruments().forEach(instrument -> System.out.println(instrument));
+        // TODO temporarily disabled due to Optional in Service
+        //instrumentService.getAllInstruments().forEach(instrument -> System.out.println(instrument));
     }
 
     private void addInstrument(Scanner scanner) {

@@ -24,8 +24,12 @@ public class InstrumentService {
         this.instrumentRepository = instrumentRepository;
     }
 
-    public List<Instrument> getAllInstruments() {
+/*    public List<Instrument> getAllInstruments() {
         return instrumentRepository.findAll();
+    }*/
+
+    public Optional<List<Instrument>> getAllInstruments() {
+        return Optional.of(instrumentRepository.findAll());
     }
 
     /*public Instrument getInstrumentById(UUID id) {
@@ -40,10 +44,10 @@ public class InstrumentService {
         return instrumentRepository.findByIdAndSection(id, section);
     }
 
-    /*public Optional<List<Instrument>> getInstrumentsBySectionId(UUID sectionId) {
+    public Optional<List<Instrument>> getInstrumentsBySectionIdv2(UUID sectionId) {
         return instrumentRepository.findById(sectionId)
                 .map(section -> instrumentRepository.findBySectionId(sectionId));
-    }*/
+    }
     // TODO no for Optional in here
     public List<Instrument> getInstrumentsBySectionId(UUID sectionId) {
         return instrumentRepository.findBySectionId(sectionId);
@@ -57,43 +61,9 @@ public class InstrumentService {
         instrumentRepository.deleteById(id);
     }
 
-    /**
-     * substituted by converter
-     * used in PUT
-     * converts a DTO into an Instrument
-     * @param dto request for Instrument
-     * @return Instrument
-     */
-    public Instrument fromDTOconvert(UUID id, InstrumentPUT dto) {
-        return Instrument.builder()
-                .id(id)
-                .name(dto.getName())
-                .production_year(dto.getProduction_year())
-                .section(Section.builder()
-                        .id(dto.getSectionId())
-                        .build())
-                .build();
-    }
 
     /**
-     * substituted by converter
-     * used in GET
-     * @param instrument
-     * @return DTO
-     */
-    public InstrumentGET toDTOconvert(@NotNull Instrument instrument) {
-        return InstrumentGET.builder()
-                .id(instrument.getId())
-                .name(instrument.getName())
-                .production_year(instrument.getProduction_year())
-                .section(InstrumentGET.Section.builder()
-                        .id(instrument.getSection().getId())
-                        .name(instrument.getSection().getName())
-                        .build())
-                .build();
-    }
-
-    /**
+     * substituted by another converter
      * used in GET
      * @param instruments
      * @return DTO collection of Instruments

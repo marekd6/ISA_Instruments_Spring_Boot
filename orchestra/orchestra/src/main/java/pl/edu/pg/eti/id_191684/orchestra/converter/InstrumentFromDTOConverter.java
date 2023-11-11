@@ -16,9 +16,6 @@ public class InstrumentFromDTOConverter implements BiFunction<UUID, InstrumentPU
                 .id(id)
                 .name(dto.getName())
                 .production_year(dto.getProduction_year())
-                .section(Section.builder()
-                        .id(dto.getSectionId())
-                        .build())
                 .build();
     }
 }

@@ -31,15 +31,26 @@ Content-Type: application/json
 }
 
 
-### print all instruments from a section - collection ..... not OK
+### print all instruments from a section - collection v1
 GET http://localhost:8080/api/sections/6ed878ec-0000-0000-0000-00006ed878ec/instruments
+
+
+### print all instruments from a section - collection v2 electronic empty
+GET http://localhost:8080/api/sections/ff05ec9a-0000-0000-0000-0000ff05ec9a/instruments
+
+
+### print all instruments from a section - collection v3 no such section
+GET http://localhost:8080/api/sections/7705ec9a-0000-0000-0000-0000ff05ec99/instruments
 
 
 ### print all sections - collection
 GET http://localhost:8080/api/sections
 
-### print a section
+### print a section v1
 GET http://localhost:8080/api/sections/6ed878ec-0000-0000-0000-00006ed878ec
+
+### print a section v2
+GET http://localhost:8080/api/sections/ff05ec9a-0000-0000-0000-0000ff05ec9a
 
 ### delete a section
 DELETE http://localhost:8080/api/sections/6ed878ec-0000-0000-0000-00006ed878ec

@@ -7,12 +7,11 @@ import org.springframework.web.server.ResponseStatusException;
 import pl.edu.pg.eti.id_191684.orchestra.DTOS.InstrumentCollectionGET;
 import pl.edu.pg.eti.id_191684.orchestra.DTOS.InstrumentGET;
 import pl.edu.pg.eti.id_191684.orchestra.DTOS.InstrumentPUT;
+import pl.edu.pg.eti.id_191684.orchestra.converter.InstrumentCollectionToDTOConverter;
 import pl.edu.pg.eti.id_191684.orchestra.converter.InstrumentFromDTOConverter;
 import pl.edu.pg.eti.id_191684.orchestra.converter.InstrumentToDTOConverter;
-import pl.edu.pg.eti.id_191684.orchestra.entity.Instrument;
 import pl.edu.pg.eti.id_191684.orchestra.service.InstrumentService;
 
-import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -24,12 +23,15 @@ public class InstrumentController {
 
     private final InstrumentFromDTOConverter fromDTOConverter;
 
+    private final InstrumentCollectionToDTOConverter collectionToDTOConverter;
+
 
     @Autowired
-    public InstrumentController(InstrumentService service, InstrumentToDTOConverter toDTOConverter, InstrumentFromDTOConverter fromDTOConverter) {
+    public InstrumentController(InstrumentService service, InstrumentToDTOConverter toDTOConverter, InstrumentFromDTOConverter fromDTOConverter, InstrumentCollectionToDTOConverter collectionToDTOConverter) {
         this.service = service;
         this.toDTOConverter = toDTOConverter;
         this.fromDTOConverter = fromDTOConverter;
+        this.collectionToDTOConverter = collectionToDTOConverter;
     }
 
 
@@ -49,7 +51,7 @@ public class InstrumentController {
 
 
     // TODO an instrument from a section: to w końcu uuid czy Section?
-    // TODO nie jestem pewien czy to potrzebne
+    // TODO nie jestem pewien czy to potrzebne: niestety chyba tak
 /*    @GetMapping("api/sections/{sectionId}/instruments/{instrumentId}")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
@@ -69,13 +71,13 @@ public class InstrumentController {
     /**
      * CREATE/UPDATE a given Instrument
      * method can be void or return dto from newly created Instrument
-     * @param id instrument's id
+     * @param instrumentId instrument's id
      * @param dto request dto for instrument
      */
-    @PutMapping("/api/instruments/{id}")
+    @PutMapping("/api/sections/{sectionId}/{instrumentId}")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createInstrument(@PathVariable("id") UUID id, @RequestBody InstrumentPUT dto){
-        service.saveInstrument(fromDTOConverter.apply(id, dto));
+    public void createInstrument(@PathVariable("instrumentId") UUID instrumentId, @PathVariable("sectionId") UUID sectionId, @RequestBody InstrumentPUT dto){
+        service.saveInstrument(fromDTOConverter.apply(instrumentId, dto));
     }
 
 
@@ -86,7 +88,6 @@ public class InstrumentController {
     @DeleteMapping("/api/instruments/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteInstrument(@PathVariable UUID id) {
-        //instrumentService.deleteInstrument(id);
         service.getInstrumentById(id)
                 .ifPresentOrElse(
                         instrument -> service.deleteInstrument(id),
@@ -105,12 +106,17 @@ public class InstrumentController {
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     public InstrumentCollectionGET readInstrumentCollection() {
-        List<Instrument> instruments = service.getAllInstruments();
+        /*List<Instrument> instruments = service.getAllInstruments();
         // no Instruments
         if (instruments.isEmpty()){
             throw new ResponseStatusException(HttpStatus.NO_CONTENT);
         }
-        return service.toDTOconvert(instruments);
+        return service.toDTOconvert(instruments);*/
+        //v2 with converter
+        return service.getAllInstruments()
+                .map(collectionToDTOConverter)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+
     }
 
 
@@ -125,7 +131,7 @@ public class InstrumentController {
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     public InstrumentCollectionGET readSectionInstruments(@PathVariable("sectionId") UUID sectionId){
-        List<Instrument> instruments = service.getInstrumentsBySectionId(sectionId);
+        /*List<Instrument> instruments = service.getInstrumentsBySectionId(sectionId);
         // no such a Section
         if (instruments == null){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
@@ -135,7 +141,14 @@ public class InstrumentController {
             throw new ResponseStatusException(HttpStatus.NO_CONTENT);
         }
                 //.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        return service.toDTOconvert(instruments);
+        return service.toDTOconvert(instruments);*/
+        /*return service.getInstrumentsBySectionIdv2(sectionId)
+                .map(toDTOConverter)
+        .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));*/
+        return service.getInstrumentsBySectionIdv2(sectionId)
+                .map(collectionToDTOConverter)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+
     }
 
 
