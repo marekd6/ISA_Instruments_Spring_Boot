@@ -148,7 +148,6 @@ public class InstrumentController {
     }
 
     /**
-     * TODO what if no section? do like get instrument from section
      * GET all Instruments from a given Section - Collection
      *
      * @param sectionId Section to read Instruments from
