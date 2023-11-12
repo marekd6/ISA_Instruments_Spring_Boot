@@ -46,7 +46,7 @@ public class InstrumentController {
     @GetMapping("/api/instruments/{id}")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
-    InstrumentGET readInstrument(@PathVariable("id") UUID id) {
+    public InstrumentGET readInstrument(@PathVariable("id") UUID id) {
         return service.getInstrumentById(id)
                 .map(toDTOConverter)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
@@ -61,7 +61,7 @@ public class InstrumentController {
     @GetMapping("api/sections/{sectionId}/instruments/{instrumentId}")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
-    InstrumentGET readInstrument(@PathVariable("sectionId") UUID sectionId, @PathVariable("instrumentId") UUID instrumentId) {
+    public InstrumentGET readInstrument(@PathVariable("sectionId") UUID sectionId, @PathVariable("instrumentId") UUID instrumentId) {
         return service.getInstrumentsBySectionId(sectionId)
                 .get()
                 .stream()
@@ -85,12 +85,11 @@ public class InstrumentController {
                 .ifPresentOrElse(section -> {
                             service.saveInstrument(fromDTOConverter.apply(new Pair<>(instrumentId, sectionId), dto));
                         }, () -> {
-                            throw new ResponseStatusException(HttpStatus.GONE);
+                            throw new ResponseStatusException(HttpStatus.GONE); // no such a section
                         }
                 );
     }
 
-    // TODO a version via section
     /**
      * DELETE a given Instrument
      * @param id Instrument
@@ -105,6 +104,29 @@ public class InstrumentController {
                             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
                         }
                 );
+    }
+
+    /**
+     * DELETE a given Instrument
+     * @param instrumentId Instrument
+     */
+    @DeleteMapping("/api/sections/{sectionId}/{instrumentId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteInstrument(@PathVariable UUID instrumentId, @PathVariable("sectionId") UUID sectionId) {
+        sectionService.getSectionById(sectionId)
+                .ifPresentOrElse(section -> {
+                            service.getInstrumentById(instrumentId)
+                                    .ifPresentOrElse(
+                                            instrument -> service.deleteInstrument(instrumentId),
+                                            () -> {
+                                                throw new ResponseStatusException(HttpStatus.GONE); // no such an instrument
+                                            }
+                                    );
+                        }, () -> {
+                            throw new ResponseStatusException(HttpStatus.FAILED_DEPENDENCY); // no such a section
+                        }
+                );
+
     }
 
     /**

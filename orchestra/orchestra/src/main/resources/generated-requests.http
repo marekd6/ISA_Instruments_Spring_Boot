@@ -10,6 +10,10 @@ GET http://localhost:8080/api/instruments/444e24ae-0000-0000-0000-0000c3fe4444
 ### delete an instrument
 DELETE http://localhost:8080/api/instruments/c3fe24ae-0000-0000-0000-0000c3fe24ae
 
+### delete an instrument from section
+DELETE http://localhost:8080/api/sections/6ed878ec-0000-0000-0000-00006ed878ec/c3fe24ae-0000-0000-0000-0000c3fe24ae
+
+
 ### create an instrument
 PUT http://localhost:8080/api/instruments/c3fe24ae-0000-0000-0000-0000c3fe24ae
 Content-Type: application/json
