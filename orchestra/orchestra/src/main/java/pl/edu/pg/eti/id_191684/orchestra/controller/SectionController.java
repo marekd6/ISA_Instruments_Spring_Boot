@@ -25,7 +25,6 @@ public class SectionController {
 
     private final SectionCollectionToDTOConverter collectionToDTOConverter;
 
-
     @Autowired
     public SectionController(SectionService service, SectionToDTOConverter toDTOConverter, SectionFromDTOConverter fromDTOConverter, SectionCollectionToDTOConverter collectionToDTOConverter) {
         this.service = service;
@@ -33,7 +32,6 @@ public class SectionController {
         this.fromDTOConverter = fromDTOConverter;
         this.collectionToDTOConverter = collectionToDTOConverter;
     }
-
 
     /**
      * GET a Section
@@ -49,7 +47,6 @@ public class SectionController {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
-
     /**
      * CREATE/UPDATE a given Section
      * method can be void or return dto from newly created Section
@@ -61,7 +58,6 @@ public class SectionController {
     public void createSection(@PathVariable("id") UUID id, @RequestBody SectionPUT dto){
         service.saveSection(fromDTOConverter.apply(id, dto));
     }
-
 
     /**
      * DELETE a given Section
@@ -78,7 +74,6 @@ public class SectionController {
                         }
                 );
     }
-
 
     /**
      * GET all Sections - Collection

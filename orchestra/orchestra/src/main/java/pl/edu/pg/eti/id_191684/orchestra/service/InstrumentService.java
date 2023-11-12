@@ -1,11 +1,8 @@
 package pl.edu.pg.eti.id_191684.orchestra.service;
 
-import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.edu.pg.eti.id_191684.orchestra.DTOS.InstrumentCollectionGET;
 import pl.edu.pg.eti.id_191684.orchestra.entity.Instrument;
-import pl.edu.pg.eti.id_191684.orchestra.entity.Section;
 import pl.edu.pg.eti.id_191684.orchestra.repository.InstrumentRepository;
 import pl.edu.pg.eti.id_191684.orchestra.repository.SectionRepository;
 

@@ -29,7 +29,6 @@ public class InstrumentController {
 
     private final InstrumentCollectionToDTOConverter collectionToDTOConverter;
 
-
     @Autowired
     public InstrumentController(InstrumentService service, SectionService sectionService, InstrumentToDTOConverter toDTOConverter, InstrumentFromDTOConverter fromDTOConverter, InstrumentCollectionToDTOConverter collectionToDTOConverter) {
         this.service = service;
@@ -38,7 +37,6 @@ public class InstrumentController {
         this.fromDTOConverter = fromDTOConverter;
         this.collectionToDTOConverter = collectionToDTOConverter;
     }
-
 
     /**
      * GET an Instrument
@@ -53,7 +51,6 @@ public class InstrumentController {
                 .map(toDTOConverter)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
-
 
     /**
      * GET an Instrument from a Section
@@ -75,7 +72,6 @@ public class InstrumentController {
 
     }
 
-
     /**
      * CREATE/UPDATE a given Instrument
      * @param instrumentId instrument's id
@@ -94,7 +90,6 @@ public class InstrumentController {
                 );
     }
 
-
     // TODO a version via section
     /**
      * DELETE a given Instrument
@@ -112,7 +107,6 @@ public class InstrumentController {
                 );
     }
 
-
     /**
      * GET all Instruments - Collection
      * @return list of Instruments
@@ -124,9 +118,7 @@ public class InstrumentController {
         return service.getAllInstruments()
                 .map(collectionToDTOConverter)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-
     }
-
 
     /**
      * GET all Instruments from a given Section - Collection
@@ -143,13 +135,6 @@ public class InstrumentController {
         String sectionName = sectionService.getSectionById(sectionId).get().getName();
         instrumentCollectionGET.setDescription("Collection of Instruments from section " + sectionName);
         return instrumentCollectionGET;
-
-        /*        return service.getInstrumentsBySectionId(sectionId)
-                .map(collectionToDTOConverter)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));*/
-
-
     }
-
 
 }
