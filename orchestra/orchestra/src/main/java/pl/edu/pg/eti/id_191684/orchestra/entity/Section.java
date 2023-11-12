@@ -12,7 +12,6 @@ import static java.util.Objects.hash;
 /**
  * A category. Instruments belong to a section
  */
-
 @Getter
 @Setter
 @Builder

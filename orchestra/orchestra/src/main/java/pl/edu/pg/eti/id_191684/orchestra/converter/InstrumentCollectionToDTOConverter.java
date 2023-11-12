@@ -17,6 +17,7 @@ public class InstrumentCollectionToDTOConverter implements Function<List<Instrum
                 .map(instrument -> instrument.getId())
                 .toList();
         return InstrumentCollectionGET.builder()
+                .description("Collection of Instruments (ids)")
                 .instruments(uuids)
                 .build();
     }

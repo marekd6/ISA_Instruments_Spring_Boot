@@ -5,8 +5,8 @@ import lombok.*;
 import java.util.List;
 import java.util.UUID;
 
-/*
-DTO for reading collection of Sections
+/**
+* DTO for reading collection of Sections
  */
 @Getter
 @Setter
@@ -19,8 +19,8 @@ public class SectionCollectionGET {
 
     private final String description = "Collection of Sections";
 
-    /*
-    list of ids
+    /**
+    * list of ids
      */
     private List<UUID> sections;
 

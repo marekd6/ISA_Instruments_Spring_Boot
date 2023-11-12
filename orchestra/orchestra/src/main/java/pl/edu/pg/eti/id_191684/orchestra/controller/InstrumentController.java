@@ -128,7 +128,6 @@ public class InstrumentController {
     }
 
 
-    // TODO differentiate between no section and empty section OK
     /**
      * GET all Instruments from a given Section - Collection
      * @param sectionId Section to read Instruments from
@@ -138,9 +137,17 @@ public class InstrumentController {
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     public InstrumentCollectionGET readSectionInstruments(@PathVariable("sectionId") UUID sectionId){
-        return service.getInstrumentsBySectionId(sectionId)
+        InstrumentCollectionGET instrumentCollectionGET = service.getInstrumentsBySectionId(sectionId)
                 .map(collectionToDTOConverter)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        String sectionName = sectionService.getSectionById(sectionId).get().getName();
+        instrumentCollectionGET.setDescription("Collection of Instruments from section " + sectionName);
+        return instrumentCollectionGET;
+
+        /*        return service.getInstrumentsBySectionId(sectionId)
+                .map(collectionToDTOConverter)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));*/
+
 
     }
 

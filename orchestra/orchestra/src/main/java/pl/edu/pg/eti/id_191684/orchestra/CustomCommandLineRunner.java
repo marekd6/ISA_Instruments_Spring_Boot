@@ -89,14 +89,6 @@ public class CustomCommandLineRunner implements CommandLineRunner {
         System.out.print("Enter section ID: ");
         UUID sectionId = UUID.fromString(scanner.nextLine());
 
-        /*Section section = sectionService.getSectionById(sectionId);
-        if (section != null) {
-            Instrument instrument = new Instrument(instrumentName, instrumentProductionYear, section);
-            instrumentService.saveInstrument(instrument);
-            System.out.println("Instrument added successfully!");
-        } else {
-            System.out.println("Invalid section. Instrument not added.");
-        }*/
         sectionService.getSectionById(sectionId)
                 .ifPresentOrElse(
                         section -> instrumentService.saveInstrument(new Instrument(instrumentName, instrumentProductionYear, section)),
@@ -110,13 +102,6 @@ public class CustomCommandLineRunner implements CommandLineRunner {
         System.out.print("Enter Instrument ID to Delete: ");
         UUID instrumentId = UUID.fromString(scanner.nextLine());
 
-        /*Instrument instrument = instrumentService.getInstrumentById(instrumentId);
-        if (instrument != null) {
-            instrumentService.deleteInstrument(instrumentId);
-            System.out.println("Instrument deleted successfully!");
-        } else {
-            System.out.println("Instrument not found with ID: " + instrumentId);
-        }*/
         instrumentService.getInstrumentById(instrumentId)
                 .ifPresentOrElse(
                         instrument -> instrumentService.deleteInstrument(instrumentId),

@@ -5,8 +5,8 @@ import lombok.*;
 
 import java.util.UUID;
 
-/*
-A DTO for Instrument to handle GET requests
+/**
+* A DTO for Instrument to handle GET requests
  */
 @Getter
 @Setter
@@ -17,8 +17,8 @@ A DTO for Instrument to handle GET requests
 @EqualsAndHashCode
 public class InstrumentGET {
 
-    /*
-    Section for Instrument DTO GET
+    /**
+    * Section for the DTO
      */
     @Getter
     @Setter

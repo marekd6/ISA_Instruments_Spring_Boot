@@ -5,9 +5,9 @@ import lombok.*;
 import java.util.List;
 import java.util.UUID;
 
-/*
-DTO for reading collection of Instruments
- */
+/**
+* DTO for reading collection of Instruments
+*/
 @Getter
 @Setter
 @Builder
@@ -17,10 +17,10 @@ DTO for reading collection of Instruments
 @ToString
 public class InstrumentCollectionGET {
 
-    private final String description = "Collection of Instruments";
+    private String description;
 
-    /*
-    list of ids
+    /**
+     * list of ids
      */
     private List<UUID> instruments;
 

@@ -24,18 +24,10 @@ public class SectionService {
     public Optional<List<Section>> getAllSections() {
         return Optional.of(sectionRepository.findAll());
     }
-/*
-    public List<Section> getAllSections() {
-        return sectionRepository.findAll();
-    }
-*/
 
     public Optional< Section> getSectionById(UUID id) {
         return sectionRepository.findById(id);
     }
-    /*public Section getSectionById(UUID id) {
-        return sectionRepository.findById(id).orElse(null);
-    }*/
 
     public Section saveSection(Section section) {
         return sectionRepository.save(section);
@@ -45,18 +37,4 @@ public class SectionService {
         sectionRepository.deleteById(id);
     }
 
-    /**
-     * substituted by converter
-     * used in GET
-     * @param sections list of Sections
-     * @return DTO collection of sections
-     */
-    public SectionCollectionGET toDTOconvert(@NotNull List<Section> sections){
-        List<UUID> uuids = sections.stream()
-                .map(section -> section.getId())
-                .toList();
-        return SectionCollectionGET.builder()
-                .sections(uuids)
-                .build();
-    }
 }

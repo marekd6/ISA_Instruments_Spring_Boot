@@ -88,12 +88,6 @@ public class SectionController {
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     public SectionCollectionGET readSectionCollection() {
-        /*List<Section> sections = service.getAllSections();
-        // no Sections
-        if (sections.isEmpty()){
-            throw new ResponseStatusException(HttpStatus.NO_CONTENT);
-        }
-        return service.toDTOconvert(sections);*/
         return service.getAllSections()
                 .map(collectionToDTOConverter)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NO_CONTENT));

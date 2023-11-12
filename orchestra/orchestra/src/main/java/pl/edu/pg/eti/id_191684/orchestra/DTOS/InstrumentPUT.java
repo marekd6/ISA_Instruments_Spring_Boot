@@ -2,8 +2,8 @@ package pl.edu.pg.eti.id_191684.orchestra.DTOS;
 
 import lombok.*;
 
-/*
-A DTO for Instrument to handle PUT requests
+/**
+* A DTO for Instrument to handle PUT requests
  */
 @Getter
 @Setter

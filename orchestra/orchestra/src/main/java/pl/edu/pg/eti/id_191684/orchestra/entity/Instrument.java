@@ -12,7 +12,6 @@ import static java.util.Objects.hash;
 /**
  * An instrument belonging to a section
  */
-
 @Getter
 @Setter
 @NoArgsConstructor(force = true)

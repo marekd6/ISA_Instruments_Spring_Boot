@@ -4,6 +4,9 @@ import lombok.*;
 
 import java.util.UUID;
 
+/**
+ * A DTO for Section to handle GET requests
+ */
 @Getter
 @Setter
 @Builder

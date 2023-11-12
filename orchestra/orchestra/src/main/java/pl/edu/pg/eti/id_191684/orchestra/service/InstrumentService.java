@@ -25,24 +25,12 @@ public class InstrumentService {
         this.sectionRepository = sectionRepository;
     }
 
-/*    public List<Instrument> getAllInstruments() {
-        return instrumentRepository.findAll();
-    }*/
-
     public Optional<List<Instrument>> getAllInstruments() {
         return Optional.of(instrumentRepository.findAll());
     }
 
-    /*public Instrument getInstrumentById(UUID id) {
-        return instrumentRepository.findById(id).orElse(null);
-    }*/
     public Optional<Instrument> getInstrumentById(UUID id) {
         return instrumentRepository.findById(id);
-    }
-
-    // TODO an instrument from a section
-    public Optional<Instrument> getInstrumentById(Section section, UUID id) {
-        return instrumentRepository.findByIdAndSection(id, section);
     }
 
     public Optional<List<Instrument>> getInstrumentsBySectionId(UUID sectionId) {
@@ -57,6 +45,5 @@ public class InstrumentService {
     public void deleteInstrument(UUID id) {
         instrumentRepository.deleteById(id);
     }
-
 
 }

@@ -3,6 +3,9 @@ package pl.edu.pg.eti.id_191684.orchestra.DTOS;
 import lombok.*;
 
 
+/**
+ * A DTO for Section to handle PUT requests
+ */
 @Getter
 @Setter
 @Builder
