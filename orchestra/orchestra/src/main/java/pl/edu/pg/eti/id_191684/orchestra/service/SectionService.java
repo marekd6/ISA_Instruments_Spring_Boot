@@ -42,8 +42,8 @@ public class SectionService {
 
     /**
      * used in GET
-     * @param sections
-     * @return DTO collection of Instruments
+     * @param sections list of Sections
+     * @return DTO collection of sections
      */
     public SectionCollectionGET toDTOconvert(@NotNull List<Section> sections){
         List<UUID> uuids = sections.stream()

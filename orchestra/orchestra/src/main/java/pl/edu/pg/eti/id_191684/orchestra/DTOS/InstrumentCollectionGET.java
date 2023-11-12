@@ -14,16 +14,15 @@ DTO for reading collection of Instruments
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @EqualsAndHashCode
+@ToString
 public class InstrumentCollectionGET {
+
+    private final String description = "Collection of Instruments";
 
     /*
     list of ids
      */
     private List<UUID> instruments;
 
-    @Override
-    public String toString(){
-        return "Collection of Instruments: " + instruments.toString();
-    }
 
 }

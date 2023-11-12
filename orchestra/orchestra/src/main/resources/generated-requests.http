@@ -67,7 +67,7 @@ Content-Type: application/json
 
 
 
-#### new scenario
+
 
 ### print all sections - collection
 GET http://localhost:8080/api/sections
@@ -130,5 +130,5 @@ Content-Type: application/json
 ### print all instruments from a section - collection v1 200 jest
 GET http://localhost:8080/api/sections/6ed878ec-0000-0000-0000-00006ed878ec/instruments
 
-### print an instrument from a section ..............................................404 niby dlaczego???
+### print an instrument from a section OK, był problem z porównaniem, equals super
 GET http://localhost:8080/api/sections/6ed878ec-0000-0000-0000-00006ed878ec/instruments/c3fe24ae-0000-0000-0000-0000c3fe24ae

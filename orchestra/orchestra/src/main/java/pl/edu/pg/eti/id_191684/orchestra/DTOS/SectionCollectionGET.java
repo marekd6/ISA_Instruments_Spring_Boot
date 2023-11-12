@@ -14,16 +14,14 @@ DTO for reading collection of Sections
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @EqualsAndHashCode
+@ToString
 public class SectionCollectionGET {
+
+    private final String description = "Collection of Sections";
 
     /*
     list of ids
      */
     private List<UUID> sections;
-
-    @Override
-    public String toString(){
-        return "Collection of Sections: " + sections.toString();
-    }
 
 }

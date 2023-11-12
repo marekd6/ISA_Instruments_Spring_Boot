@@ -65,17 +65,10 @@ public class InstrumentController {
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     InstrumentGET readInstrument(@PathVariable("sectionId") UUID sectionId, @PathVariable("instrumentId") UUID instrumentId) {
-        //Section section = serviceSec.getsection(secid)
- /*       return service.getInstrumentById(sectionId, instrumentId)
-                .map(toDTOConverter)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));*/
         return service.getInstrumentsBySectionId(sectionId)
                 .get()
                 .stream()
                 .filter(instrument -> instrument.getId().equals(instrumentId))
-                //.filter(instrument -> instrument.getId() == instrumentId) inna metoda porównania
-                //.forEach(instrument -> instrument);
-                //.map(instrument -> instrument);
                 .findFirst()
                 .map(toDTOConverter)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
@@ -86,6 +79,7 @@ public class InstrumentController {
     /**
      * CREATE/UPDATE a given Instrument
      * @param instrumentId instrument's id
+     * @param sectionId section's id
      * @param dto request dto for instrument
      */
     @PutMapping("/api/sections/{sectionId}/{instrumentId}")
@@ -94,14 +88,14 @@ public class InstrumentController {
         sectionService.getSectionById(sectionId)
                 .ifPresentOrElse(section -> {
                             service.saveInstrument(fromDTOConverter.apply(new Pair<>(instrumentId, sectionId), dto));
-                        }
-                        , () -> {
+                        }, () -> {
                             throw new ResponseStatusException(HttpStatus.GONE);
                         }
                 );
     }
 
 
+    // TODO a version via section
     /**
      * DELETE a given Instrument
      * @param id Instrument
@@ -134,7 +128,7 @@ public class InstrumentController {
     }
 
 
-    // TODO differentiate between no section and empty section
+    // TODO differentiate between no section and empty section OK
     /**
      * GET all Instruments from a given Section - Collection
      * @param sectionId Section to read Instruments from
