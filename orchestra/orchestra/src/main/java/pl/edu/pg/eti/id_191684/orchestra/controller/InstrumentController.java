@@ -40,6 +40,7 @@ public class InstrumentController {
 
     /**
      * GET an Instrument
+     *
      * @param id instrument's id
      * @return single instrument
      */
@@ -49,12 +50,13 @@ public class InstrumentController {
     public InstrumentGET readInstrument(@PathVariable("id") UUID id) {
         return service.getInstrumentById(id)
                 .map(toDTOConverter)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND)); // no instrument
     }
 
     /**
      * GET an Instrument from a Section
-     * @param sectionId section's id
+     *
+     * @param sectionId    section's id
      * @param instrumentId instrument's id
      * @return single instrument
      */
@@ -62,36 +64,37 @@ public class InstrumentController {
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     public InstrumentGET readInstrument(@PathVariable("sectionId") UUID sectionId, @PathVariable("instrumentId") UUID instrumentId) {
-        return service.getInstrumentsBySectionId(sectionId)
-                .get()
-                .stream()
-                .filter(instrument -> instrument.getId().equals(instrumentId))
-                .findFirst()
-                .map(toDTOConverter)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-
+        if (sectionService.getSectionById(sectionId).isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND); // no section
+        } else {
+            return service.getInstrumentByIdAndSection(instrumentId, sectionService.getSectionById(sectionId).get())
+                    .map(toDTOConverter)
+                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND)); // no instrument
+        }
     }
 
     /**
      * CREATE/UPDATE a given Instrument
+     *
      * @param instrumentId instrument's id
-     * @param sectionId section's id
-     * @param dto request dto for instrument
+     * @param sectionId    section's id
+     * @param dto          request dto for instrument
      */
     @PutMapping("/api/sections/{sectionId}/{instrumentId}")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createInstrument(@PathVariable("instrumentId") UUID instrumentId, @PathVariable("sectionId") UUID sectionId, @RequestBody InstrumentPUT dto){
+    public void createInstrument(@PathVariable("instrumentId") UUID instrumentId, @PathVariable("sectionId") UUID sectionId, @RequestBody InstrumentPUT dto) {
         sectionService.getSectionById(sectionId)
                 .ifPresentOrElse(section -> {
                             service.saveInstrument(fromDTOConverter.apply(new Pair<>(instrumentId, sectionId), dto));
                         }, () -> {
-                            throw new ResponseStatusException(HttpStatus.GONE); // no such a section
+                            throw new ResponseStatusException(HttpStatus.NOT_FOUND); // no such a section
                         }
                 );
     }
 
     /**
      * DELETE a given Instrument
+     *
      * @param id Instrument
      */
     @DeleteMapping("/api/instruments/{id}")
@@ -100,7 +103,7 @@ public class InstrumentController {
         service.getInstrumentById(id)
                 .ifPresentOrElse(
                         instrument -> service.deleteInstrument(id),
-                        () ->{
+                        () -> {
                             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
                         }
                 );
@@ -108,6 +111,7 @@ public class InstrumentController {
 
     /**
      * DELETE a given Instrument
+     *
      * @param instrumentId Instrument
      */
     @DeleteMapping("/api/sections/{sectionId}/{instrumentId}")
@@ -131,6 +135,7 @@ public class InstrumentController {
 
     /**
      * GET all Instruments - Collection
+     *
      * @return list of Instruments
      */
     @GetMapping("api/instruments")
@@ -143,20 +148,29 @@ public class InstrumentController {
     }
 
     /**
+     * TODO what if no section? do like get instrument from section
      * GET all Instruments from a given Section - Collection
+     *
      * @param sectionId Section to read Instruments from
      * @return list of Instruments
      */
     @GetMapping("api/sections/{sectionId}/instruments")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
-    public InstrumentCollectionGET readSectionInstruments(@PathVariable("sectionId") UUID sectionId){
+    public InstrumentCollectionGET readSectionInstruments(@PathVariable("sectionId") UUID sectionId) {
         InstrumentCollectionGET instrumentCollectionGET = service.getInstrumentsBySectionId(sectionId)
                 .map(collectionToDTOConverter)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND)); // no section
+
+        // the section has no instruments
+        if (instrumentCollectionGET.getInstruments().isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NO_CONTENT);
+        }
+
         String sectionName = sectionService.getSectionById(sectionId).get().getName();
         instrumentCollectionGET.setDescription("Collection of Instruments from section " + sectionName);
         return instrumentCollectionGET;
+
     }
 
 }

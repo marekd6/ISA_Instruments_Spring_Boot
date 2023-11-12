@@ -134,5 +134,23 @@ Content-Type: application/json
 ### print all instruments from a section - collection v1 200 jest
 GET http://localhost:8080/api/sections/6ed878ec-0000-0000-0000-00006ed878ec/instruments
 
-### print an instrument from a section OK, był problem z porównaniem, equals super
+### print an instrument from a section
 GET http://localhost:8080/api/sections/6ed878ec-0000-0000-0000-00006ed878ec/instruments/c3fe24ae-0000-0000-0000-0000c3fe24ae
+
+### print a non-ex instrument from a section 404
+GET http://localhost:8080/api/sections/6ed878ec-0000-0000-0000-00006ed878ec/instruments/c3fe24ae-0000-0000-0000-0000c3fe24aa
+
+### print an instrument from a non-ex section 404
+GET http://localhost:8080/api/sections/6ed878ec-0000-0000-0000-00006ed878cc/instruments/c3fe24ae-0000-0000-0000-0000c3fe24ae
+
+
+
+
+
+### del nonex instr from sec
+DELETE http://localhost:8080/api/sections/6ed878ec-0000-0000-0000-00006ed878ec/c3fe24ae-0000-0000-0000-0000c3fe24ae
+
+
+
+### del sec
+DELETE http://localhost:8080/api/sections/ff05ec9a-0000-0000-0000-0000ff05ec9a
