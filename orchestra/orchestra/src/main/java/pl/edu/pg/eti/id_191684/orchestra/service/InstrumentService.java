@@ -59,19 +59,4 @@ public class InstrumentService {
     }
 
 
-    /**
-     * substituted by another converter
-     * used in GET
-     * @param instruments
-     * @return DTO collection of Instruments
-     */
-    public InstrumentCollectionGET toDTOconvert(@NotNull List<Instrument> instruments){
-        List<UUID> uuids = instruments.stream()
-                .map(instrument -> instrument.getId())
-                .toList();
-        return InstrumentCollectionGET.builder()
-                .instruments(uuids)
-                .build();
-    }
-
 }

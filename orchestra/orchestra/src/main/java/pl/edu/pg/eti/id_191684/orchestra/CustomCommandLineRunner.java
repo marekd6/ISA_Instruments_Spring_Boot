@@ -67,13 +67,14 @@ public class CustomCommandLineRunner implements CommandLineRunner {
 
     private void listSections() {
         System.out.println("Sections:");
-        sectionService.getAllSections().forEach(section -> System.out.println(section));
+        sectionService.getAllSections()
+                .get()
+                .forEach(section -> System.out.println(section));
     }
 
     private void listInstruments() {
         System.out.println("Instruments:");
-        // TODO temporarily disabled due to Optional in Service
-        //instrumentService.getAllInstruments().forEach(instrument -> System.out.println(instrument));
+        instrumentService.getAllInstruments().get().forEach(instrument -> System.out.println(instrument));
     }
 
     private void addInstrument(Scanner scanner) {
@@ -84,7 +85,7 @@ public class CustomCommandLineRunner implements CommandLineRunner {
         int instrumentProductionYear = Integer.parseInt(scanner.nextLine());
 
         System.out.println("Available sections:");
-        sectionService.getAllSections().forEach(section -> System.out.println(section));
+        sectionService.getAllSections().get().forEach(section -> System.out.println(section));
         System.out.print("Enter section ID: ");
         UUID sectionId = UUID.fromString(scanner.nextLine());
 

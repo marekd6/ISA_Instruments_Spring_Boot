@@ -7,12 +7,11 @@ import org.springframework.web.server.ResponseStatusException;
 import pl.edu.pg.eti.id_191684.orchestra.DTOS.SectionCollectionGET;
 import pl.edu.pg.eti.id_191684.orchestra.DTOS.SectionGET;
 import pl.edu.pg.eti.id_191684.orchestra.DTOS.SectionPUT;
+import pl.edu.pg.eti.id_191684.orchestra.converter.SectionCollectionToDTOConverter;
 import pl.edu.pg.eti.id_191684.orchestra.converter.SectionFromDTOConverter;
 import pl.edu.pg.eti.id_191684.orchestra.converter.SectionToDTOConverter;
-import pl.edu.pg.eti.id_191684.orchestra.entity.Section;
 import pl.edu.pg.eti.id_191684.orchestra.service.SectionService;
 
-import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -24,12 +23,15 @@ public class SectionController {
 
     private final SectionFromDTOConverter fromDTOConverter;
 
+    private final SectionCollectionToDTOConverter collectionToDTOConverter;
+
 
     @Autowired
-    public SectionController(SectionService service, SectionToDTOConverter toDTOConverter, SectionFromDTOConverter fromDTOConverter) {
+    public SectionController(SectionService service, SectionToDTOConverter toDTOConverter, SectionFromDTOConverter fromDTOConverter, SectionCollectionToDTOConverter collectionToDTOConverter) {
         this.service = service;
         this.toDTOConverter = toDTOConverter;
         this.fromDTOConverter = fromDTOConverter;
+        this.collectionToDTOConverter = collectionToDTOConverter;
     }
 
 
@@ -86,12 +88,15 @@ public class SectionController {
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     public SectionCollectionGET readSectionCollection() {
-        List<Section> sections = service.getAllSections();
+        /*List<Section> sections = service.getAllSections();
         // no Sections
         if (sections.isEmpty()){
             throw new ResponseStatusException(HttpStatus.NO_CONTENT);
         }
-        return service.toDTOconvert(sections);
+        return service.toDTOconvert(sections);*/
+        return service.getAllSections()
+                .map(collectionToDTOConverter)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NO_CONTENT));
     }
 
 }

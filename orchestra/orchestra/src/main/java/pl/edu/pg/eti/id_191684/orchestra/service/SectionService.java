@@ -21,9 +21,14 @@ public class SectionService {
         this.sectionRepository = sectionRepository;
     }
 
+    public Optional<List<Section>> getAllSections() {
+        return Optional.of(sectionRepository.findAll());
+    }
+/*
     public List<Section> getAllSections() {
         return sectionRepository.findAll();
     }
+*/
 
     public Optional< Section> getSectionById(UUID id) {
         return sectionRepository.findById(id);
@@ -41,6 +46,7 @@ public class SectionService {
     }
 
     /**
+     * substituted by converter
      * used in GET
      * @param sections list of Sections
      * @return DTO collection of sections
