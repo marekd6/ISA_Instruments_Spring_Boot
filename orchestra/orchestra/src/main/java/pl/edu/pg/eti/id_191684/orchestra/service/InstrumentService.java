@@ -38,6 +38,7 @@ public class InstrumentService {
     public Optional<List<Instrument>> getInstrumentsBySectionId(UUID sectionId) {
         return sectionRepository.findById(sectionId)
                 .map(section -> instrumentRepository.findAllBySection(section));
+                //.orElseThrow();
     }
 
     public void saveInstrument(Instrument instrument) {

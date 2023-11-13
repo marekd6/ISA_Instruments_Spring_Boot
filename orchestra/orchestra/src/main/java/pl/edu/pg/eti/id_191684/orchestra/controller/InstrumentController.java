@@ -80,7 +80,7 @@ public class InstrumentController {
      * @param sectionId    section's id
      * @param dto          request dto for instrument
      */
-    @PutMapping("/api/sections/{sectionId}/{instrumentId}")
+    @PutMapping("/api/sections/{sectionId}/instruments/{instrumentId}")
     @ResponseStatus(HttpStatus.CREATED)
     public void createInstrument(@PathVariable("instrumentId") UUID instrumentId, @PathVariable("sectionId") UUID sectionId, @RequestBody InstrumentPUT dto) {
         sectionService.getSectionById(sectionId)
@@ -111,10 +111,10 @@ public class InstrumentController {
 
     /**
      * DELETE a given Instrument
-     *
+     * @param sectionId Section
      * @param instrumentId Instrument
      */
-    @DeleteMapping("/api/sections/{sectionId}/{instrumentId}")
+    @DeleteMapping("/api/sections/{sectionId}/instruments/{instrumentId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteInstrument(@PathVariable UUID instrumentId, @PathVariable("sectionId") UUID sectionId) {
         sectionService.getSectionById(sectionId)
@@ -123,11 +123,11 @@ public class InstrumentController {
                                     .ifPresentOrElse(
                                             instrument -> service.deleteInstrument(instrumentId),
                                             () -> {
-                                                throw new ResponseStatusException(HttpStatus.GONE); // no such an instrument
+                                                throw new ResponseStatusException(HttpStatus.NOT_FOUND); // no such an instrument
                                             }
                                     );
                         }, () -> {
-                            throw new ResponseStatusException(HttpStatus.FAILED_DEPENDENCY); // no such a section
+                            throw new ResponseStatusException(HttpStatus.NOT_FOUND); // no such a section
                         }
                 );
 
@@ -157,6 +157,9 @@ public class InstrumentController {
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     public InstrumentCollectionGET readSectionInstruments(@PathVariable("sectionId") UUID sectionId) {
+        if (sectionService.getSectionById(sectionId).isEmpty())
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND); // no section
+
         InstrumentCollectionGET instrumentCollectionGET = service.getInstrumentsBySectionId(sectionId)
                 .map(collectionToDTOConverter)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND)); // no section

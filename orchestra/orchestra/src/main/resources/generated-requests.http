@@ -1,109 +1,13 @@
-### print all instruments - collection
-GET http://localhost:8080/api/instruments
-
-### print an instrument
-GET http://localhost:8080/api/instruments/c3fe24ae-0000-0000-0000-0000c3fe24ae
-
-### print non-existing instrument
-GET http://localhost:8080/api/instruments/444e24ae-0000-0000-0000-0000c3fe4444
-
-### delete an instrument
-DELETE http://localhost:8080/api/instruments/c3fe24ae-0000-0000-0000-0000c3fe24ae
-
-### delete an instrument from section
-DELETE http://localhost:8080/api/sections/6ed878ec-0000-0000-0000-00006ed878ec/c3fe24ae-0000-0000-0000-0000c3fe24ae
-
-
-### create an instrument
-PUT http://localhost:8080/api/instruments/c3fe24ae-0000-0000-0000-0000c3fe24ae
-Content-Type: application/json
-
-{
-"name": "violin",
-"production_year": 1850,
-"sectionId": "6ed878ec-0000-0000-0000-00006ed878ec"
-}
-
-### create an instrument in a non-existing section
-PUT http://localhost:8080/api/instruments/c3fe24ae-0000-0000-0000-0000c3fe24ae
-Content-Type: application/json
-
-{
-"name": "violin",
-"production_year": 1850,
-"sectionId": "88d878ec-0000-0000-0000-00006ed87888"
-}
-
-
-### print all instruments from a section - collection v1
-GET http://localhost:8080/api/sections/6ed878ec-0000-0000-0000-00006ed878ec/instruments
-
-
-### print all instruments from a section - collection v2 electronic empty
-GET http://localhost:8080/api/sections/ff05ec9a-0000-0000-0000-0000ff05ec9a/instruments
-
-
-### print all instruments from a section - collection v3 no such section
-GET http://localhost:8080/api/sections/7705ec9a-0000-0000-0000-0000ff05ec99/instruments
-
-
-### print all sections - collection
-GET http://localhost:8080/api/sections
-
-### print a section v1 String
+### read section
 GET http://localhost:8080/api/sections/6ed878ec-0000-0000-0000-00006ed878ec
 
-### print a section v2 Electronic
-GET http://localhost:8080/api/sections/ff05ec9a-0000-0000-0000-0000ff05ec9a
+<> 2023-11-13T171856.404.json
+<> 2023-11-13T171811.404.json
 
-### delete a section String
+### delete section
 DELETE http://localhost:8080/api/sections/6ed878ec-0000-0000-0000-00006ed878ec
 
-### create a section
-PUT http://localhost:8080/api/sections/6ed878ec-0000-0000-0000-00006ed878ec
-Content-Type: application/json
-
-{
-"name": "String",
-"volume": 5,
-  "location": 1
-}
-
-
-
-
-
-### print all sections - collection
-GET http://localhost:8080/api/sections
-
-### print a section v1 String
-GET http://localhost:8080/api/sections/6ed878ec-0000-0000-0000-00006ed878ec
-
-### print all instruments from a section - collection v1
-GET http://localhost:8080/api/sections/6ed878ec-0000-0000-0000-00006ed878ec/instruments
-
-### delete a section String
-DELETE http://localhost:8080/api/sections/6ed878ec-0000-0000-0000-00006ed878ec
-
-### print all sections - collection
-GET http://localhost:8080/api/sections
-
-### print a section v1 String
-GET http://localhost:8080/api/sections/6ed878ec-0000-0000-0000-00006ed878ec
-
-### print all instruments from a section - collection v1 404 brak sekcji
-GET http://localhost:8080/api/sections/6ed878ec-0000-0000-0000-00006ed878ec/instruments
-
-### create an instrument in a non-existing section ten co trzeba, gdy nie ma sekcji
-PUT http://localhost:8080/api/sections/6ed878ec-0000-0000-0000-00006ed878ec/c3fe24ae-0000-0000-0000-0000c3fe24ae
-Content-Type: application/json
-
-{
-  "name": "violin",
-  "production_year": 1850
-}
-
-### create a section 201
+### create section
 PUT http://localhost:8080/api/sections/6ed878ec-0000-0000-0000-00006ed878ec
 Content-Type: application/json
 
@@ -113,17 +17,59 @@ Content-Type: application/json
   "location": 1
 }
 
-### print all sections - collection 200
+### read collection of sections
 GET http://localhost:8080/api/sections
 
-### print a section v1 String 200
-GET http://localhost:8080/api/sections/6ed878ec-0000-0000-0000-00006ed878ec
+<> 2023-11-13T173142.200.json
+<> 2023-11-13T171900.200.json
+<> 2023-11-13T171816.200.json
 
-### print all instruments from a section - collection v1 200, empty
+
+
+
+
+### read all instruments
+GET http://localhost:8080/api/instruments
+
+<> 2023-11-13T173649.200.json
+<> 2023-11-13T171819.200.json
+<> 2023-11-13T171650.200.json
+
+### read all instruments from a section
 GET http://localhost:8080/api/sections/6ed878ec-0000-0000-0000-00006ed878ec/instruments
 
-### create an instrument in an empty section 201
-PUT http://localhost:8080/api/sections/6ed878ec-0000-0000-0000-00006ed878ec/c3fe24ae-0000-0000-0000-0000c3fe24ae
+<> 2023-11-13T173642.200.json
+<> 2023-11-13T171823.404.json
+
+### read an instrument
+GET http://localhost:8080/api/instruments/c3fe24ae-0000-0000-0000-0000c3fe24ae
+
+<> 2023-11-13T173639.404.json
+<> 2023-11-13T171835.404.json
+<> 2023-11-13T171644.200.json
+
+### read an instrument from a section
+GET http://localhost:8080/api/sections/6ed878ec-0000-0000-0000-00006ed878ec/instruments/c3fe24ae-0000-0000-0000-0000c3fe24ae
+
+<> 2023-11-13T173635.404.json
+<> 2023-11-13T171838.404.json
+<> 2023-11-13T171732.200.json
+<> 2023-11-13T171721.404.json
+<> 2023-11-13T171635.200.json
+
+### delete an instrument
+DELETE http://localhost:8080/api/instruments/c3fe24ae-0000-0000-0000-0000c3fe24ae
+
+<> 2023-11-13T171842.404.json
+
+### delete an instrument from a section
+DELETE http://localhost:8080/api/sections/6ed878ec-0000-0000-0000-00006ed878ec/instruments/c3fe24ae-0000-0000-0000-0000c3fe24ae
+
+<> 2023-11-13T171844.404.json
+<> 2023-11-13T171724.404.json
+
+### create an instrument
+PUT http://localhost:8080/api/sections/6ed878ec-0000-0000-0000-00006ed878ec/instruments/c3fe24ae-0000-0000-0000-0000c3fe24ae
 Content-Type: application/json
 
 {
@@ -131,30 +77,48 @@ Content-Type: application/json
   "production_year": 1850
 }
 
-### print all instruments from a section - collection v1 200 jest
-GET http://localhost:8080/api/sections/6ed878ec-0000-0000-0000-00006ed878ec/instruments
-
-### print an instrument from a section
-GET http://localhost:8080/api/sections/6ed878ec-0000-0000-0000-00006ed878ec/instruments/c3fe24ae-0000-0000-0000-0000c3fe24ae
-
-### print a non-ex instrument from a section 404
-GET http://localhost:8080/api/sections/6ed878ec-0000-0000-0000-00006ed878ec/instruments/c3fe24ae-0000-0000-0000-0000c3fe24aa
-
-### print an instrument from a non-ex section 404
-GET http://localhost:8080/api/sections/6ed878ec-0000-0000-0000-00006ed878cc/instruments/c3fe24ae-0000-0000-0000-0000c3fe24ae
-
-
-### print all instruments from a non-ex section 404
-GET http://localhost:8080/api/sections/6ed878ec-0000-0000-0000-00006ed878cc/instruments
+<> 2023-11-13T171847.404.json
 
 
 
 
+### read all instruments from an empty section 204
+GET http://localhost:8080/api/sections/ff05ec9a-0000-0000-0000-0000ff05ec9a/instruments
 
-### del nonex instr from sec
-DELETE http://localhost:8080/api/sections/6ed878ec-0000-0000-0000-00006ed878ec/c3fe24ae-0000-0000-0000-0000c3fe24ae
+<> 2023-11-13T173107.404.json
+
+### read all instruments from a non-existing section 404
+GET http://localhost:8080/api/sections/7705ec9a-0000-0000-0000-0000ff05ec99/instruments
+
+<> 2023-11-13T173400.404.json
+<> 2023-11-13T173117.400.json
+<> 2023-11-13T172748.400.json
+<> 2023-11-13T172400.400.json
+<> 2023-11-13T172227.400.json
+<> 2023-11-13T172204.400.json
+<> 2023-11-13T172143.400.json
+<> 2023-11-13T172128.400.json
+<> 2023-11-13T172027.400.json
 
 
+### create an instrument in a non-existing section
+PUT http://localhost:8080/api/sections/7705ec9a-0000-0000-0000-0000ff05ec99/instruments/c3fe24ae-0000-0000-0000-0000c3fe24ae
+Content-Type: application/json
 
-### del sec
-DELETE http://localhost:8080/api/sections/ff05ec9a-0000-0000-0000-0000ff05ec9a
+{
+  "name": "violin",
+  "production_year": 1850
+}
+
+<> 2023-11-13T174014.404.json
+<> 2023-11-13T173916.404.json
+
+### delete an instrument from a non-existing section
+DELETE http://localhost:8080/api/sections/7705ec9a-0000-0000-0000-0000ff05ec99/instruments/c3fe24ae-0000-0000-0000-0000c3fe24ae
+
+<> 2023-11-13T174240.404.json
+
+### delete a non-existing instrument from a section
+DELETE http://localhost:8080/api/sections/6ed878ec-0000-0000-0000-00006ed878ec/instruments/c3fe24aa-0000-0000-0000-0000c3fe24aa
+
+<> 2023-11-13T174228.404.json
