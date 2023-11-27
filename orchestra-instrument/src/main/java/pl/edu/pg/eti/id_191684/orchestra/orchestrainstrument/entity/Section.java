@@ -7,8 +7,6 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.UUID;
 
-import static java.util.Objects.hash;
-
 /**
  * Simplified version used in Instrument part
  * A category. Instruments belong to a section

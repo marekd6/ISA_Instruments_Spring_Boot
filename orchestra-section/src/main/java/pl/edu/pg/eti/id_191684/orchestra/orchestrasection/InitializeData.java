@@ -3,18 +3,11 @@ package pl.edu.pg.eti.id_191684.orchestra.orchestrasection;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import pl.edu.pg.eti.id_191684.orchestra.orchestrasection.service.SectionService;
 import pl.edu.pg.eti.id_191684.orchestra.orchestrasection.entity.Section;
+import pl.edu.pg.eti.id_191684.orchestra.orchestrasection.service.SectionService;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.UUID;
 
-/**
- * Listener started automatically on Spring application context initialized. When using persistence storage application
- * instance should be initialized only during first run in order to init database with starting data. Good place to
- * create first default admin Section.
- */
 @Component
 public class InitializeData implements InitializingBean {
 
@@ -61,11 +54,6 @@ public class InitializeData implements InitializingBean {
                     .location(4)
                     .instrumentList(new ArrayList<>())
                     .build();
-
-/*            sectionService.saveSection(stringed);
-            sectionService.saveSection(wind);
-            sectionService.saveSection(percussion);
-            sectionService.saveSection(electronic);*/
 
             sectionService.saveSection2(stringed);
             sectionService.saveSection2(wind);

@@ -14,10 +14,6 @@ public class OrchestraSectionApplication {
 		SpringApplication.run(OrchestraSectionApplication.class, args);
 	}
 
-	/**
-	 * @param baseUrl base URL
-	 * @return configured endpoint for section module
-	 */
 	@Bean
 	public RestTemplate restTemplate(@Value("${orchestra.instrument.url}") String baseUrl) {
 		return new RestTemplateBuilder().rootUri(baseUrl).build();

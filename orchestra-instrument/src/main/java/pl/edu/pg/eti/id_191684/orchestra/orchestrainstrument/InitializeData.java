@@ -1,23 +1,16 @@
 package pl.edu.pg.eti.id_191684.orchestra.orchestrainstrument;
 
-import lombok.SneakyThrows;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pl.edu.pg.eti.id_191684.orchestra.orchestrainstrument.entity.Instrument;
-import pl.edu.pg.eti.id_191684.orchestra.orchestrainstrument.service.InstrumentService;
 import pl.edu.pg.eti.id_191684.orchestra.orchestrainstrument.entity.Section;
+import pl.edu.pg.eti.id_191684.orchestra.orchestrainstrument.service.InstrumentService;
 import pl.edu.pg.eti.id_191684.orchestra.orchestrainstrument.service.SectionService;
 
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.UUID;
 
-/**
- * Listener started automatically on Spring application context initialized. When using persistence storage application
- * instance should be initialized only during first run in order to init database with starting data. Good place to
- * create first default admin user.
- */
 @Component
 public class InitializeData implements InitializingBean {
 

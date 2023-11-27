@@ -40,7 +40,7 @@ public class OrchestraGatewayApplication {
                                 "/api/instruments/**",
                                 "/api/sections/{uuid}/instruments",
                                 "/api/sections/{uuid}/instruments/**",
-                                "/api/instruments/sections/{uuid}"//new
+                                "/api/instruments/sections/{uuid}"
                         )
                         .uri(instrumentUrl)
                 )
