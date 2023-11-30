@@ -183,7 +183,7 @@ public class InstrumentController {
      * DELETE a given Section with its Instruments
      * @param id Section id
      */
-    @DeleteMapping("/api/instruments/sections/{id}")
+    @DeleteMapping("/api/sections/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteSectionAndInstruments(@PathVariable("id") UUID id) {
         sectionService.getSectionById(id)
@@ -201,7 +201,7 @@ public class InstrumentController {
      * @param id Section's id
      * @param dto request dto for Section
      */
-    @PutMapping("/api/instruments/sections/{id}")
+    @PutMapping("/api/sections/{id}")
     @ResponseStatus(HttpStatus.CREATED)
     public void createSection(@PathVariable("id") UUID id, @RequestBody SectionGET dto){
         sectionService.saveSection(sectionFromDTOConverter.apply(id, dto));

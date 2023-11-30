@@ -27,7 +27,7 @@ public class SectionEventRestRepository {
      * @param section Section, transformed into a DTO
      */
     public void create(@PathVariable("id") UUID id, Section section){
-        restTemplate.put("/api/instruments/sections/{id}", converter.apply(section), id);
+        restTemplate.put("/api/sections/{id}", converter.apply(section), id);
     }
 
     /**
@@ -35,7 +35,7 @@ public class SectionEventRestRepository {
      * @param id section id
      */
     public void delete(@PathVariable("id") UUID id) {
-        restTemplate.delete("/api/instruments/sections/{id}", id);
+        restTemplate.delete("/api/sections/{id}", id);
     }
 
 }
