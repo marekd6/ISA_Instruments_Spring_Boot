@@ -1,5 +1,5 @@
 <article *ngIf="instrument">
-  <header><h2>{{instrument?.name}}</h2></header>
+  <header><h2>{{instrument.name}}</h2></header>
 
   <div class="container">
     <div class="row">
@@ -9,7 +9,7 @@
             Section
           </div>
           <div class="col-6">
-            <span>{{instrument?.section.id}}</span>
+            <span>{{instrument.section.id}}</span>
           </div>
         </div>
 
@@ -18,7 +18,7 @@
             Year of production
           </div>
           <div class="col-6">
-            <span>{{instrument?.production_year}}</span>
+            <span>{{instrument.production_year}}</span>
           </div>
         </div>
 
@@ -27,7 +27,7 @@
             ID
           </div>
           <div class="col-6">
-            <span>{{instrument?.id}}</span>
+            <span>{{instrument.id}}</span>
           </div>
         </div>
       </div>

@@ -1,7 +1,7 @@
 <article class="text--justified">
   <header><h2>Users</h2></header>
 
-  <table *ngIf="users">
+  <table *ngIf="sections">
     <thead>
       <tr>
         <th>Login</th>
@@ -9,10 +9,10 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let user of users.users">
-        <td>{{user.login}}</td>
+      <tr *ngFor="let section of sections.sections">
+        <td>{{section.id}}</td>
         <td>
-          <button (click)="onDelete(user)">Delete</button>
+          <button (click)="onDelete(section)">Delete</button>
         </td>
       </tr>
     </tbody>

@@ -6,14 +6,29 @@ import {InstrumentViewComponent} from "./instrument/view/instrument-view/instrum
 import {InstrumentEditComponent} from "./instrument/view/instrument-edit/instrument-edit.component";
 import {FormsModule} from "@angular/forms";
 import {SectionListComponent} from "./section/view/section-list/section-list.component";
+import {MainComponent} from "./component/main/main.component";
+import {NavComponent} from "./component/nav/nav.component";
+import {HeaderComponent} from "./component/header/header.component";
+import {FooterComponent} from "./component/footer/footer.component";
+import {AppComponent} from "./app.component";
+import {RouterLink} from "@angular/router";
+import {HttpClientModule} from "@angular/common/http";
+import {AppRoutingModule} from "./app.routes";
+import {BrowserModule} from "@angular/platform-browser";
 
 @NgModule({
   declarations: [InstrumentsListComponent, InstrumentViewComponent, InstrumentEditComponent,
-    SectionListComponent],
+    SectionListComponent, FooterComponent, HeaderComponent, NavComponent, MainComponent, AppComponent],//AppComponent
   imports: [
-    FormsModule
+    FormsModule,
+    RouterLink,
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [InstrumentService, SectionService]
+  providers: [InstrumentService, SectionService],
+  bootstrap: [AppComponent]
 })
 export class AppModule {
 

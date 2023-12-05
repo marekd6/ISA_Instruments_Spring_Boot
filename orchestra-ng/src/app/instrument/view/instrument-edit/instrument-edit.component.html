@@ -6,7 +6,7 @@
       <div class="col-4 p-2">
         <div>
           <label for="name">Name:</label>
-          <input id="name" name="name" [(ngModel)]="instrument?.name"/>
+          <input id="name" name="name" [(ngModel)]="instrument.name"/>
         </div>
       </div>
     </div>
@@ -14,8 +14,8 @@
     <div class="row">
       <div class="col-4 p-2">
         <div>
-          <label for="age">Age:</label>
-          <input id="age" name="age" [(ngModel)]="instrument?.production_year"/>
+          <label for="production_year">Production year:</label>
+          <input id="production_year" name="production_year" [(ngModel)]="instrument.production_year"/>
         </div>
       </div>
     </div>
@@ -23,10 +23,10 @@
     <div class="row">
       <div class="col-4 p-2">
         <fieldset *ngIf="sections">
-          <legend>Profession:</legend>
-          <div *ngFor="let section of sections?.sections">
+          <legend>Section:</legend>
+          <div *ngFor="let section of sections.sections">
             <label>
-              <input type="radio" name="section" [(ngModel)]="instrument?.section" [value]="section.id"/>
+              <input type="radio" name="section" [(ngModel)]="instrument.section" [value]="section.id"/>
               {{section.name}}
             </label>
           </div>
