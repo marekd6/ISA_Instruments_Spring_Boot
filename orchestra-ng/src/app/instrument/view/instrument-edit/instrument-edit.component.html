@@ -1,0 +1,46 @@
+<article *ngIf="instrument">
+  <header><h2>Edit instrument</h2></header>
+
+  <form class="container"  #form="ngForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col-4 p-2">
+        <div>
+          <label for="name">Name:</label>
+          <input id="name" name="name" [(ngModel)]="instrument?.name"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-4 p-2">
+        <div>
+          <label for="age">Age:</label>
+          <input id="age" name="age" [(ngModel)]="instrument?.production_year"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-4 p-2">
+        <fieldset *ngIf="sections">
+          <legend>Profession:</legend>
+          <div *ngFor="let section of sections?.sections">
+            <label>
+              <input type="radio" name="section" [(ngModel)]="instrument?.section" [value]="section.id"/>
+              {{section.name}}
+            </label>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-2 p-2">
+        <button type="submit">Update</button>
+      </div>
+      <div class="col-2 p-2">
+        <button type="button" (click)="form.resetForm(original)">Reset</button>
+      </div>
+    </div>
+  </form>
+</article>

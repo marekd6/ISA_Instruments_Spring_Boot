@@ -19,7 +19,7 @@ export interface InstrumentForm {
   production_year: number;
 
   /**
-   * Section the Instrument belongs to
+   * Section the Instrument belongs to, just an ID
    */
   section: string
 

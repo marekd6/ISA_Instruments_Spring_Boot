@@ -32,7 +32,7 @@ export class InstrumentService {
    * @param id Instrument's ID
    * @return details of an Instrument
    */
-  getInsteument(id: string): Observable<InstrumentDetails> {
+  getInstrument(id: string): Observable<InstrumentDetails> {
     return this.http.get<InstrumentDetails>('/api/instruments/' + id);
   }
 
@@ -40,7 +40,7 @@ export class InstrumentService {
    * Delete an Instrument
    * @param id Instrument's ID
    */
-  deleteInsteument(id: string): Observable<any> {
+  deleteInstrument(id: string): Observable<any> {
     return this.http.delete('/api/instruments/' + id);
   }
 
