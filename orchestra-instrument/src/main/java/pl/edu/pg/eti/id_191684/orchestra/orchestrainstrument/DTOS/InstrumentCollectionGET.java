@@ -17,12 +17,44 @@ import java.util.UUID;
 @ToString
 public class InstrumentCollectionGET {
 
+    /**
+     * An Instrument in a list.
+     */
+    @Getter
+    @Setter
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor(access = AccessLevel.PRIVATE)
+    @ToString
+    @EqualsAndHashCode
+    public static class Instrument {
+
+        /**
+         * Instrument's ID
+         */
+        private UUID id;
+
+        /**
+         * Name of the Instrument.
+         */
+        private String name;
+
+    }
+
+    /**
+     * Description of a collection
+     */
     private String description;
 
     /**
      * list of ids
      */
-    private List<UUID> instruments;
+//    private List<UUID> instruments;
+
+    /**
+     * list of Instruments
+     */
+    private List<Instrument> instruments;
 
 
 }

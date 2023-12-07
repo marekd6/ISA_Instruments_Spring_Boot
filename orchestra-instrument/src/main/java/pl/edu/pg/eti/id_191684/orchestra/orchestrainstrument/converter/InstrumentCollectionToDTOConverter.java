@@ -13,12 +13,23 @@ public class InstrumentCollectionToDTOConverter implements Function<List<Instrum
 
     @Override
     public InstrumentCollectionGET apply(List<Instrument> instruments) {
-        List<UUID> uuids = instruments.stream()
+
+        return InstrumentCollectionGET.builder()
+                .description("Collection of Instruments")
+                .instruments(instruments.stream()
+                        .map(instrument -> InstrumentCollectionGET.Instrument.builder()
+                                .id(instrument.getId())
+                                .name(instrument.getName())
+                                .build())
+                        .toList())
+                .build();
+
+/*        List<UUID> uuids = instruments.stream()
                 .map(instrument -> instrument.getId())
                 .toList();
         return InstrumentCollectionGET.builder()
                 .description("Collection of Instruments (ids)")
                 .instruments(uuids)
-                .build();
+                .build();*/
     }
 }

@@ -1,28 +1,32 @@
 <article class="text--justified">
-  <header><h2>Instruments</h2></header>
-
+  <header>
+    <h2>Instruments</h2>
+    <h3 *ngIf="instruments">{{instruments.description}} {{instruments.instruments.length}}</h3>
+  </header>
   <table *ngIf="instruments">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>View</th>
-        <th>Edit</th>
-        <th>Delete</th>
-      </tr>
+    <thead *ngIf="instruments.instruments">
+    <tr>
+      <th>Name</th>
+      <th>View</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
     </thead>
-    <tbody>
-      <tr *ngFor="let instrument of instruments.instruments">/
-        <td>{{instrument.name}}</td>
-        <td>
-          <a [routerLink]="['/instruments', instrument.id]">View</a>
-        </td>
-        <td>
-          <a [routerLink]="['/instruments', instrument.id, 'edit']">Edit</a>
-        </td>
-        <td>
-          <button (click)="onDelete(instrument)">Delete</button>
-        </td>
-      </tr>
+    <tbody *ngIf="instruments">
+    <tr *ngFor="let instrument of instruments.instruments">
+      <td>{{instrument.name}}</td>
+<!--    <tr>-->
+<!--      <td>gegegr</td>-->
+      <td>
+        <a [routerLink]="['/instruments', instrument.id]">View</a>
+      </td>
+      <td>
+        <a [routerLink]="['/instruments', instrument.id, 'edit']">Edit</a>
+      </td>
+      <td>
+        <button (click)="onDelete(instrument)">Delete</button>
+      </td>
+    </tr>
     </tbody>
   </table>
 </article>

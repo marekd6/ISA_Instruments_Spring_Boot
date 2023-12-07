@@ -20,12 +20,17 @@ import {BrowserModule} from "@angular/platform-browser";
   declarations: [InstrumentsListComponent, InstrumentViewComponent, InstrumentEditComponent,
     SectionListComponent, FooterComponent, HeaderComponent, NavComponent, MainComponent, AppComponent],//AppComponent
   imports: [
-    FormsModule,
+/*    FormsModule,
     RouterLink,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule*/
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
     HttpClientModule
+
   ],
   providers: [InstrumentService, SectionService],
   bootstrap: [AppComponent]
