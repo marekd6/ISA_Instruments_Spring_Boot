@@ -27,6 +27,15 @@ export class InstrumentService {
     return this.http.get<Instruments>('/api/instruments');
   }
 
+  getInstrumentsFromSection(idd: string | undefined): Observable<Instruments> {
+    if (idd == undefined){
+     return this.getInstruments();
+    }
+    else {
+      return this.http.get<Instruments>('/api/sections/' + idd + '/instruments');
+    }
+  }
+
   /**
    * Get an Instrument
    * @param id Instrument's ID
