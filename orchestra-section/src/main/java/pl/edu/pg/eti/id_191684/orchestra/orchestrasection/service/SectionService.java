@@ -27,7 +27,7 @@ public class SectionService {
         return Optional.of(sectionRepository.findAll());
     }
 
-    public Optional< Section> getSectionById(UUID id) {
+    public Optional<Section> getSectionById(UUID id) {
         return sectionRepository.findById(id);
     }
 

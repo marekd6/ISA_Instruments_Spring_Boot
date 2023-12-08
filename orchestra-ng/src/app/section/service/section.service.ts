@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { Sections } from "../model/sections";
+import {Section} from "../model/section";
+import {SectionDetails} from "../model/section-details";
 
 /**
  * Section management service. Calls REST endpoints.
@@ -32,6 +34,15 @@ export class SectionService {
    */
   deleteSection(uuid: string): Observable<any> {
     return this.http.delete('/api/sections/' + uuid);
+  }
+
+  /**
+   * Get a Section
+   * @param id Section's ID
+   * @return details of a Section with a list of its Instruments
+   */
+  getSection(id: string): Observable<SectionDetails> {
+    return this.http.get<SectionDetails>('/api/sections/' + id);
   }
 
 }

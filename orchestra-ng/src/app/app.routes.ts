@@ -4,11 +4,16 @@ import {InstrumentViewComponent} from "./instrument/view/instrument-view/instrum
 import {InstrumentsListComponent} from "./instrument/view/instruments-list/instruments-list.component";
 import {InstrumentEditComponent} from "./instrument/view/instrument-edit/instrument-edit.component";
 import {SectionListComponent} from "./section/view/section-list/section-list.component";
+import {SectionViewComponent} from "./section/view/section-view/section-view.component";
 
 export const routes: Routes = [
   {
     component: SectionListComponent,
     path: "sections"
+  },
+  {
+    component: SectionViewComponent,//
+    path: "sections/:id"
   },
   {
     component: InstrumentsListComponent,

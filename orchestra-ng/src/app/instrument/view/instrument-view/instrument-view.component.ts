@@ -14,13 +14,13 @@ import { InstrumentDetails } from "../../model/instrument-details";
 export class InstrumentViewComponent implements OnInit {
 
   /**
-   * Single character.
+   * An Instrument.
    */
   instrument: InstrumentDetails | undefined;
 
   /**
    *
-   * @param service character service
+   * @param service instrument service
    * @param route activated route
    * @param router router
    */

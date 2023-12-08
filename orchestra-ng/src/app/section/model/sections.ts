@@ -6,6 +6,11 @@ import { Section } from "./section";
 export interface Sections {
 
   /**
+   * Description of a collection
+   */
+  description: string;
+
+  /**
    * List of all Sections
    */
   sections: Section[];

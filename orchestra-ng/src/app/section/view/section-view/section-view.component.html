@@ -1,0 +1,47 @@
+<article *ngIf="section">
+  <header><h2>{{section.name}}</h2></header>
+  <ul>
+    <li>Location: {{section.location}}</li>
+    <li>Volume: {{section.volume}}</li>
+    <li>ID: {{section.id}}</li>
+  </ul>
+<!--okTODO szczegóły kategorii-->
+<!--TODO lista elementów-->
+<!--TODO nowy element-->
+<!--TODO edytuj element-->
+<!--TODO usuń element-->
+<!--TODO szczegóły elementu-->
+  <div class="container">
+    <div class="row">
+      <div class="col-4">
+        <div class="row mb-2">
+          <div class="col-6">
+            Section
+          </div>
+          <div class="col-6">
+            <span>{{section.id}}</span>
+          </div>
+        </div>
+
+        <div class="row mb-2">
+          <div class="col-6">
+            Year of production
+          </div>
+          <div class="col-6">
+            <span>{{section.location}}</span>
+          </div>
+        </div>
+
+        <div class="row mb-2">
+          <div class="col-6">
+            ID
+          </div>
+          <div class="col-6">
+            <span>{{section.volume}}</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</article>

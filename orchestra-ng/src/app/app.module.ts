@@ -15,10 +15,12 @@ import {RouterLink} from "@angular/router";
 import {HttpClientModule} from "@angular/common/http";
 import {AppRoutingModule} from "./app.routes";
 import {BrowserModule} from "@angular/platform-browser";
+import {SectionViewComponent} from "./section/view/section-view/section-view.component";
 
 @NgModule({
   declarations: [InstrumentsListComponent, InstrumentViewComponent, InstrumentEditComponent,
-    SectionListComponent, FooterComponent, HeaderComponent, NavComponent, MainComponent, AppComponent],//AppComponent
+    SectionListComponent, SectionViewComponent,
+    FooterComponent, HeaderComponent, NavComponent, MainComponent, AppComponent],//AppComponent
   imports: [
 /*    FormsModule,
     RouterLink,

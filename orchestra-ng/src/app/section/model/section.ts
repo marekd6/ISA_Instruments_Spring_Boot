@@ -1,3 +1,6 @@
+import {Instrument} from "../../instrument/model/instrument";
+import {InstrumentDetails} from "../../instrument/model/instrument-details";
+
 /**
  * A Section
  */
@@ -11,15 +14,5 @@ export interface Section {
    * Section's name
    */
   name: string;
-
-  /**
-   * Section's volume
-   */
-  volume: number;
-
-  /**
-   * Section's location
-   */
-  location: number;
 
 }
