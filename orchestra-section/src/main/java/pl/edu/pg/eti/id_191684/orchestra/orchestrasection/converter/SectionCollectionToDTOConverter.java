@@ -13,11 +13,17 @@ public class SectionCollectionToDTOConverter implements Function<List<Section>, 
 
     @Override
     public SectionCollectionGET apply(List<Section> Sections) {
+
+        SectionToDTOConverter toDTOConverter = new SectionToDTOConverter();
+/*
         List<UUID> uuids = Sections.stream()
                 .map(Section -> Section.getId())
-                .toList();
+                .toList();*/
         return SectionCollectionGET.builder()
-                .sections(uuids)
+                //.sections(uuids)
+                .sections(Sections.stream()
+                        .map(toDTOConverter)
+                        .toList())
                 .build();
     }
 }

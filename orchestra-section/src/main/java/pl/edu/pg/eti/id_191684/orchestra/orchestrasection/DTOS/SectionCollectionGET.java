@@ -20,8 +20,9 @@ public class SectionCollectionGET {
     private final String description = "Collection of Sections";
 
     /**
-    * list of ids
+    * list of Sections
      */
-    private List<UUID> sections;
+    private List<SectionGET> sections;
+    // private List<UUID> sections;
 
 }
