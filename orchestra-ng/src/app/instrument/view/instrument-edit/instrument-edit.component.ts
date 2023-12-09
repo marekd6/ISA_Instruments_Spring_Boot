@@ -18,6 +18,11 @@ export class InstrumentEditComponent implements OnInit {
   id: string | undefined;
 
   /**
+   * Section's ID
+   */
+  section: string | undefined;
+
+  /**
    * Single instrument.
    */
   instrument: InstrumentForm | undefined;
@@ -51,7 +56,7 @@ export class InstrumentEditComponent implements OnInit {
       this.sectionService.getSections()
         .subscribe(sections => this.sections = sections);
 
-      this.instrumentService.getInstrument(params['id'])
+      this.instrumentService.getInstrument(this.section, this.id)
         .subscribe(instrument => {
           this.id = instrument.id;
           this.instrument = {

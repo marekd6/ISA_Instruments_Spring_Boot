@@ -29,7 +29,7 @@ export class InstrumentViewComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.service.getInstrument(params['id'])
+      this.service.getInstrument(this.instrument?.section.id, this.instrument?.id)
         .subscribe(instrument => this.instrument = instrument)
     });
   }

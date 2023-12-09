@@ -38,11 +38,13 @@ export class InstrumentService {
 
   /**
    * Get an Instrument
-   * @param id Instrument's ID
    * @return details of an Instrument
+   * @param section
+   * @param id
    */
-  getInstrument(id: string): Observable<InstrumentDetails> {
-    return this.http.get<InstrumentDetails>('/api/instruments/' + id);
+  getInstrument(section: string | undefined, id: string | undefined): Observable<InstrumentDetails> {
+    // return this.http.get<InstrumentDetails>('/api/instruments/' + id);
+    return this.http.get<InstrumentDetails>('/api/sections/' + section + '/instruments/' + id);
   }
 
   /**

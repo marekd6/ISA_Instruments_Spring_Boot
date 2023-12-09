@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject, OnInit, OnChanges} from '@angular/core';
 import { InstrumentService } from "../../service/instrument.service";
 import { Instruments } from "../../model/instruments";
 import { Instrument } from "../../model/instrument";
@@ -29,6 +29,10 @@ export class InstrumentsListComponent implements OnInit{
 
   ngOnInit(): void {
     // this.service.getInstruments().subscribe(instruments => this.instruments = instruments);
+    this.service.getInstrumentsFromSection(this.sectionid).subscribe(instruments => this.instruments = instruments);
+  }
+
+  ngOnChanges(): void { // responsible for refreshing this nested component
     this.service.getInstrumentsFromSection(this.sectionid).subscribe(instruments => this.instruments = instruments);
   }
 

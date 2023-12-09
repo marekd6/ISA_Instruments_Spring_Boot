@@ -11,22 +11,29 @@ export const routes: Routes = [
     component: SectionListComponent,
     path: "sections"
   },
-  {
-    component: SectionViewComponent,//
+  { // istotne mapowanie
+    component: SectionViewComponent,
     path: "sections/:id"
   },
-  {
+/*  {
     component: InstrumentsListComponent,
     path: "instruments"
-  },
-  {
+  },*/
+/*  {
     component: InstrumentViewComponent,
     path: "instruments/:id"
-  }
-  ,
-  {
+  },*/
+  { // dodane poprawne mapowanie przez sekcję
+    component: InstrumentViewComponent,
+    path: "sections/:ids/instruments/:idi"
+  },
+/*  ,{
     component: InstrumentEditComponent,
     path: "instruments/:id/edit"
+  },*/
+  { // dodane poprawne mapowanie przez sekcję
+    component: InstrumentEditComponent,
+    path: "sections/:ids/instruments/:idi/edit"
   }
 ];
 
