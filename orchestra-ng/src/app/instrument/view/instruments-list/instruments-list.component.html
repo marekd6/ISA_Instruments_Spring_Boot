@@ -6,24 +6,23 @@
   <table *ngIf="instruments">
     <thead *ngIf="instruments.instruments">
     <tr>
-      <th>Name</th>
-      <th>View</th>
+      <th>Instrument</th>
+      <!--      <th>View</th>-->
       <th>Edit</th>
       <th>Delete</th>
     </tr>
     </thead>
     <tbody *ngIf="instruments">
     <tr *ngFor="let instrument of instruments.instruments">
-      <td>{{instrument.name}}</td>
-<!--    <tr>-->
-<!--      <td>gegegr</td>-->
-      <td>
-<!--        <a [routerLink]="['/instruments', instrument.id]">View</a>-->
-        <a [routerLink]="['/sections', sectionid, 'instruments', instrument.id]">View</a>
+      <td><a [routerLink]="['/sections', section, 'instruments', instrument.id]">{{instrument.name}}</a>
       </td>
+      <!--      <td>
+              <a [routerLink]="['/instruments', instrument.id]">View</a>
+            </td>-->
       <td>
-<!--        <a [routerLink]="['/instruments', instrument.id, 'edit']">Edit</a>-->
-        <a [routerLink]="['/sections', sectionid, 'instruments', instrument.id, 'edit']">Edit</a>
+        <!--        <a [routerLink]="['/instruments', instrument.id, 'edit']">Edit</a>-->
+        <!--        <a [routerLink]="['/sections', section, 'instruments', instrument.id, 'edit']">Edit</a>-->
+        edit
       </td>
       <td>
         <button (click)="onDelete(instrument)">Delete</button>

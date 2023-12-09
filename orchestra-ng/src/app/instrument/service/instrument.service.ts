@@ -42,7 +42,7 @@ export class InstrumentService {
    * @param section
    * @param id
    */
-  getInstrument(section: string | undefined, id: string | undefined): Observable<InstrumentDetails> {
+  getInstrument(section: string, id: string): Observable<InstrumentDetails> {
     // return this.http.get<InstrumentDetails>('/api/instruments/' + id);
     return this.http.get<InstrumentDetails>('/api/sections/' + section + '/instruments/' + id);
   }

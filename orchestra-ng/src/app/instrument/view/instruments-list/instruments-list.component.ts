@@ -7,7 +7,7 @@ import { Instrument } from "../../model/instrument";
   selector: 'app-instrument-list',
   templateUrl: './instruments-list.component.html',
   styleUrls: ['./instruments-list.component.css'],
-  inputs: ['sectionid']
+  inputs: ['section']
 })
 //@Inject(section), private section: string
 export class InstrumentsListComponent implements OnInit{
@@ -20,7 +20,7 @@ export class InstrumentsListComponent implements OnInit{
   }
 
 
-  sectionid: string | undefined;
+  section: string | undefined;
 
   /**
    * Available instruments.
@@ -29,11 +29,11 @@ export class InstrumentsListComponent implements OnInit{
 
   ngOnInit(): void {
     // this.service.getInstruments().subscribe(instruments => this.instruments = instruments);
-    this.service.getInstrumentsFromSection(this.sectionid).subscribe(instruments => this.instruments = instruments);
+    this.service.getInstrumentsFromSection(this.section).subscribe(instruments => this.instruments = instruments);
   }
 
   ngOnChanges(): void { // responsible for refreshing this nested component
-    this.service.getInstrumentsFromSection(this.sectionid).subscribe(instruments => this.instruments = instruments);
+    this.service.getInstrumentsFromSection(this.section).subscribe(instruments => this.instruments = instruments);
   }
 
   /**

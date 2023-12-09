@@ -42,7 +42,7 @@ export class SectionService {
    * @return details of a Section with a list of its Instruments
    */
   getSection(id: string): Observable<SectionDetails> {
-    this.http.get('/api/sections/' + id + '/instruments');
+    //this.http.get('/api/sections/' + id + '/instruments');
     return this.http.get<SectionDetails>('/api/sections/' + id);
   }
 

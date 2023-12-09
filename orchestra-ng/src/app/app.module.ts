@@ -3,7 +3,6 @@ import {InstrumentsListComponent} from "./instrument/view/instruments-list/instr
 import {InstrumentService} from "./instrument/service/instrument.service";
 import {SectionService} from "./section/service/section.service";
 import {InstrumentViewComponent} from "./instrument/view/instrument-view/instrument-view.component";
-import {InstrumentEditComponent} from "./instrument/view/instrument-edit/instrument-edit.component";
 import {FormsModule} from "@angular/forms";
 import {SectionListComponent} from "./section/view/section-list/section-list.component";
 import {MainComponent} from "./component/main/main.component";
@@ -18,7 +17,7 @@ import {BrowserModule} from "@angular/platform-browser";
 import {SectionViewComponent} from "./section/view/section-view/section-view.component";
 
 @NgModule({
-  declarations: [InstrumentsListComponent, InstrumentViewComponent, InstrumentEditComponent,
+  declarations: [InstrumentsListComponent, InstrumentViewComponent,
     SectionListComponent, SectionViewComponent,
     FooterComponent, HeaderComponent, NavComponent, MainComponent, AppComponent],//AppComponent
   imports: [
