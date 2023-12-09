@@ -4,6 +4,7 @@ import {InstrumentViewComponent} from "./instrument/view/instrument-view/instrum
 import {InstrumentsListComponent} from "./instrument/view/instruments-list/instruments-list.component";
 import {SectionListComponent} from "./section/view/section-list/section-list.component";
 import {SectionViewComponent} from "./section/view/section-view/section-view.component";
+import {SectionEditComponent} from "./section/view/section-edit/section-edit.component";
 
 export const routes: Routes = [
   {
@@ -13,6 +14,10 @@ export const routes: Routes = [
   { // istotne mapowanie
     component: SectionViewComponent,
     path: "sections/:id"
+  },
+  { // nowe, istotne, dla edycji
+    component: SectionEditComponent,
+    path: "sections/:id/edit"
   },
 /*  {
     component: InstrumentsListComponent,

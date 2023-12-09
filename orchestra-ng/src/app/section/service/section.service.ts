@@ -4,6 +4,8 @@ import { Observable } from "rxjs";
 import { Sections } from "../model/sections";
 import {Section} from "../model/section";
 import {SectionDetails} from "../model/section-details";
+import { SectionForm } from '../model/section-form';
+
 
 /**
  * Section management service. Calls REST endpoints.
@@ -44,6 +46,15 @@ export class SectionService {
   getSection(id: string): Observable<SectionDetails> {
     //this.http.get('/api/sections/' + id + '/instruments');
     return this.http.get<SectionDetails>('/api/sections/' + id);
+  }
+
+  /**
+   * Create/Update a Section
+   * @param id
+   * @param section
+   */
+  createSection(id: string, section: SectionForm): Observable<any> {
+    return this.http.put('/api/sections/' + id, section);
   }
 
 }

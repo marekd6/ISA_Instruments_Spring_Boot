@@ -34,4 +34,7 @@ export class SectionViewComponent implements OnInit {
     });
   }
 
+  onDelete(section: SectionDetails) {
+    this.service.deleteSection(section.id).subscribe(() => this.ngOnInit());
+  }
 }
