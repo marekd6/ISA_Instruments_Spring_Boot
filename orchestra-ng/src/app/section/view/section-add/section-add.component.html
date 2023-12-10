@@ -1,0 +1,55 @@
+<!--<article *ngIf="section">-->
+fdggsfg
+<article>
+  sdfdsfdsf
+  <header><h2>Add section</h2></header>
+
+  <form class="container"  #form="ngForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col-4 p-2">
+        <div>
+          <label for="name">Name:</label>
+          <input id="name" name="name" />
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-4 p-2">
+        <div>
+          <label for="volume">Volume:</label>
+          <input id="volume" name="volume" />
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-4 p-2">
+        <div>
+          <label for="location">Location:</label>
+          <input id="location" name="location" />
+        </div>
+      </div>
+    </div>
+
+    <div class="row" >
+      <div class="col-4 p-2">
+        <div>
+          <label for="id">ID:</label>
+          <input id="id" name="id" />
+        </div>
+      </div>
+    </div>
+
+    <span><br></span>
+
+    <div class="row">
+      <div class="col-2 p-2">
+        <button type="submit">Add</button>
+      </div>
+      <div class="col-2 p-2">
+        <button type="button" (click)="form.resetForm(original)">Reset</button>
+      </div>
+    </div>
+  </form>
+</article>

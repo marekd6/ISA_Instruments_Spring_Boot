@@ -44,7 +44,7 @@ public class InitializeData implements InitializingBean {
             // sections:
             Section stringed = Section.builder()
                     .id(UUID.fromString("6ed878ec-0000-0000-0000-00006ed878ec"))
-                    .name("stringed")
+                    .name("string")
                     .instrumentList(new ArrayList<>())
                     .build();
             Section wind = Section.builder()

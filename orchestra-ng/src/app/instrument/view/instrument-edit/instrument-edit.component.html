@@ -1,12 +1,12 @@
-<article *ngIf="section; else emptyForm">
-  <header><h2>Edit section</h2></header>
+<article *ngIf="instrument; else newInstrument">
+  <header><h2>Edit instrument</h2></header>
 
   <form class="container"  #form="ngForm" (ngSubmit)="onSubmit()">
     <div class="row">
       <div class="col-4 p-2">
         <div>
           <label for="name">Name:</label>
-          <input id="name" name="name" [(ngModel)]="section.name"/>
+          <input id="name" name="name" [(ngModel)]="instrument.name"/>
         </div>
       </div>
     </div>
@@ -14,20 +14,12 @@
     <div class="row">
       <div class="col-4 p-2">
         <div>
-          <label for="volume">Volume:</label>
-          <input id="volume" name="volume" [(ngModel)]="section.volume"/>
+          <label for="production_year">Volume:</label>
+          <input id="production_year" name="production_year" [(ngModel)]="instrument.production_year"/>
         </div>
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-4 p-2">
-        <div>
-          <label for="location">Location:</label>
-          <input id="location" name="location" [(ngModel)]="section.location"/>
-        </div>
-      </div>
-    </div>
 
     <span><br></span>
 
@@ -42,8 +34,8 @@
   </form>
 </article>
 
-<ng-template #emptyForm>
-  <header><h2>Add section</h2></header>
+<ng-template #newInstrument>
+  <header><h2>Edit instrument</h2></header>
 
   <form class="container"  #form="ngForm" (ngSubmit)="onSubmit()">
     <div class="row">
@@ -67,20 +59,12 @@
     <div class="row">
       <div class="col-4 p-2">
         <div>
-          <label for="volume2">Volume:</label>
-          <input id="volume2" name="volume2"/>
+          <label for="production_year2">Volume:</label>
+          <input id="production_year2" name="production_year2" />
         </div>
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-4 p-2">
-        <div>
-          <label for="location2">Location:</label>
-          <input id="location2" name="location2" />
-        </div>
-      </div>
-    </div>
 
     <span><br></span>
 

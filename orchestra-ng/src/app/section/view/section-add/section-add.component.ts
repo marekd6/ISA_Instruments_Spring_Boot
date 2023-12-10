@@ -1,20 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import { SectionService } from '../../service/section.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { SectionForm } from '../../model/section-form';
+import {Component, OnInit} from '@angular/core';
+import {SectionService} from '../../service/section.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {SectionForm} from '../../model/section-form';
 
 @Component({
-  selector: 'app-section-edit',
-  templateUrl: './section-edit.component.html'
+  selector: 'app-section-add',
+  templateUrl: './section-add.component.html'
   //,styleUrls: ['./section-edit.component.css']
 })
-export class SectionEditComponent implements OnInit {
+export class SectionAddComponent implements OnInit {
 
   /**
    * Character's id.
    */
   id: string | undefined;
-  id2: string | undefined;
 
   /**
    * Single character.
@@ -25,9 +24,6 @@ export class SectionEditComponent implements OnInit {
    * Single character.
    */
   original: SectionForm | undefined;
-
-  newid: string | undefined;
-
 
   /**
    * @param sectionService
@@ -42,23 +38,22 @@ export class SectionEditComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
+    //this.ngOnInit();
+    // this.sectionService.getSections().subscribe();
+/*    this.route.params.subscribe(params => {
 
-      this.sectionService.getSection(params['id'])
+      this.sectionService.getSection(undefined)
         .subscribe(section => {
           this.id = section.id;
           this.section = {
             name: section.name,
             volume: section.volume,
             location: section.location
-            ,id: section.id// TODO
+            , id: section.id// TODO
           };
           this.original = {...this.section};
         });
-
-      this.sectionService.getNewId().subscribe(id => this.newid=id.id);
-
-    });
+    });*/
   }
 
   /**

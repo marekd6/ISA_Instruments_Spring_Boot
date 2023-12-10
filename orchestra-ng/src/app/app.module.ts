@@ -16,10 +16,12 @@ import {AppRoutingModule} from "./app.routes";
 import {BrowserModule} from "@angular/platform-browser";
 import {SectionViewComponent} from "./section/view/section-view/section-view.component";
 import {SectionEditComponent} from "./section/view/section-edit/section-edit.component";
+import {InstrumentEditComponent} from "./instrument/view/instrument-edit/instrument-edit.component";
+import {SectionAddComponent} from "./section/view/section-add/section-add.component";
 
 @NgModule({
-  declarations: [InstrumentsListComponent, InstrumentViewComponent,
-    SectionListComponent, SectionViewComponent, SectionEditComponent,
+  declarations: [InstrumentsListComponent, InstrumentViewComponent, InstrumentEditComponent,
+    SectionListComponent, SectionViewComponent, SectionEditComponent, SectionAddComponent,
     FooterComponent, HeaderComponent, NavComponent, MainComponent, AppComponent],//AppComponent
   imports: [
 /*    FormsModule,

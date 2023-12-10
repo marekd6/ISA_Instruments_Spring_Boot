@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import pl.edu.pg.eti.id_191684.orchestra.orchestrasection.DTOS.IDget;
 import pl.edu.pg.eti.id_191684.orchestra.orchestrasection.DTOS.SectionCollectionGET;
 import pl.edu.pg.eti.id_191684.orchestra.orchestrasection.DTOS.SectionGET;
 import pl.edu.pg.eti.id_191684.orchestra.orchestrasection.DTOS.SectionPUT;
@@ -86,6 +87,15 @@ public class SectionController {
         return service.getAllSections()
                 .map(collectionToDTOConverter)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NO_CONTENT));
+    }
+
+    @GetMapping("api/sections/newid")
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public IDget getNewId() {
+        return IDget.builder()
+                .id(UUID.randomUUID().toString())
+                .build();
     }
 
 }

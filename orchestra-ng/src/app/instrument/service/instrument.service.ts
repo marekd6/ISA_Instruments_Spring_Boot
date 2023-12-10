@@ -4,6 +4,7 @@ import { InstrumentForm } from "../model/instrument-form";
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
+import {Newid} from "../../section/model/newid";
 
 /**
  * Service for Instrument
@@ -57,11 +58,18 @@ export class InstrumentService {
 
   /**
    * Update an Instrument
+   * @param section
    * @param id Instrument's ID
    * @param dto DTO with Instrument's details
    */
-  createInstrument(id: string, dto: InstrumentForm): Observable<any> {
-    return this.http.put('/api/instruments/' + id, dto);
+  createInstrument(section: string, id: string, dto: InstrumentForm): Observable<any> {
+/*    let respo = this.http.put('/api/sections/' + section + '/instruments/' + id, dto);
+    return this.getInstrumentsFromSection(section);*/
+    return this.http.put('/api/sections/' + section + '/instruments/' + id, dto);
+  }
+
+  getNewId(): Observable<Newid> {
+    return this.http.get<Newid>('api/sections/newid');
   }
 
 }

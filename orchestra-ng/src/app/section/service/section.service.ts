@@ -5,6 +5,7 @@ import { Sections } from "../model/sections";
 import {Section} from "../model/section";
 import {SectionDetails} from "../model/section-details";
 import { SectionForm } from '../model/section-form';
+import {Newid} from "../model/newid";
 
 
 /**
@@ -38,12 +39,14 @@ export class SectionService {
     return this.http.delete('/api/sections/' + uuid);
   }
 
+
+  // TODO undefined
   /**
    * Get a Section
    * @param id Section's ID
    * @return details of a Section with a list of its Instruments
    */
-  getSection(id: string): Observable<SectionDetails> {
+  getSection(id: string | undefined): Observable<SectionDetails> {
     //this.http.get('/api/sections/' + id + '/instruments');
     return this.http.get<SectionDetails>('/api/sections/' + id);
   }
@@ -55,6 +58,10 @@ export class SectionService {
    */
   createSection(id: string, section: SectionForm): Observable<any> {
     return this.http.put('/api/sections/' + id, section);
+  }
+
+  getNewId(): Observable<Newid> {
+    return this.http.get<Newid>('api/sections/newid');
   }
 
 }

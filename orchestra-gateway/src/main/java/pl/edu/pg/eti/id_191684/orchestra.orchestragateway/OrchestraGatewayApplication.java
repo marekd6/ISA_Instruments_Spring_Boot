@@ -34,7 +34,8 @@ public class OrchestraGatewayApplication {
                         .and()
                         .path(
                                 "/api/sections/{uuid}",
-                                "/api/sections"
+                                "/api/sections",
+                                "/api/sections/newid" // TODO new
                         )
                         .uri(sectionUrl)
                 )

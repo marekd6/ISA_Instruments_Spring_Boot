@@ -24,7 +24,16 @@ export class SectionListComponent implements OnInit {
    */
   sections: Sections | undefined;
 
+  newid: string | undefined;
+
   ngOnInit(): void {
+    this.service.getNewId().subscribe(id => this.newid=id.id);
+
+    this.service.getSections().subscribe(sections => this.sections = sections);
+  }
+
+  ngOnChanges(): void {
+    this.service.getNewId().subscribe(id => this.newid=id.id);
     this.service.getSections().subscribe(sections => this.sections = sections);
   }
 
@@ -35,6 +44,13 @@ export class SectionListComponent implements OnInit {
    */
   onDelete(section: Section): void {
     this.service.deleteSection(section.id).subscribe(() => this.ngOnInit());
+  }
+
+  /**
+   * Adds new section
+   */
+  onAdd(): void {
+    //this.service.getNewId().subscribe(id => this.newid=id);
   }
 
 }

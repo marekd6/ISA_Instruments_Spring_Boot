@@ -21,8 +21,8 @@
             </td>-->
       <td>
         <!--        <a [routerLink]="['/instruments', instrument.id, 'edit']">Edit</a>-->
-        <!--        <a [routerLink]="['/sections', section, 'instruments', instrument.id, 'edit']">Edit</a>-->
-        edit
+                <a [routerLink]="['/sections', section, 'instruments', instrument.id, 'edit']">Edit</a>
+<!--        edit-->
       </td>
       <td>
         <button (click)="onDelete(instrument)">Delete</button>
@@ -30,4 +30,5 @@
     </tr>
     </tbody>
   </table>
+<a [routerLink]="['/sections', section, 'instruments', undefined, 'edit']"Add></a>
 </article>

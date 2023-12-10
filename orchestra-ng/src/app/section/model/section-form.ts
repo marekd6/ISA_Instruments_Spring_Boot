@@ -18,4 +18,5 @@ export interface SectionForm {
    */
   location: number;
 
+  id: string;// TODO
 }
