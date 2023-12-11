@@ -21,10 +21,10 @@ export const routes: Routes = [
     component: SectionEditComponent,
     path: "sections/:id/edit"
   },
-/*  { // najnowsze, dodawanie sekcji
+  { // najnowsze, dodawanie sekcji
     component: SectionAddComponent,
-    path: "sections/add"
-  },*/
+    path: "sections/:id/add"
+  },
 /*  {
     component: InstrumentsListComponent,
     path: "instruments"

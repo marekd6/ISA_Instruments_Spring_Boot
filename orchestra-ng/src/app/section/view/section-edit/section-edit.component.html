@@ -43,14 +43,14 @@
 </article>
 
 <ng-template #emptyForm>
-  <header><h2>Add section</h2></header>
+  <header><h2>Add section from edit</h2></header>
 
   <form class="container"  #form="ngForm" (ngSubmit)="onSubmit()">
     <div class="row">
       <div class="col-4 p-2">
         <div>
           <label for="name2">Name:</label>
-          <input id="name2" name="name2" />
+          <input id="name2" name="name2"  />
         </div>
       </div>
     </div>
@@ -59,7 +59,7 @@
       <div class="col-4 p-2">
         <div>
           <label for="id2">ID:</label>
-          <input id="id2" name="id2" [(ngModel)]="this.newid" />
+          <input id="id2" name="id2" [(ngModel)]="this.newid" required/>
         </div>
       </div>
     </div>
@@ -68,7 +68,7 @@
       <div class="col-4 p-2">
         <div>
           <label for="volume2">Volume:</label>
-          <input id="volume2" name="volume2"/>
+          <input id="volume2" name="volume2" />
         </div>
       </div>
     </div>

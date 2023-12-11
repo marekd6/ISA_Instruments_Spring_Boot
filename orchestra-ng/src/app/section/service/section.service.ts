@@ -14,6 +14,8 @@ import {Newid} from "../model/newid";
 @Injectable()
 export class SectionService {
 
+  idd: String | undefined;
+
   /**
    * @param http HTTP client
    */
@@ -61,7 +63,13 @@ export class SectionService {
   }
 
   getNewId(): Observable<Newid> {
-    return this.http.get<Newid>('api/sections/newid');
+    let temp = this.http.get<Newid>('api/sections/newid');
+    temp.subscribe(id => this.idd = id.id);
+    return temp;
+  }
+
+  getID(): any {
+    return this.idd;
   }
 
 }

@@ -15,6 +15,12 @@ export class SectionAddComponent implements OnInit {
    */
   id: string | undefined;
 
+  volume: number | undefined;
+
+  location: number | undefined;
+
+  name: string | undefined;
+
   /**
    * Single character.
    */
@@ -38,20 +44,26 @@ export class SectionAddComponent implements OnInit {
   }
 
   ngOnInit() {
-    //this.ngOnInit();
+    // this.ngOnInit();
     // this.sectionService.getSections().subscribe();
+    // this.sectionService.getNewId().subscribe(id => this.id = id.id)
+
+    this.id = this.sectionService.getID();
+
 /*    this.route.params.subscribe(params => {
 
-      this.sectionService.getSection(undefined)
+      this.sectionService.getSection(params['id'])
         .subscribe(section => {
-          this.id = section.id;
+          // this.id = section.id;
+          this.sectionService.getNewId().subscribe(id => this.id = id.id)
           this.section = {
             name: section.name,
             volume: section.volume,
             location: section.location
             , id: section.id// TODO
+            // , id: this.sectionService.getNewId().subscribe(id => id.id)
           };
-          this.original = {...this.section};
+          // this.original = {...this.section};
         });
     });*/
   }
@@ -60,6 +72,15 @@ export class SectionAddComponent implements OnInit {
    * Updates character.
    */
   onSubmit(): void {
+
+    this.section = {
+      name: this.name!,
+      volume: this.volume!,
+      location: this.location!,
+      id: this.id!
+    }
+
+    // {name: this.name!, volume: this.volume!, location: this.location!, id: this.id!}
     this.sectionService.createSection(this.id!, this.section!)
       .subscribe(() => this.router.navigate(['/sections']));
   }

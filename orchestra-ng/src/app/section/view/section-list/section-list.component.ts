@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { Sections } from "../../model/sections";
 import { Section } from "../../model/section";
 import { SectionService } from "../../service/section.service";
@@ -29,11 +29,16 @@ export class SectionListComponent implements OnInit {
   ngOnInit(): void {
     this.service.getNewId().subscribe(id => this.newid=id.id);
 
+    this.newid = this.service.getID();
+
+
     this.service.getSections().subscribe(sections => this.sections = sections);
   }
 
   ngOnChanges(): void {
-    this.service.getNewId().subscribe(id => this.newid=id.id);
+    // this.service.getNewId().subscribe(id => this.newid=id.id);
+    this.newid = this.service.getID();
+
     this.service.getSections().subscribe(sections => this.sections = sections);
   }
 

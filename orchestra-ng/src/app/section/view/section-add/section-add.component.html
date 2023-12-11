@@ -1,15 +1,13 @@
 <!--<article *ngIf="section">-->
-fdggsfg
 <article>
-  sdfdsfdsf
-  <header><h2>Add section</h2></header>
+  <header><h2>Add section from add</h2></header>
 
   <form class="container"  #form="ngForm" (ngSubmit)="onSubmit()">
     <div class="row">
       <div class="col-4 p-2">
         <div>
           <label for="name">Name:</label>
-          <input id="name" name="name" />
+          <input id="name" name="name" [(ngModel)]="this.name"/>
         </div>
       </div>
     </div>
@@ -18,7 +16,7 @@ fdggsfg
       <div class="col-4 p-2">
         <div>
           <label for="volume">Volume:</label>
-          <input id="volume" name="volume" />
+          <input id="volume" name="volume" [(ngModel)]="this.volume"/>
         </div>
       </div>
     </div>
@@ -27,19 +25,19 @@ fdggsfg
       <div class="col-4 p-2">
         <div>
           <label for="location">Location:</label>
-          <input id="location" name="location" />
+          <input id="location" name="location" [(ngModel)]="this.location"/>
         </div>
       </div>
     </div>
 
-    <div class="row" >
+<!--    <div class="row" >
       <div class="col-4 p-2">
         <div>
           <label for="id">ID:</label>
-          <input id="id" name="id" />
+          <input id="id" name="id" [(ngModel)]="this.id" />
         </div>
       </div>
-    </div>
+    </div>-->
 
     <span><br></span>
 
