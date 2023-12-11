@@ -12,6 +12,8 @@ import {Newid} from "../../section/model/newid";
 @Injectable()
 export class InstrumentService {
 
+    idd: String | undefined;
+
   /**
    * a constructor
    * @param http
@@ -69,7 +71,13 @@ export class InstrumentService {
   }
 
   getNewId(): Observable<Newid> {
-    return this.http.get<Newid>('api/sections/newid');
+    let temp = this.http.get<Newid>('api/sections/newid');
+    temp.subscribe(id => this.idd = id.id);
+    return temp;
+  }
+
+  getID(): any {
+    return this.idd;
   }
 
 }

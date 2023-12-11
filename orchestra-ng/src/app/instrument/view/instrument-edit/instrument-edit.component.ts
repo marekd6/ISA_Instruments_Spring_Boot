@@ -66,7 +66,7 @@ export class InstrumentEditComponent implements OnInit {
    */
   onSubmit(): void {
     this.instrumentService.createInstrument(this.section!, this.id!, this.instrument!)
-      .subscribe(() => this.router.navigate(['/sections', this.section, 'instruments', this.id]));
+      .subscribe(() => this.router.navigate(['/sections', this.section]));
   }
 
 }

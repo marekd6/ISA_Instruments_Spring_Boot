@@ -18,9 +18,10 @@ import {SectionViewComponent} from "./section/view/section-view/section-view.com
 import {SectionEditComponent} from "./section/view/section-edit/section-edit.component";
 import {InstrumentEditComponent} from "./instrument/view/instrument-edit/instrument-edit.component";
 import {SectionAddComponent} from "./section/view/section-add/section-add.component";
+import {InstrumentAddComponent} from "./instrument/view/instrument-add/instrument-add.component";
 
 @NgModule({
-  declarations: [InstrumentsListComponent, InstrumentViewComponent, InstrumentEditComponent,
+  declarations: [InstrumentsListComponent, InstrumentViewComponent, InstrumentEditComponent, InstrumentAddComponent,
     SectionListComponent, SectionViewComponent, SectionEditComponent, SectionAddComponent,
     FooterComponent, HeaderComponent, NavComponent, MainComponent, AppComponent],//AppComponent
   imports: [

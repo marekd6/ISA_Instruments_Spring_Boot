@@ -19,6 +19,7 @@ export class InstrumentsListComponent implements OnInit{
   constructor(private service: InstrumentService) {
   }
 
+  newid: string | undefined;
 
   section: string | undefined;
 
@@ -28,6 +29,9 @@ export class InstrumentsListComponent implements OnInit{
   instruments: Instruments | undefined;
 
   ngOnInit(): void {
+    this.service.getNewId().subscribe(id => this.newid=id.id);
+
+    this.newid = this.service.getID();
     // this.service.getInstruments().subscribe(instruments => this.instruments = instruments);
     this.service.getInstrumentsFromSection(this.section).subscribe(instruments => this.instruments = instruments);
   }

@@ -1,5 +1,5 @@
 <article>
-  <header><h2>Add section from add</h2></header>
+  <header><h2>Add instrument</h2></header>
 
   <form class="container"  #form="ngForm" (ngSubmit)="onSubmit()">
     <div class="row">
@@ -14,29 +14,12 @@
     <div class="row">
       <div class="col-4 p-2">
         <div>
-          <label for="volume">Volume:</label>
-          <input id="volume" name="volume" [(ngModel)]="this.volume"/>
+          <label for="production_year">Volume:</label>
+          <input id="production_year" name="production_year" [(ngModel)]="this.production_year"/>
         </div>
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-4 p-2">
-        <div>
-          <label for="location">Location:</label>
-          <input id="location" name="location" [(ngModel)]="this.location"/>
-        </div>
-      </div>
-    </div>
-
-<!--    <div class="row" >
-      <div class="col-4 p-2">
-        <div>
-          <label for="id">ID:</label>
-          <input id="id" name="id" [(ngModel)]="this.id" />
-        </div>
-      </div>
-    </div>-->
 
     <span><br></span>
 

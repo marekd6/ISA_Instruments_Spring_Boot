@@ -7,6 +7,7 @@ import {SectionViewComponent} from "./section/view/section-view/section-view.com
 import {SectionEditComponent} from "./section/view/section-edit/section-edit.component";
 import {InstrumentEditComponent} from "./instrument/view/instrument-edit/instrument-edit.component";
 import {SectionAddComponent} from "./section/view/section-add/section-add.component";
+import {InstrumentAddComponent} from "./instrument/view/instrument-add/instrument-add.component";
 
 export const routes: Routes = [
   {
@@ -41,6 +42,10 @@ export const routes: Routes = [
     component: InstrumentEditComponent,
     path: "sections/:section/instruments/:id/edit"
   },
+  { // najnowsze, dodawanie instrumentu
+    component: InstrumentAddComponent,
+    path: "sections/:section/instruments/:id/add"
+  }
 /*  { // dodane poprawne mapowanie przez sekcję
     component: InstrumentEditComponent,
     path: "sections/:ids/instruments/:idi/edit"
