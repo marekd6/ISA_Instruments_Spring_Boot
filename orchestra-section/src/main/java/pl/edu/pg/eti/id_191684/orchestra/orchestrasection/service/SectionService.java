@@ -6,6 +6,7 @@ import pl.edu.pg.eti.id_191684.orchestra.orchestrasection.controller.SectionEven
 import pl.edu.pg.eti.id_191684.orchestra.orchestrasection.entity.Section;
 import pl.edu.pg.eti.id_191684.orchestra.orchestrasection.repository.SectionRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -35,8 +36,15 @@ public class SectionService {
         return sectionRepository.save(section);
     }
     public Section saveSection(Section section) {
-        sectionEventRestRepository.create(section.getId(), section);
-        return sectionRepository.save(section);
+        UUID oldId = section.getId();
+        if (section.getInstrumentList() == null) {
+            section.setInstrumentList(new ArrayList<>());
+        }
+        Section res = sectionRepository.save(section);
+        sectionEventRestRepository.create(oldId, section); // section.getId()
+
+        return res;
+//        return sectionRepository.save(section);
     }
 
     /**

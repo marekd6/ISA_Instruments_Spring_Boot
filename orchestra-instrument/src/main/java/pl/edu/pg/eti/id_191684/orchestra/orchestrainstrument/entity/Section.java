@@ -32,6 +32,6 @@ public class Section implements Serializable {
     @OneToMany(mappedBy = "section", cascade = CascadeType.REMOVE)
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    private final List<Instrument> instrumentList;
+    private List<Instrument> instrumentList; // no longer final, as in section app
 
 }

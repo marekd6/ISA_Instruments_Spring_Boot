@@ -80,7 +80,8 @@ export class InstrumentAddComponent implements OnInit {
             section: this.section!
         }
 
-        this.instrumentService.createInstrument(this.section!, this.id!, this.instrument!)
+        // 2nd arg was: this.id!
+        this.instrumentService.createInstrument(this.section!, this.instrument.id!, this.instrument!)
             .subscribe(() => this.router.navigate(['/sections', this.section!]));
     }
 

@@ -35,14 +35,16 @@ public class Section implements Comparable<Section>, Serializable {
     private final int location;
 
     @OneToMany(mappedBy = "section", cascade = CascadeType.REMOVE)
-    private final List<Instrument> instrumentList;
+    private List<Instrument> instrumentList; // final removed
 
     @PrePersist
     void generateUUID() {
-        int hashCode = hash(name, volume, location);
-        long mostSigBits = (long) hashCode << 32;
-        long leastSigBits = hashCode & 0xFFFFFFFFL;
-        id = new UUID(mostSigBits, leastSigBits);
+        if (this.id == null) { // key change lvl 2
+            int hashCode = hash(name, volume, location);
+            long mostSigBits = (long) hashCode << 32;
+            long leastSigBits = hashCode & 0xFFFFFFFFL;
+            id = new UUID(mostSigBits, leastSigBits);
+        }
     }
 
     @Override
