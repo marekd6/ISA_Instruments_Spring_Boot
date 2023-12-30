@@ -1,4 +1,5 @@
 FROM eclipse-temurin:20.0.2_9-jre
+
 LABEL authors="MD191684"
 LABEL org.opencontainers.image.title="orchestra-section"
 LABEL org.opencontainers.image.version="1.0.0-SNAPSHOT"
@@ -6,7 +7,8 @@ LABEL org.opencontainers.image.description="Orchestra application - module for S
 
 ENV VERSION="1.0-SNAPSHOT"
 
-ENV SERVER_PORT=8082
+ENV SERVER_PORT=8080
+#ENV SERVER_PORT=8082
 
 ENV SPRING_DATASOURCE_URL=jdbc:h2:mem:orchestra-section
 ENV SPRING_DATASOURCE_DRIVERCLASSNAME=org.h2.Driver
@@ -19,7 +21,9 @@ ENV SPRING_JPA_HIBERNATE_DDL_AUTO=update
 
 ENV SPRING_H2_CONSOLE_enabled=true
 
-EXPOSE 8082
+ENV ORCHESTRA_INSTRUMENT_URL=http://localhost:8081
+
+EXPOSE 8080
 
 COPY target/orchestra-section-${VERSION}.jar /opt/orchestra-section/orchestra-section.jar
 

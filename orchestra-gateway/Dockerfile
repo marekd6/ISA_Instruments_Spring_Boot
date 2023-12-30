@@ -1,9 +1,9 @@
-FROM eclipse-temurin:17.0.6_10-jre
+FROM eclipse-temurin:20.0.2_9-jre
 
 LABEL org.opencontainers.image.title="orchestra-gateway"
 LABEL org.opencontainers.image.authors="MD191684"
 LABEL org.opencontainers.image.version="1.0.0-SNAPSHOT"
-LABEL org.opencontainers.image.description="Simple RPG game, gateway module."
+LABEL org.opencontainers.image.description="Orchestra application - gateway module"
 
 
 ENV VERSION="1.0-SNAPSHOT"

@@ -84,9 +84,13 @@ public class SectionController {
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     public SectionCollectionGET readSectionCollection() {
-        return service.getAllSections()
+        SectionCollectionGET sectionCollectionGET = service.getAllSections()
                 .map(collectionToDTOConverter)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NO_CONTENT));
+        if (sectionCollectionGET.getSections().isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NO_CONTENT);
+        }
+        return sectionCollectionGET;
     }
 
     @GetMapping("api/sections/newid")

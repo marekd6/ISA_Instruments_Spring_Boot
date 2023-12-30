@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  orchestra-instrument:
+    image: orchestra-instrument:1.0.0-SNAPSHOT
+    restart: always
+
+  orchestra-section:
+    image: orchestra-section:1.0.0-SNAPSHOT
+    restart: always
+    environment:
+      ORCHESTRA_INSTRUMENT_URL: "http://orchestra-instrument:8080"
+
+  orchestra-gateway:
+    image: orchestra-gateway:1.0.0-SNAPSHOT
+    restart: always
+    environment:
+      ORCHESTRA_INSTRUMENT_URL: "http://orchestra-instrument:8080"
+      ORCHESTRA_SECTION_URL: "http://orchestra-section:8080"
+      ORCHESTRA_GATEWAY_HOST: "http://orchestra-gateway:8080"
+
+  orchestra-ng:
+    image: orchestra-ng:1.0.0-SNAPSHOT
+    restart: always
+    environment:
+      API_URL: http://orchestra-gateway:8080/api
+    ports:
+      - "8087:80"
