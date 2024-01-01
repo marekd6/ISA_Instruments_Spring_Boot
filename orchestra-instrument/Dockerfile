@@ -7,8 +7,7 @@ LABEL org.opencontainers.image.description="Orchestra application - module for I
 
 ENV VERSION="1.0-SNAPSHOT"
 
-ENV SERVER_PORT=8080
-#ENV SERVER_PORT=8081
+ENV SERVER_PORT=8081
 
 ENV SPRING_DATASOURCE_URL=jdbc:h2:mem:orchestra-instrument
 ENV SPRING_DATASOURCE_DRIVERCLASSNAME=org.h2.Driver
@@ -21,8 +20,7 @@ ENV SPRING_JPA_HIBERNATE_DDL_AUTO=update
 
 ENV SPRING_H2_CONSOLE_enabled=true
 
-EXPOSE 8080
-#EXPOSE 8081
+EXPOSE 8081
 
 COPY target/orchestra-instrument-${VERSION}.jar /opt/orchestra-instrument/orchestra-instrument.jar
 

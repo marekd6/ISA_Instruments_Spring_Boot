@@ -1,5 +1,7 @@
 ### read collection of sections
-GET http://localhost:8083/api/sections
+GET http://localhost:8082/api/sections
+### fsgsg
+GET http://localhost:8082/api/sections
 
 ### read section
 GET http://localhost:8083/api/sections/6ed878ec-0000-0000-0000-00006ed878ec
