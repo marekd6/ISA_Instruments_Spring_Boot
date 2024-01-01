@@ -9,58 +9,27 @@ services:
     image: orchestra-section:1.0.0-SNAPSHOT
     restart: always
     environment:
-      ORCHESTRA_INSTRUMENT_URL: "http://orchestra-instrument:8080"
+      ORCHESTRA_INSTRUMENT_URL: "http://orchestra-instrument:8081"
 
-  orchestra-gateway:
-    image: orchestra-gateway:1.0.0-SNAPSHOT
-    restart: always
-    environment:
-      ORCHESTRA_INSTRUMENT_URL: "http://orchestra-instrument:8080"
-      ORCHESTRA_SECTION_URL: "http://orchestra-section:8080"
-      ORCHESTRA_GATEWAY_HOST: "http://orchestra-gateway:8080"
+#  orchestra-gateway:
+#    image: orchestra-gateway:1.0.0-SNAPSHOT
+#    restart: always
+#    environment:
+#      ORCHESTRA_INSTRUMENT_URL: "http://orchestra-instrument:8080"
+#      ORCHESTRA_SECTION_URL: "http://orchestra-section:8080"
+#      ORCHESTRA_GATEWAY_HOST: "http://orchestra-gateway:8080"
 
   orchestra-ng:
     image: orchestra-ng:1.0.0-SNAPSHOT
     restart: always
-    environment:
-      API_URL: http://orchestra-gateway:8080/api
+    build:
+      context: ./orchestra-ng
+      dockerfile: Dockerfile
     ports:
-      - "8087:80"
-  version: '3'
+      - "4200:80"
 
-  services:
-    angular-app:
-      build:
-        context: ./angular-app
-      ports:
-        - "4200:80"
-      depends_on:
-        - gateway
-
-    element-service:
-      build:
-        context: ./element-service
-      ports:
-        - "8081:8080"
-      depends_on:
-        - gateway
-
-    category-service:
-      build:
-        context: ./category-service
-      ports:
-        - "8082:8080"
-      depends_on:
-        - gateway
-
-    gateway-service:
-      build:
-        context: ./gateway-service
-      ports:
-        - "8080:8080"
-
-
-
-
-
-
+  proxy:
+    image: nginx:1.23-alpine3.17
+    restart: unless-stopped
+    ports:
+      - "8080:80"

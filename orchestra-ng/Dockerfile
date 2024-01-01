@@ -1,35 +1,25 @@
-FROM node:19-bullseye-slim
+#FROM node:20-alpine3.19 as build
+#
+##LABEL org.opencontainers.image.title="orchestra-ng"
+#
+#WORKDIR /usr/src/app
+#
+#COPY package*.json ./
+#
+#RUN npm install
+#
+#COPY . .
+#
+#RUN npm run build
 
-LABEL org.opencontainers.image.title="orchestra-ng"
-LABEL org.opencontainers.image.authors="MD191684"
-LABEL org.opencontainers.image.version="1.0.0-SNAPSHOT"
-LABEL org.opencontainers.image.description="Orchestra application - Angular"
+FROM nginx:1.23-alpine3.17
 
-ENV VERSION="1.0-SNAPSHOT"
+COPY nginx.conf /etc/nginx/nginx.conf
 
-# Set the working directory in the container
-WORKDIR /usr/src/app
+#COPY --from=build /usr/src/app/dist/orchestra-ng /usr/share/nginx/html
+COPY dist/orchestra-ng/browser /usr/share/nginx/html
 
-# Copy package.json and package-lock.json to the container
-COPY package*.json ./
-
-# Install Angular CLI globally
-RUN npm install -g @angular/cli
-
-# Install project dependencies
-RUN npm install
-
-# Copy the entire project to the container
-COPY . .
-
-# Build the Angular app for production
-RUN ng build
-
-ENV API_URL http://localhost:8080/api
-
-# Expose port 80 to the outside world
 EXPOSE 80
-EXPOSE 4200
 
-# Run the Angular app when the container launches
-CMD ["ng", "serve", "--host", "0.0.0.0", "--port", "4200"]
+CMD ["nginx", "-g", "daemon off;"]
+#CMD ["ng", "serve", "--host", "0.0.0.0",  "--port", "8080"]
