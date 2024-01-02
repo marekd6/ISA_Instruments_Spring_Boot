@@ -29,6 +29,7 @@ export class SectionService {
    * @return list of Sections
    */
   getSections(): Observable<Sections> {
+    // return this.http.get<Sections>('http://localhost:4020/api/sections');
     return this.http.get<Sections>('/api/sections');
   }
 

@@ -22,6 +22,8 @@ ENV SPRING_H2_CONSOLE_enabled=true
 
 ENV ORCHESTRA_INSTRUMENT_URL=http://localhost:8081
 
+ENV SPRING_MAIN_WEB_APPLICATION_TYPE=servlet
+
 EXPOSE 8082
 
 COPY target/orchestra-section-${VERSION}.jar /opt/orchestra-section/orchestra-section.jar

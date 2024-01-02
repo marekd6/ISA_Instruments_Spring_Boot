@@ -14,12 +14,12 @@
 
 FROM nginx:1.23-alpine3.17
 
-COPY nginx.conf /etc/nginx/nginx.conf
-
 #COPY --from=build /usr/src/app/dist/orchestra-ng /usr/share/nginx/html
 COPY dist/orchestra-ng/browser /usr/share/nginx/html
 
 EXPOSE 80
 
-CMD ["nginx", "-g", "daemon off;"]
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
 #CMD ["ng", "serve", "--host", "0.0.0.0",  "--port", "8080"]
+
+COPY nginx.conf /etc/nginx/nginx.conf
