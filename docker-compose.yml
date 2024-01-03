@@ -1,33 +1,19 @@
 version: '3.8'
 
 services:
-#  orchestra-instrument:
-#    image: orchestra-instrument:1.0.0-SNAPSHOT
-#    restart: always
-#    networks:
-#      - isa_net
-
-#  backend:
   orchestra-section:
-#    image: orchestra-section:1.0.0-SNAPSHOT
     image: section-img
     build:
       context: ./orchestra-section
-    restart: always
-#    ports:
-#      - "4020:80"
-    environment:
-      ORCHESTRA_INSTRUMENT_URL: "http://orchestra-instrument:8081"
     hostname: orchestra-section
     container_name: orchestra-section
 
-#  orchestra-gateway:
-#    image: orchestra-gateway:1.0.0-SNAPSHOT
-#    restart: always
-#    environment:
-#      ORCHESTRA_INSTRUMENT_URL: "http://orchestra-instrument:8080"
-#      ORCHESTRA_SECTION_URL: "http://orchestra-section:8080"
-#      ORCHESTRA_GATEWAY_HOST: "http://orchestra-gateway:8080"
+  orchestra-instrument:
+    image: instrument-img
+    build:
+      context: ./orchestra-instrument
+    hostname: orchestra-instrument
+    container_name: orchestra-instrument
 
   orchestra-ng:
     container_name: orchestra-ng
@@ -38,12 +24,4 @@ services:
       - "80:80"
     depends_on:
       - "orchestra-section"
-#    volumes:
-#      - ./nginx.conf:/etc/nginx/conf.d/default.conf
-        #    networks:
-##      - frontend
-#      - host
-
-#networks:
-##  frontend:
-#  backend:
+      - "orchestra-instrument"
