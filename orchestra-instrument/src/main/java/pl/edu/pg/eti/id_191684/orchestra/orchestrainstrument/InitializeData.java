@@ -44,20 +44,20 @@ public class InitializeData implements InitializingBean {
             // sections:
             Section stringed = Section.builder()
                     .id(UUID.fromString("6ed878ec-0000-0000-0000-00006ed878ec"))
-                    .name("string")
+                    .name("String")
                     .instrumentList(new ArrayList<>())
                     .build();
             Section wind = Section.builder()
                     .id(UUID.fromString("9a712f81-0000-0000-0000-00009a712f81"))
-                    .name("wind")
+                    .name("Wind")
                     .build();
             Section percussion = Section.builder()
                     .id(UUID.fromString("4c791c31-0000-0000-0000-00004c791c31"))
-                    .name("percussion")
+                    .name("Percussion")
                     .build();
             Section electronic = Section.builder()
                     .id(UUID.fromString("ff05ec9a-0000-0000-0000-0000ff05ec9a"))
-                    .name("electronic")
+                    .name("Electronic")
                     .build();
 
             sectionService.saveSection(stringed);
