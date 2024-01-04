@@ -7,6 +7,8 @@ services:
       context: ./orchestra-section
     hostname: orchestra-section
     container_name: orchestra-section
+    ports:
+      - "8082:8082"
 
   orchestra-instrument:
     image: instrument-img
@@ -14,6 +16,8 @@ services:
       context: ./orchestra-instrument
     hostname: orchestra-instrument
     container_name: orchestra-instrument
+    ports:
+      - "8081:8081"
 
   orchestra-ng:
     container_name: orchestra-ng

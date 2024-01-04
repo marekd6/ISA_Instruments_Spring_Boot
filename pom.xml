@@ -19,7 +19,7 @@
     <modules>
         <module>orchestra-instrument</module>
         <module>orchestra-section</module>
-        <module>orchestra-gateway</module>
+<!--        <module>orchestra-gateway</module>-->
     </modules>
 
     <properties>
