@@ -27,4 +27,3 @@ ENTRYPOINT ["java", "-jar", "/opt/orchestra-section/orchestra-section.jar"]
 COPY target/orchestra-section-${VERSION}.jar /opt/orchestra-section/orchestra-section.jar
 
 ENV ORCHESTRA_INSTRUMENT_URL=http://orchestra-instrument:8081
-#ENV ORCHESTRA_INSTRUMENT_URL=http://localhost:8081

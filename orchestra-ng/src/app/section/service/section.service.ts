@@ -29,7 +29,6 @@ export class SectionService {
    * @return list of Sections
    */
   getSections(): Observable<Sections> {
-    // return this.http.get<Sections>('http://localhost:4020/api/sections');
     return this.http.get<Sections>('/api/sections');
   }
 
@@ -50,7 +49,6 @@ export class SectionService {
    * @return details of a Section with a list of its Instruments
    */
   getSection(id: string | undefined): Observable<SectionDetails> {
-    //this.http.get('/api/sections/' + id + '/instruments');
     return this.http.get<SectionDetails>('/api/sections/' + id);
   }
 

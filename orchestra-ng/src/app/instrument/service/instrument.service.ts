@@ -46,7 +46,6 @@ export class InstrumentService {
    * @param id
    */
   getInstrument(section: string, id: string): Observable<InstrumentDetails> {
-    // return this.http.get<InstrumentDetails>('/api/instruments/' + id);
     return this.http.get<InstrumentDetails>('/api/sections/' + section + '/instruments/' + id);
   }
 
@@ -65,8 +64,6 @@ export class InstrumentService {
    * @param dto DTO with Instrument's details
    */
   createInstrument(section: string, id: string, dto: InstrumentForm): Observable<any> {
-/*    let respo = this.http.put('/api/sections/' + section + '/instruments/' + id, dto);
-    return this.getInstrumentsFromSection(section);*/
     return this.http.put('/api/sections/' + section + '/instruments/' + id, dto);
   }
 
