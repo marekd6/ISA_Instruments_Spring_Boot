@@ -14,12 +14,25 @@
 
 FROM nginx:1.23-alpine3.17
 
+LABEL org.opencontainers.image.title="orchestra-ng"
+
 #COPY --from=build /usr/src/app/dist/orchestra-ng /usr/share/nginx/html
 COPY dist/orchestra-ng/browser /usr/share/nginx/html
 
 EXPOSE 80
 
-ENTRYPOINT ["nginx", "-g", "daemon off;"]
-#CMD ["ng", "serve", "--host", "0.0.0.0",  "--port", "8080"]
+#ENTRYPOINT ["nginx", "-g", "daemon off;"]
 
-COPY nginx.conf /etc/nginx/nginx.conf
+ENV ORCHESTRA_INSTRUMENT_URL=orchestra-instrument
+ENV ORCHESTRA_SECTION_URL=orchestra-section
+
+#COPY nginx.conf /etc/nginx/nginx.conf
+#COPY nginx.conf /etc/nginx/templates/nginx.conf.template
+COPY templates/nginx.conf.template /etc/nginx/templates/
+#COPY templates/nginx.conf.template /etc/nginx/conf.d
+
+#ENTRYPOINT ["nginx", "-g", "daemon off;"]
+ENV NGINX_ENVSUBST_OUTPUT_DIR=/etc/nginx
+
+#ENV INSTRUMENT_PORT=8081
+#ENV SECTION_PORT=8082
