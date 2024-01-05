@@ -6,12 +6,12 @@ include /etc/nginx/mime.types;
 
 upstream orchestra-section {
 
-  server ${ORCHESTRA_SECTION_URL};
+  server orchestra-section:8082;
 
 }
 
 upstream orchestra-instrument {
-  server ${ORCHESTRA_INSTRUMENT_URL};
+  server ${ORCHESTRA_INSTRUMENT_URL}:${INSTRUMENT_PORT};
 }
 
 server {

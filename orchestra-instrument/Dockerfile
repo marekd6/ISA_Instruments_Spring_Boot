@@ -11,3 +11,4 @@ ENV SERVER_PORT=8081
 EXPOSE $SERVER_PORT
 
 COPY target/orchestra-instrument-${VERSION}.jar /opt/orchestra-instrument/orchestra-instrument.jar
+# actually, not built and still OK
