@@ -6,10 +6,10 @@ ENV VERSION="1.0-SNAPSHOT"
 
 ENTRYPOINT ["java", "-jar", "/opt/orchestra-section/orchestra-section.jar"]
 
+COPY target/orchestra-section-${VERSION}.jar /opt/orchestra-section/orchestra-section.jar
+
 ENV SERVER_PORT=8082
 
 EXPOSE $SERVER_PORT
 
 ENV ORCHESTRA_INSTRUMENT_URL=http://orchestra-instrument:8081
-
-COPY target/orchestra-section-${VERSION}.jar /opt/orchestra-section/orchestra-section.jar

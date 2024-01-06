@@ -5,9 +5,7 @@ http {
 include /etc/nginx/mime.types;
 
 upstream orchestra-section {
-
-  server orchestra-section:8082;
-
+  server ${ORCHESTRA_SECTION_URL}:${SECTION_PORT};
 }
 
 upstream orchestra-instrument {
@@ -26,7 +24,6 @@ server {
 
   location /api/sections {
     proxy_pass http://orchestra-section/api/sections;
-
   }
 
   location ~ .*instruments.* {
