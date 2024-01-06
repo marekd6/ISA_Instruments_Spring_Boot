@@ -3,10 +3,6 @@
     <h2>Sections</h2>
     <h3 *ngIf="sections">{{sections.description}}  {{sections.sections.length}}</h3>
   </header>
-<!--okTODO lista kategorii z nazwami (szczegóły) -->
-<!--okTODO lista kategorii z edycją -->
-<!--okTODO lista kategorii z usuwaniem -->
-<!--  TODO dodaj kategorię-->
   <section>
   <table *ngIf="sections">
     <thead>
@@ -31,14 +27,7 @@
     </tbody>
   </table>
   </section>
-<!--  <section>
-&lt;!&ndash;    <button (click)="onAdd()">Add new section</button>&ndash;&gt;
-    <a [routerLink]="['/sections/add']">Add new Section{{newid}}</a>
-&lt;!&ndash;    <a [routerLink]="['/sections', undefined, 'edit']">Edit</a>&ndash;&gt;
-    <button ><a [routerLink]="['/sections', this.newid, 'edit']">Add v3{{newid}}</a></button>
-  </section>-->
   <section>
-<!--    <a [routerLink]="['/sections', newid, 'edit']">Edito</a>-->
     <a [routerLink]="['/sections', newid, 'add']">Add new Section</a>
   </section>
 </article>

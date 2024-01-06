@@ -1,6 +1,6 @@
-import { Instruments } from "../model/instruments";
-import { InstrumentDetails } from "../model/instrument-details";
-import { InstrumentForm } from "../model/instrument-form";
+import {Instruments} from "../model/instruments";
+import {InstrumentDetails} from "../model/instrument-details";
+import {InstrumentForm} from "../model/instrument-form";
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
@@ -65,8 +65,6 @@ export class InstrumentService {
    * @param dto DTO with Instrument's details
    */
   createInstrument(section: string, id: string, dto: InstrumentForm): Observable<any> {
-/*    let respo = this.http.put('/api/sections/' + section + '/instruments/' + id, dto);
-    return this.getInstrumentsFromSection(section);*/
     return this.http.put('/api/sections/' + section + '/instruments/' + id, dto);
   }
 

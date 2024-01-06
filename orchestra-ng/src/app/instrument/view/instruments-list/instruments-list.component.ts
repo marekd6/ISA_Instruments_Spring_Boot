@@ -1,7 +1,7 @@
-import {Component, Inject, OnInit, OnChanges} from '@angular/core';
-import { InstrumentService } from "../../service/instrument.service";
-import { Instruments } from "../../model/instruments";
-import { Instrument } from "../../model/instrument";
+import {Component, OnInit} from '@angular/core';
+import {InstrumentService} from "../../service/instrument.service";
+import {Instruments} from "../../model/instruments";
+import {Instrument} from "../../model/instrument";
 
 @Component({
   selector: 'app-instrument-list',
@@ -32,7 +32,6 @@ export class InstrumentsListComponent implements OnInit{
     this.service.getNewId().subscribe(id => this.newid=id.id);
 
     this.newid = this.service.getID();
-    // this.service.getInstruments().subscribe(instruments => this.instruments = instruments);
     this.service.getInstrumentsFromSection(this.section).subscribe(instruments => this.instruments = instruments);
   }
 

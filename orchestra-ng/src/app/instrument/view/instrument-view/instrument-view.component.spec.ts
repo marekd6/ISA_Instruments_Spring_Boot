@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { InstrumentViewComponent } from './instrument-view.component';
+import {InstrumentViewComponent} from './instrument-view.component';
 
 describe('InstrumentViewComponent', () => {
   let component: InstrumentViewComponent;

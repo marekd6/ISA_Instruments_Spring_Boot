@@ -1,10 +1,9 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
-import { Sections } from "../model/sections";
-import {Section} from "../model/section";
+import {Injectable} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
+import {Sections} from "../model/sections";
 import {SectionDetails} from "../model/section-details";
-import { SectionForm } from '../model/section-form';
+import {SectionForm} from '../model/section-form';
 import {Newid} from "../model/newid";
 
 
@@ -33,7 +32,7 @@ export class SectionService {
   }
 
   /**
-   * Removes single user.
+   * Removes single section.
    *
    * @param uuid user's id
    */
@@ -42,7 +41,6 @@ export class SectionService {
   }
 
 
-  // TODO undefined
   /**
    * Get a Section
    * @param id Section's ID

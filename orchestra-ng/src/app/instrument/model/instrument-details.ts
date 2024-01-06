@@ -1,4 +1,4 @@
-import { Section } from "../../section/model/section";
+import {Section} from "../../section/model/section";
 
 /**
  * An Instrument with details

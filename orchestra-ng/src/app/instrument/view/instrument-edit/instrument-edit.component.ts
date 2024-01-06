@@ -1,29 +1,28 @@
-import { Component, OnInit } from '@angular/core';
-import { InstrumentService } from '../../service/instrument.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { InstrumentForm } from '../../model/instrument-form';
+import {Component, OnInit} from '@angular/core';
+import {InstrumentService} from '../../service/instrument.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {InstrumentForm} from '../../model/instrument-form';
 
 @Component({
   selector: 'app-instrument-edit',
   templateUrl: './instrument-edit.component.html'
-  //,styleUrls: ['./instrument-edit.component.css']
 })
 export class InstrumentEditComponent implements OnInit {
 
   /**
-   * Character's id.
+   * Instrument's id.
    */
   id: string | undefined;
 
   section: string | undefined;
 
   /**
-   * Single character.
+   * Single Instrument.
    */
   instrument: InstrumentForm | undefined;
 
   /**
-   * Single character.
+   * Single Instrument.
    */
   original: InstrumentForm | undefined;
 
@@ -62,7 +61,7 @@ export class InstrumentEditComponent implements OnInit {
   }
 
   /**
-   * Updates character.
+   * Updates Instrument.
    */
   onSubmit(): void {
     this.instrumentService.createInstrument(this.section!, this.id!, this.instrument!)

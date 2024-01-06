@@ -7,7 +7,6 @@
     <thead *ngIf="instruments.instruments">
     <tr>
       <th>Instrument</th>
-      <!--      <th>View</th>-->
       <th>Edit</th>
       <th>Delete</th>
     </tr>
@@ -16,13 +15,8 @@
     <tr *ngFor="let instrument of instruments.instruments">
       <td><a [routerLink]="['/sections', section, 'instruments', instrument.id]">{{instrument.name}}</a>
       </td>
-      <!--      <td>
-              <a [routerLink]="['/instruments', instrument.id]">View</a>
-            </td>-->
       <td>
-        <!--        <a [routerLink]="['/instruments', instrument.id, 'edit']">Edit</a>-->
-                <a [routerLink]="['/sections', section, 'instruments', instrument.id, 'edit']">Edit</a>
-<!--        edit-->
+        <a [routerLink]="['/sections', section, 'instruments', instrument.id, 'edit']">Edit</a>
       </td>
       <td>
         <button (click)="onDelete(instrument)">Delete</button>

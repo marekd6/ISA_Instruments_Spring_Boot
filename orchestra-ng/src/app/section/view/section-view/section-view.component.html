@@ -7,22 +7,8 @@
     <li>ID: {{section.id}}</li>
   </ul>
   </section>
-<!--  <section>
-    <a [routerLink]="['/sections', section.id, 'edit']">Edit</a>
-    <button (click)="onDelete(section)">Delete</button>
-  </section>-->
-<!--okTODO szczegóły kategorii-->
-<!--okTODO lista elementów-->
   <section *ngIf="section" routerLink="sections/:id/instruments" routerLinkActive>
   <app-instrument-list section="{{section.id}}">
   </app-instrument-list>
   </section>
-  <!--  <app-instrument-list [sectionid]=section.id>
-  </app-instrument-list>-->
-  <!--  <app-instrument-list section='{{section.id}}'>
-  </app-instrument-list>-->
-<!--TODO nowy element-->
-<!--okTODO edytuj element-->
-<!--okTODO usuń element-->
-<!--okTODO szczegóły elementu-->
 </article>

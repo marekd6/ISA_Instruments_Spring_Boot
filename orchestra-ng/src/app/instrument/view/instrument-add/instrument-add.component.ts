@@ -6,12 +6,11 @@ import {InstrumentForm} from '../../model/instrument-form';
 @Component({
     selector: 'app-instrument-add',
     templateUrl: './instrument-add.component.html'
-    //,styleUrls: ['./instrument-edit.component.css']
 })
 export class InstrumentAddComponent implements OnInit {
 
     /**
-     * Character's id.
+     * Instrument's id.
      */
     id: string | undefined;
 
@@ -20,12 +19,12 @@ export class InstrumentAddComponent implements OnInit {
     production_year: number | undefined;
 
     /**
-     * Single character.
+     * Single Instrument.
      */
     instrument: InstrumentForm | undefined;
 
     /**
-     * Single character.
+     * Single Instrument.
      */
     original: InstrumentForm | undefined;
 
@@ -46,30 +45,11 @@ export class InstrumentAddComponent implements OnInit {
     ngOnInit() {
 
         this.id = this.instrumentService.getID();
-        // var param = this.route.params.pipe();
         this.route.params.subscribe(params => this.section = params['section']);
-
-        /*    this.route.params.subscribe(params => {
-
-              this.instrumentService.getInstrument(params['section'], params['id'])
-                .subscribe(instrument => {
-                  this.id = instrument.id;
-                  this.section = instrument.section.id;
-                  this.instrument = {
-                    name: instrument.name,
-                    production_year: instrument.production_year,
-                    section: instrument.section.id,
-                    id: instrument.id
-                  };
-                  this.original = {...this.instrument};
-                });
-
-              this.instrumentService.getNewId().subscribe(id => {this.newid=id.id});
-            });*/
     }
 
     /**
-     * Updates character.
+     * Updates Instrument.
      */
     onSubmit(): void {
 
@@ -80,7 +60,6 @@ export class InstrumentAddComponent implements OnInit {
             section: this.section!
         }
 
-        // 2nd arg was: this.id!
         this.instrumentService.createInstrument(this.section!, this.instrument.id!, this.instrument!)
             .subscribe(() => this.router.navigate(['/sections', this.section!]));
     }
