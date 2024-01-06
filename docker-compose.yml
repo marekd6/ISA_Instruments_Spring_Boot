@@ -5,9 +5,6 @@ services:
     image: section-img
     container_name: orchestra-section
     hostname: orchestra-section
-#    environment:
-#      - SERVER_PORT=8002
-#      - ORCHESTRA_INSTRUMENT_URL_ADDRESS=http://orchestra-instrument:8081
     ports:
       - "8082:8082"
 
