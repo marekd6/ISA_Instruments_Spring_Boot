@@ -16,8 +16,14 @@ services:
     hostname: orchestra-instrument
     environment:
       - SERVER_PORT=8081
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://instrument-db:5432/admin
+      - SPRING_DATASOURCE_USERNAME=admin
+      - SPRING_DATASOURCE_PASSWORD=password
+#      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
     ports:
       - "8081:8081"
+    depends_on:
+      - instrument-db
 
   orchestra-ng:
     container_name: orchestra-ng
@@ -36,6 +42,13 @@ services:
 
   section-db:
     container_name: section-db
+    image: 'postgres:13.1-alpine'
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=password
+
+  instrument-db:
+    container_name: instrument-db
     image: 'postgres:13.1-alpine'
     environment:
       - POSTGRES_USER=admin
