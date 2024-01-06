@@ -7,6 +7,8 @@ services:
     hostname: orchestra-section
     ports:
       - "8082:8082"
+    depends_on:
+      - "section-db"
 
   orchestra-instrument:
     image: instrument-img
@@ -31,3 +33,10 @@ services:
       - INSTRUMENT_PORT=8081
       - SECTION_PORT=8082
       - SERVER_PORT=80
+
+  section-db:
+    container_name: section-db
+    image: 'postgres:13.1-alpine'
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=password
