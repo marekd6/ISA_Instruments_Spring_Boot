@@ -3,6 +3,8 @@ version: '3.8'
 services:
   orchestra-section:
     image: section-img
+    build:
+      context: ./orchestra-section
     container_name: orchestra-section
     hostname: orchestra-section
     ports:
@@ -12,6 +14,8 @@ services:
 
   orchestra-instrument:
     image: instrument-img
+    build:
+      context: ./orchestra-instrument
     container_name: orchestra-instrument
     hostname: orchestra-instrument
     environment:
@@ -27,6 +31,8 @@ services:
   orchestra-ng:
     container_name: orchestra-ng
     image: angular-img
+    build:
+      context: ./orchestra-ng
     ports:
       - "80:80"
     depends_on:
