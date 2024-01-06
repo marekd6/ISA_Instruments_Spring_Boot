@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from "@angular/router";
-import { SectionDetails } from "../../model/section-details";
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from "@angular/router";
+import {SectionDetails} from "../../model/section-details";
 import {SectionService} from "../../service/section.service";
 
 /**

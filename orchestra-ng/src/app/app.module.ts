@@ -5,12 +5,7 @@ import {SectionService} from "./section/service/section.service";
 import {InstrumentViewComponent} from "./instrument/view/instrument-view/instrument-view.component";
 import {FormsModule} from "@angular/forms";
 import {SectionListComponent} from "./section/view/section-list/section-list.component";
-import {MainComponent} from "./component/main/main.component";
-import {NavComponent} from "./component/nav/nav.component";
-import {HeaderComponent} from "./component/header/header.component";
-import {FooterComponent} from "./component/footer/footer.component";
 import {AppComponent} from "./app.component";
-import {RouterLink} from "@angular/router";
 import {HttpClientModule} from "@angular/common/http";
 import {AppRoutingModule} from "./app.routes";
 import {BrowserModule} from "@angular/platform-browser";
@@ -22,15 +17,8 @@ import {InstrumentAddComponent} from "./instrument/view/instrument-add/instrumen
 
 @NgModule({
   declarations: [InstrumentsListComponent, InstrumentViewComponent, InstrumentEditComponent, InstrumentAddComponent,
-    SectionListComponent, SectionViewComponent, SectionEditComponent, SectionAddComponent,
-    FooterComponent, HeaderComponent, NavComponent, MainComponent, AppComponent],//AppComponent
+    SectionListComponent, SectionViewComponent, SectionEditComponent, SectionAddComponent, AppComponent],
   imports: [
-/*    FormsModule,
-    RouterLink,
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule*/
     BrowserModule,
     AppRoutingModule,
     FormsModule,

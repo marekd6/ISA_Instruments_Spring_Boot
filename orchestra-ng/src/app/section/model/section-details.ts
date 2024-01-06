@@ -1,6 +1,3 @@
-import {Instrument} from "../../instrument/model/instrument";
-import {InstrumentDetails} from "../../instrument/model/instrument-details";
-
 /**
  * A Section
  */

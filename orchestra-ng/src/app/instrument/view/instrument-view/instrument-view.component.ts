@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { InstrumentService } from "../../service/instrument.service";
-import { ActivatedRoute, Router } from "@angular/router";
-import { InstrumentDetails } from "../../model/instrument-details";
+import {Component, OnInit} from '@angular/core';
+import {InstrumentService} from "../../service/instrument.service";
+import {ActivatedRoute, Router} from "@angular/router";
+import {InstrumentDetails} from "../../model/instrument-details";
 
 /**
  * Preview of an Instrument.

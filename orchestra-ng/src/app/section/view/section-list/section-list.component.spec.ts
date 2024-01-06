@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { SectionListComponent } from './section-list.component';
+import {SectionListComponent} from './section-list.component';
 
 describe('UserListComponent', () => {
   let component: SectionListComponent;

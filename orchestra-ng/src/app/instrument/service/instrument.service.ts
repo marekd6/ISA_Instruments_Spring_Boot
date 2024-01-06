@@ -1,6 +1,6 @@
-import { Instruments } from "../model/instruments";
-import { InstrumentDetails } from "../model/instrument-details";
-import { InstrumentForm } from "../model/instrument-form";
+import {Instruments} from "../model/instruments";
+import {InstrumentDetails} from "../model/instrument-details";
+import {InstrumentForm} from "../model/instrument-form";
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";

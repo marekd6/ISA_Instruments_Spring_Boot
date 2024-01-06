@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { SectionViewComponent } from './section-view.component';
+import {SectionViewComponent} from './section-view.component';
 
 describe('InstrumentViewComponent', () => {
   let component: SectionViewComponent;

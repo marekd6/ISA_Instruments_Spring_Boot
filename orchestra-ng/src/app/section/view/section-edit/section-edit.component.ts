@@ -1,12 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { SectionService } from '../../service/section.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { SectionForm } from '../../model/section-form';
+import {Component, OnInit} from '@angular/core';
+import {SectionService} from '../../service/section.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {SectionForm} from '../../model/section-form';
 
 @Component({
   selector: 'app-section-edit',
   templateUrl: './section-edit.component.html'
-  //,styleUrls: ['./section-edit.component.css']
 })
 export class SectionEditComponent implements OnInit {
 
@@ -56,14 +55,12 @@ export class SectionEditComponent implements OnInit {
           this.original = {...this.section};
         });
 
-      // this.sectionService.getNewId().subscribe(id => this.newid=id.id);
       this.newid = this.sectionService.getID();
 
       if (this.id==undefined) {
         this.id = this.newid;
         var param = params['id'];
         this.id = param;
-        // this.section?.id = param;
       }
 
     });
@@ -73,8 +70,6 @@ export class SectionEditComponent implements OnInit {
    * Updates character.
    */
   onSubmit(): void {
-    // this.sectionService.createSection(this.id!, this.section!);
-
     this.sectionService.createSection(this.id!, this.section!)
       .subscribe(() => this.router.navigate(['/sections', this.id!]));
   }
