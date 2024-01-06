@@ -15,7 +15,7 @@ public class OrchestraSectionApplication {
 	}
 
 	@Bean
-	public RestTemplate restTemplate(@Value("${orchestra.instrument.url}") String baseUrl) {
+	public RestTemplate restTemplate(@Value("${orchestra.instrument.url.address}") String baseUrl) {
 		return new RestTemplateBuilder().rootUri(baseUrl).build();
 	}
 

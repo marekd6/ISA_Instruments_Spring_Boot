@@ -7,7 +7,7 @@ services:
     hostname: orchestra-section
 #    environment:
 #      - SERVER_PORT=8002
-#      - ORCHESTRA_INSTRUMENT_URL=http://orchestra-instrument:8081
+#      - ORCHESTRA_INSTRUMENT_URL_ADDRESS=http://orchestra-instrument:8081
     ports:
       - "8082:8082"
 
