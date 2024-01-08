@@ -12,6 +12,13 @@
 #
 #RUN npm run build
 
+
+
+
+
+
+
+
 FROM nginx:1.23-alpine3.17
 
 LABEL org.opencontainers.image.title="orchestra-ng"
