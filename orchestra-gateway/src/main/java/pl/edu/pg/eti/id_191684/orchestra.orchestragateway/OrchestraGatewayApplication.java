@@ -23,8 +23,6 @@ public class OrchestraGatewayApplication {
     @Bean
     public RouteLocator routeLocator(
             RouteLocatorBuilder builder,
-            @Value("${orchestra.instrument.url}") String instrumentUrl,
-            @Value("${orchestra.section.url}") String sectionUrl,
             @Value("${orchestra.gateway.host}") String host
     ) {
         return builder
@@ -35,9 +33,9 @@ public class OrchestraGatewayApplication {
                         .path(
                                 "/api/sections/{uuid}",
                                 "/api/sections",
-                                "/api/sections/newid" // TODO new
+                                "/api/sections/newid"
                         )
-                        .uri(sectionUrl)
+                        .uri("lb://orchestra-section")
                 )
                 .route("instruments", route -> route
                         .host(host)
@@ -49,7 +47,7 @@ public class OrchestraGatewayApplication {
                                 "/api/sections/{uuid}/instruments/**"
                                 //,"/api/instruments/sections/{uuid}"
                         )
-                        .uri(instrumentUrl)
+                        .uri("lb://orchestra-instrument")
                 )
                 .build();
     }
