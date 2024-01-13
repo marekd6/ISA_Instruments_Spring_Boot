@@ -18,4 +18,4 @@ ENV EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://localhost:8080/eureka
 ENV EUREKA_SERVER_ENABLE_SELF_PRESERVATION=false
 ENV EUREKA_SERVER_EVICTION_INTERVAL_TIMER_IN_MS=2000
 
-COPY target/orchestra-instrument-${VERSION}.jar /opt/orchestra-eureka/orchestra-eureka.jar
+COPY target/orchestra-eureka-${VERSION}.jar /opt/orchestra-eureka/orchestra-eureka.jar

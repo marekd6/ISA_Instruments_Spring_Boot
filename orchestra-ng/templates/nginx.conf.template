@@ -4,14 +4,6 @@ http {
 
 include /etc/nginx/mime.types;
 
-upstream orchestra-section {
-  server ${ORCHESTRA_SECTION_URL}:${SECTION_PORT};
-}
-
-upstream orchestra-instrument {
-  server ${ORCHESTRA_INSTRUMENT_URL}:${INSTRUMENT_PORT};
-}
-
 server {
     listen       80;
     listen  [::]:80;
