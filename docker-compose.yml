@@ -1,12 +1,11 @@
 version: '3.8'
 
 services:
-  orchestra-section1:
+  orchestra-section:
     image: section-img
     build:
       context: ./orchestra-section
-    container_name: orchestra-section1
-    hostname: orchestra-section1
+    container_name: orchestra-section
     environment:
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://orchestra-eureka:8080/eureka"
       SPRING_DATASOURCE_URL: "jdbc:postgresql://section-db:5432/section-db"
@@ -16,28 +15,6 @@ services:
       SPRING_JPA_DATABASE_PLATFORM: "org.hibernate.dialect.PostgreSQLDialect"
       EUREKA_INSTANCE_INSTANCE_ID: "1"
       SERVER_PORT: "8080"
-    #    ports:
-    #      - "8082:8082"
-    depends_on:
-      - "section-db"
-
-  orchestra-section2:
-    image: section-img
-    build:
-      context: ./orchestra-section
-    container_name: orchestra-section2
-    hostname: orchestra-section2
-    environment:
-      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://orchestra-eureka:8080/eureka"
-      SPRING_DATASOURCE_URL: "jdbc:postgresql://section-db:5432/section-db"
-      SPRING_DATASOURCE_DRIVERCLASSNAME: "org.postgresql.Driver"
-      SPRING_DATASOURCE_USERNAME: "admin"
-      SPRING_DATASOURCE_PASSWORD: "password"
-      SPRING_JPA_DATABASE_PLATFORM: "org.hibernate.dialect.PostgreSQLDialect"
-      EUREKA_INSTANCE_INSTANCE_ID: "2"
-      SERVER_PORT: "8080"
-    #    ports:
-    #      - "8082:8082"
     depends_on:
       - "section-db"
 
@@ -46,9 +23,7 @@ services:
     build:
       context: ./orchestra-instrument
     container_name: orchestra-instrument1
-    hostname: orchestra-instrument1
     environment:
-      #      - SERVER_PORT=8081
       - SPRING_DATASOURCE_URL=jdbc:postgresql://instrument-db:5432/instrument-db
       - SPRING_DATASOURCE_USERNAME=admin
       - SPRING_DATASOURCE_PASSWORD=password
@@ -57,8 +32,6 @@ services:
       - SPRING_JPA_DATABASE_PLATFORM=org.hibernate.dialect.PostgreSQLDialect
       - SERVER_PORT=8080
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://orchestra-eureka:8080/eureka
-    #    ports:
-    #      - "8081:8081"
     depends_on:
       - instrument-db
 
@@ -67,9 +40,7 @@ services:
     build:
       context: ./orchestra-instrument
     container_name: orchestra-instrument2
-    hostname: orchestra-instrument2
     environment:
-      #      - SERVER_PORT=8081
       - SPRING_DATASOURCE_URL=jdbc:postgresql://instrument-db:5432/instrument-db
       - SPRING_DATASOURCE_USERNAME=admin
       - SPRING_DATASOURCE_PASSWORD=password
@@ -78,8 +49,6 @@ services:
       - SPRING_JPA_DATABASE_PLATFORM=org.hibernate.dialect.PostgreSQLDialect
       - SERVER_PORT=8080
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://orchestra-eureka:8080/eureka
-    #    ports:
-    #      - "8081:8081"
     depends_on:
       - instrument-db
 
@@ -90,9 +59,6 @@ services:
       context: ./orchestra-ng
     ports:
       - "80:80"
-    #    depends_on:
-    #      - "orchestra-section1"
-    #      - "orchestra-instrument1"
     environment:
       - ORCHESTRA_INSTRUMENT_URL=orchestra-instrument
       - ORCHESTRA_SECTION_URL=orchestra-section

@@ -1,5 +1,6 @@
 package pl.edu.pg.eti.id_191684.orchestra.orchestrainstrument.controller;
 
+import lombok.extern.java.Log;
 import org.antlr.v4.runtime.misc.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,8 +18,10 @@ import pl.edu.pg.eti.id_191684.orchestra.orchestrainstrument.service.InstrumentS
 import pl.edu.pg.eti.id_191684.orchestra.orchestrainstrument.service.SectionService;
 
 import java.util.UUID;
+import java.util.logging.Level;
 
 @RestController
+@Log
 public class InstrumentController {
 
     private final InstrumentService service;
@@ -161,6 +164,7 @@ public class InstrumentController {
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     public InstrumentCollectionGET readSectionInstruments(@PathVariable("sectionId") UUID sectionId) {
+        log.log(Level.INFO, "readSectionInstruments");
         if (sectionService.getSectionById(sectionId).isEmpty())
             throw new ResponseStatusException(HttpStatus.NOT_FOUND); // no section
 
@@ -186,6 +190,7 @@ public class InstrumentController {
     @DeleteMapping("/api/sections/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteSectionAndInstruments(@PathVariable("id") UUID id) {
+        log.log(Level.INFO, "deleteSectionAndInstruments");
         sectionService.getSectionById(id)
                 .ifPresentOrElse(
                         Section -> sectionService.deleteSection(id), // cascade remove Instruments
@@ -204,6 +209,7 @@ public class InstrumentController {
     @PutMapping("/api/sections/{id}")
     @ResponseStatus(HttpStatus.CREATED)
     public void createSection(@PathVariable("id") UUID id, @RequestBody SectionGET dto){
+        log.log(Level.INFO, "createSection");
         sectionService.saveSection(sectionFromDTOConverter.apply(id, dto));
     }
 
