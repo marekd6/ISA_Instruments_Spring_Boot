@@ -19,3 +19,5 @@ ENV EUREKA_SERVER_ENABLE_SELF_PRESERVATION=false
 ENV EUREKA_SERVER_EVICTION_INTERVAL_TIMER_IN_MS=2000
 
 COPY target/orchestra-eureka-${VERSION}.jar /opt/orchestra-eureka/orchestra-eureka.jar
+
+#ENV SPRING_CLOUD_CONFIG_ENABLED=false

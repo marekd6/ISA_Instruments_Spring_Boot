@@ -14,4 +14,6 @@ ENV ORCHESTRA_GATEWAY_HOST=localhost:8080
 ENV EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://localhost:8085/eureka
 ENV EUREKA_INSTANCE_INSTANCE_ID=1
 
+ENV SPRING_CONFIG_IMPORT=optional:configserver:http://localhost:8086
+
 COPY target/orchestra-gateway-${VERSION}.jar /opt/orchestra-gateway/orchestra-gateway.jar

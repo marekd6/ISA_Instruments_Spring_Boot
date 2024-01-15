@@ -10,12 +10,14 @@
         <module name="orchestra-eureka" />
         <module name="orchestra-instrument" />
         <module name="orchestra-section" />
+        <module name="orchestra-config" />
         <module name="orchestra-gateway" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="orchestra-config" options="-parameters" />
       <module name="orchestra-eureka" options="-parameters" />
       <module name="orchestra-gateway" options="-parameters" />
       <module name="orchestra-instrument" options="-parameters" />
