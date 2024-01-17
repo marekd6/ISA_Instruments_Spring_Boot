@@ -1,0 +1,96 @@
+<article *ngIf="section; else emptyForm">
+  <header><h2>Edit section</h2></header>
+
+  <form class="container"  #form="ngForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col-4 p-2">
+        <div>
+          <label for="name">Name:</label>
+          <input id="name" name="name" [(ngModel)]="section.name"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-4 p-2">
+        <div>
+          <label for="volume">Volume:</label>
+          <input id="volume" name="volume" [(ngModel)]="section.volume"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-4 p-2">
+        <div>
+          <label for="location">Location:</label>
+          <input id="location" name="location" [(ngModel)]="section.location"/>
+        </div>
+      </div>
+    </div>
+
+    <span><br></span>
+
+    <div class="row">
+      <div class="col-2 p-2">
+        <button type="submit">Update</button>
+      </div>
+      <div class="col-2 p-2">
+        <button type="button" (click)="form.resetForm(original)">Reset</button>
+      </div>
+    </div>
+  </form>
+</article>
+
+<ng-template #emptyForm>
+  <header><h2>Add section from edit</h2></header>
+
+  <form class="container"  #form="ngForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col-4 p-2">
+        <div>
+          <label for="name2">Name:</label>
+          <input id="name2" name="name2"  />
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-4 p-2">
+        <div>
+          <label for="id2">ID:</label>
+          <input id="id2" name="id2" [(ngModel)]="this.newid" required/>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-4 p-2">
+        <div>
+          <label for="volume2">Volume:</label>
+          <input id="volume2" name="volume2" />
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-4 p-2">
+        <div>
+          <label for="location2">Location:</label>
+          <input id="location2" name="location2" />
+        </div>
+      </div>
+    </div>
+
+    <span><br></span>
+
+    <div class="row">
+      <div class="col-2 p-2">
+        <button type="submit">Update</button>
+      </div>
+      <div class="col-2 p-2">
+        <button type="button" (click)="form.resetForm(original)">Reset</button>
+      </div>
+    </div>
+  </form>
+</ng-template>

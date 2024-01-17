@@ -1,0 +1,74 @@
+### read collection of sections
+GET http://localhost:8082/api/sections
+### fsgsg
+GET http://localhost:8082/api/sections
+
+### read section
+GET http://localhost:8083/api/sections/6ed878ec-0000-0000-0000-00006ed878ec
+
+### delete section
+DELETE http://localhost:8083/api/sections/6ed878ec-0000-0000-0000-00006ed878ec
+
+### create section
+PUT http://localhost:8083/api/sections/6ed878ec-0000-0000-0000-00006ed878ec
+Content-Type: application/json
+
+{
+  "name": "String",
+  "volume": 5,
+  "location": 1
+}
+
+### read all instruments
+GET http://localhost:8083/api/instruments
+
+### read all instruments from a section
+GET http://localhost:8083/api/sections/6ed878ec-0000-0000-0000-00006ed878ec/instruments
+
+### read an instrument
+GET http://localhost:8083/api/instruments/c2c53a23-0000-0000-0000-0000c2c53a23
+
+### read an instrument from a section
+GET http://localhost:8083/api/sections/6ed878ec-0000-0000-0000-00006ed878ec/instruments/c2c53a23-0000-0000-0000-0000c2c53a23
+
+### delete an instrument
+DELETE http://localhost:8083/api/instruments/c2c53a23-0000-0000-0000-0000c2c53a23
+
+### delete an instrument from a section
+DELETE http://localhost:8083/api/sections/6ed878ec-0000-0000-0000-00006ed878ec/instruments/c2c53a23-0000-0000-0000-0000c2c53a23
+
+### create an instrument
+PUT http://localhost:8083/api/sections/6ed878ec-0000-0000-0000-00006ed878ec/instruments/c2c53a23-0000-0000-0000-0000c2c53a23
+Content-Type: application/json
+
+{
+  "name": "violin",
+  "production_year": 1850
+}
+
+
+### read the new instrument from a section
+GET http://localhost:8083/api/sections/6ed878ec-0000-0000-0000-00006ed878ec/instruments/ec01d9e4-0000-0000-0000-0000ec01d9e4
+
+### read all instruments from an empty section 204
+GET http://localhost:8083/api/sections/ff05ec9a-0000-0000-0000-0000ff05ec9a/instruments
+
+
+### read all instruments from a non-existing section 404
+GET http://localhost:8083/api/sections/7705ec9a-0000-0000-0000-0000ff05ec99/instruments
+
+
+### create an instrument in a non-existing section
+PUT http://localhost:8083/api/sections/7705ec9a-0000-0000-0000-0000ff05ec99/instruments/c2c53a23-0000-0000-0000-0000c2c53a23
+Content-Type: application/json
+
+{
+  "name": "violin",
+  "production_year": 1850
+}
+
+### delete an instrument from a non-existing section
+DELETE http://localhost:8083/api/sections/7705ec9a-0000-0000-0000-0000ff05ec99/instruments/c2c53a23-0000-0000-0000-0000c2c53a23
+
+### delete a non-existing instrument from a section
+DELETE http://localhost:8083/api/sections/6ed878ec-0000-0000-0000-00006ed878ec/instruments/c3fe24aa-0000-0000-0000-0000c3fe24aa
