@@ -11,8 +11,3 @@ COPY target/orchestra-instrument-${VERSION}.jar /opt/orchestra-instrument/orches
 ENV SERVER_PORT=8081
 
 EXPOSE $SERVER_PORT
-
-ENV EUREKA_INSTANCE_INSTANCE_ID=1
-
-#ENV SPRING_CONFIG_IMPORT=optional:configserver:http://localhost:8086
-
