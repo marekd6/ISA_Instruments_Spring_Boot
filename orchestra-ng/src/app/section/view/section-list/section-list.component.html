@@ -1,0 +1,33 @@
+<article class="text--justified">
+  <header>
+    <h2>Sections</h2>
+    <h3 *ngIf="sections">{{sections.description}}  {{sections.sections.length}}</h3>
+  </header>
+  <section>
+  <table *ngIf="sections">
+    <thead>
+      <tr>
+        <th>Section</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let section of sections.sections">
+        <td>
+          <a [routerLink]="['/sections', section.id]">{{section.name}}</a>
+        </td>
+        <td>
+          <a [routerLink]="['/sections', section.id, 'edit']">Edit</a>
+        </td>
+        <td>
+          <button (click)="onDelete(section)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  </section>
+  <section>
+    <a [routerLink]="['/sections', newid, 'add']">Add new Section</a>
+  </section>
+</article>
