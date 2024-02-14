@@ -17,6 +17,7 @@ services:
       SERVER_PORT: "8080"
     depends_on:
       - "section-db"
+      - orchestra-eureka
 
   orchestra-instrument-1:
     image: instrument-img
@@ -34,6 +35,7 @@ services:
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://orchestra-eureka:8080/eureka
     depends_on:
       - instrument-db
+      - orchestra-eureka
 
   orchestra-instrument-2:
     image: instrument-img
@@ -51,6 +53,7 @@ services:
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://orchestra-eureka:8080/eureka
     depends_on:
       - instrument-db
+      - orchestra-eureka
 
   orchestra-ng:
     container_name: orchestra-ng
