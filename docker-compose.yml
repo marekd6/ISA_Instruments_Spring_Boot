@@ -1,0 +1,118 @@
+version: '3.8'
+
+services:
+  orchestra-section:
+    image: section-img
+    build:
+      context: ./orchestra-section
+    container_name: orchestra-section
+    environment:
+      SPRING_CONFIG_IMPORT: "configserver:http://orchestra-config:8080"
+    depends_on:
+      - "section-db"
+      - orchestra-config
+
+  orchestra-instrument-1:
+    image: instrument-img
+    build:
+      context: ./orchestra-instrument
+    container_name: orchestra-instrument1
+    environment:
+      - SPRING_CONFIG_IMPORT=configserver:http://orchestra-config:8080
+      - EUREKA_INSTANCE_INSTANCE_ID=1
+    depends_on:
+      - instrument-db
+      - orchestra-config
+
+  orchestra-instrument-2:
+    image: instrument-img
+    build:
+      context: ./orchestra-instrument
+    container_name: orchestra-instrument2
+    environment:
+      - EUREKA_INSTANCE_INSTANCE_ID=2
+      - SPRING_CONFIG_IMPORT=configserver:http://orchestra-config:8080
+    depends_on:
+      - instrument-db
+      - orchestra-config
+
+  orchestra-ng:
+    container_name: orchestra-ng
+    image: angular-img
+    build:
+      context: ./orchestra-ng
+    ports:
+      - "80:80"
+    environment:
+      - API_URL=http://orchestra-gateway:8080/api
+
+  section-db:
+    container_name: section-db
+    image: 'postgres:13.1-alpine'
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=section-db
+    volumes:
+      - section-db-data:/var/lib/postgresql/data
+
+  instrument-db:
+    container_name: instrument-db
+    image: 'postgres:13.1-alpine'
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=instrument-db
+    volumes:
+      - instrument-db-data:/var/lib/postgresql/data
+    depends_on:
+      - orchestra-section
+
+  orchestra-eureka:
+    image: eureka-img
+    build:
+      context: ./orchestra-eureka
+    container_name: orchestra-eureka
+    ports:
+      - "8090:8080"
+    environment:
+      EUREKA_INSTANCE_INSTANCE_ID: "1"
+      SERVER_PORT: 8080
+    #      SPRING_CLOUD_CONFIG_ENABLED: false
+    depends_on:
+      - orchestra-config
+
+  orchestra-gateway:
+    image: gateway-img
+    build:
+      context: ./orchestra-gateway
+    container_name: orchestra-gateway
+    hostname: orchestra-gateway
+    environment:
+      SPRING_CONFIG_IMPORT: "configserver:http://orchestra-config:8080"
+      ORCHESTRA_GATEWAY_HOST: "orchestra-gateway:8080"
+      SERVER_PORT: 8080
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://orchestra-eureka:8080/eureka"
+    ports:
+      - "8089:8080"
+    depends_on:
+      orchestra-config:
+        condition: service_started
+
+  orchestra-config:
+    image: config-img
+    build:
+      context: ./orchestra-config
+    container_name: orchestra-config
+    hostname: orchestra-config
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://orchestra-eureka:8080/eureka"
+      SERVER_PORT: 8080
+    volumes:
+      - /configuration:/var/orchestra-config/configuration
+    ports:
+      - "8088:8080"
+
+volumes:
+  section-db-data:
+  instrument-db-data:

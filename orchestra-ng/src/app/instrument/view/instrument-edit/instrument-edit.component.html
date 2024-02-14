@@ -1,0 +1,80 @@
+<article *ngIf="instrument; else newInstrument">
+  <header><h2>Edit instrument</h2></header>
+
+  <form class="container"  #form="ngForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col-4 p-2">
+        <div>
+          <label for="name">Name:</label>
+          <input id="name" name="name" [(ngModel)]="instrument.name"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-4 p-2">
+        <div>
+          <label for="production_year">Year of production:</label>
+          <input id="production_year" name="production_year" [(ngModel)]="instrument.production_year"/>
+        </div>
+      </div>
+    </div>
+
+
+    <span><br></span>
+
+    <div class="row">
+      <div class="col-2 p-2">
+        <button type="submit">Update</button>
+      </div>
+      <div class="col-2 p-2">
+        <button type="button" (click)="form.resetForm(original)">Reset</button>
+      </div>
+    </div>
+  </form>
+</article>
+
+<ng-template #newInstrument>
+  <header><h2>Edit instrument</h2></header>
+
+  <form class="container"  #form="ngForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col-4 p-2">
+        <div>
+          <label for="name2">Name:</label>
+          <input id="name2" name="name2" />
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-4 p-2">
+        <div>
+          <label for="id2">ID:</label>
+          <input id="id2" name="id2" [(ngModel)]="this.newid" />
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-4 p-2">
+        <div>
+          <label for="production_year2">Volume:</label>
+          <input id="production_year2" name="production_year2" />
+        </div>
+      </div>
+    </div>
+
+
+    <span><br></span>
+
+    <div class="row">
+      <div class="col-2 p-2">
+        <button type="submit">Update</button>
+      </div>
+      <div class="col-2 p-2">
+        <button type="button" (click)="form.resetForm(original)">Reset</button>
+      </div>
+    </div>
+  </form>
+</ng-template>
