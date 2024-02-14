@@ -1,9 +1,0 @@
-<component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="5_Angular_run" type="CompoundRunConfigurationType">
-    <toRun name="Angular CLI Server (orchestra-ng)" type="js.build_tools.npm" />
-    <toRun name="OrchestraGatewayApplication" type="SpringBootApplicationConfigurationType" />
-    <toRun name="OrchestraInstrumentApplication" type="SpringBootApplicationConfigurationType" />
-    <toRun name="OrchestraSectionApplication" type="SpringBootApplicationConfigurationType" />
-    <method v="2" />
-  </configuration>
-</component>
